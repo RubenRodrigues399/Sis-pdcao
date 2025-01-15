@@ -1,11 +1,11 @@
-import Footer from "../components/Footer";
-import NavBar from "../components/NavBar";
-import NossaEquipa from "../components/NossaEquipa";
-import Stats from "../components/Stats";
+import Footer from "../Componentes/Footer";
+import NavBar from "../Componentes/NavBar";
+import NossaEquipa from "../Componentes/NossaEquipa";
+import Stats from "../Componentes/Stats";
 
-const hospital = "/assets/img/geral.jpg";
+import hospital from "../assets/img/geral.jpg";
 
-export default function Home() {
+function Home() {
   return (
     <>
       <NavBar />
@@ -68,7 +68,7 @@ export default function Home() {
               <div className="mt-5">
                 <a
                   href="/medicos"
-                  className="flex items-center justify-center rounded-md mb-6 bg-blue-300 px-4 py-2 text-sm font-semibold text-black hover:text-blue-500 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                  className="flex items-center justify-center rounded-md mb-6 bg-blue-300 px-4 py-2 text-sm font-semibold text-black hover:text-blue-300 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                 >
                   Visualizar
                 </a>
@@ -90,7 +90,7 @@ export default function Home() {
               <div className="mt-5">
                 <a
                   href="/exames"
-                  className="flex items-center justify-center rounded-md mb-6 bg-blue-300 px-4 py-2 text-sm font-semibold text-black hover:text-blue-500 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                  className="flex items-center justify-center rounded-md mb-6 bg-blue-300 px-4 py-2 text-sm font-semibold text-black hover:text-blue-300 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                 >
                   Visualizar
                 </a>
@@ -109,3 +109,4 @@ export default function Home() {
   );
 }
 
+export default Home;
