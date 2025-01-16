@@ -44,11 +44,11 @@ const navigation = [
     name: "Utentes",
     href: "/Paciente",
     current: false,
-    submenu: [
-      { name: "Criar", href: "/Paciente/criarPaciente" },
-      { name: "Editar", href: "/Paciente/editar" },
-      { name: "Deletar", href: "/Paciente/deletar" },
-    ],
+    // submenu: [
+    //   { name: "Criar", href: "/Paciente/criarPaciente" },
+    //   { name: "Editar", href: "/Paciente/editar" },
+    //   { name: "Deletar", href: "/Paciente/deletar" },
+    // ],
   },
   {
     name: "Agenda",

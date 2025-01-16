@@ -61,7 +61,7 @@ const Dashboard = () => {
                 >
                   <span className="text-gray-700">Chance Vaccaro</span>
                   <div className="flex space-x-2">
-                    <button className="bg-green-500 text-white px-4 py-1 rounded">Accept</button>
+                    <button className="bg-[#21aeb8] text-white px-4 py-1 rounded">Accept</button>
                     <button className="bg-red-500 text-white px-4 py-1 rounded">Reject</button>
                   </div>
                 </li>
