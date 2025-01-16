@@ -1,10 +1,10 @@
+//import Stats from "@/Componentes/Stats";
 import Footer from "@/components/Footer";
 import NavBarIn from "@/components/NavBarIn";
-import NavBar from "@/components/NavBarIn";
 
 import React from 'react';
 
-const Dashboard = () => {
+const DashboardPC = () => {
   return (
     <> 
     <NavBarIn />
@@ -29,7 +29,7 @@ const Dashboard = () => {
 
         {/* Stats Section */}
         <section className="grid grid-cols-4 gap-4 mt-6">
-          {['Total de Pacientes', 'Total de Pessoal Clinico', 'Total de Pessoal Admin', 'Total de Labs'].map((item) => (
+          {['Total de Medicos', 'Total de Enfermeiros', 'Total de Analistas Clinicos', 'Total de Labs'].map((item) => (
             <div
               key={item}
               className="bg-white shadow-md p-6 rounded-lg flex flex-col items-center"
@@ -123,4 +123,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardPC;

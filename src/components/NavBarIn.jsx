@@ -1,47 +1,6 @@
 "use client"
-// import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-// import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-// import logo from '../assets/img/2.png'
-
-// export default function Example() {
-//   return (
-//     <Disclosure as="nav" className="bg-[#21aeb8]">
-//       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-//         <div className="relative flex h-16 items-center justify-between">
-//           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-//             <div className="flex shrink-0 items-center">
-//             <span className='text-black flex items-center p-1'>Health First</span>
-//               <img alt="Health First" src={logo} className="h-8 w-auto"
-//               />
-//             </div>
-//           </div>
-//           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-//           <a href="#" className='text-black hover:text-white px-4'>Login</a>
-//           <a href="#" className='text-black hover:text-white px-4 mr-10'>Registrar-se</a>
-//           </div>
-//         </div>
-//       </div>
-//     </Disclosure>
-//   )
-// }
 
 const logo = "/assets/img/2.png";
-
-// export default function NavBar() {
-//     return (
-//         <nav className='w-full h-16 flex sm:px-6 lg:px-8 items-center bg-[#21aeb8] border-b-2 border-blue-300 justify-around'>
-//             <div className='w-52 p-2 h-full flex items-center justify-center'>
-//                 <a href="/" className='text-black flex items-center p-1'>Health First</a>
-//                 <img src={logo} className='w-9' />
-//             </div>
-//             <div className='w-3/4 h-full flex items-center justify-end gap-4'>
-//                 <a href="/login" className='text-black hover:text-white px-4'>Login</a>
-
-//                 <a href="/registro" className='text-black hover:text-white px-4 mr-10'>Registrar-se</a>
-//             </div>
-//         </nav>
-//     );
-// }
 
 import React from "react"
 //import { useNavigate } from "react-router-dom";
@@ -60,32 +19,49 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 //import ruben from "../assets/img/Ruben.png";
 
 const navigation = [
-  { name: "Dashboard", href: "#", current: true },
+  { name: "Dashboard", href: "/dashboard", current: true },
   {
     name: "P.Clínico",
-    href: "/PCDashboard",  
+    href: "/PessClinico",
     current: false,
-    submenu: ["Criar", "Editar", "Deletar"],
+    submenu: [
+      { name: "Criar", href: "/PessClinico/criar" },
+      { name: "Editar", href: "/PessClinico/editar" },
+      { name: "Deletar", href: "/PessClinico/deletar" },
+    ],
   },
   {
     name: "P.Administrativo",
-    href: "#",
+    href: "/pessAdmin",
     current: false,
-    submenu: ["Criar", "Editar", "Deletar"],
+    submenu: [
+      { name: "Criar", href: "/pessAdmin/criar" },
+      { name: "Editar", href: "/pessAdmin/editar" },
+      { name: "Deletar", href: "/pessAdmin/deletar" },
+    ],
   },
   {
     name: "Utentes",
-    href: "#",
+    href: "/Paciente",
     current: false,
-    submenu: ["Criar", "Editar", "Deletar"],
+    submenu: [
+      { name: "Criar", href: "/Paciente/criarPaciente" },
+      { name: "Editar", href: "/Paciente/editar" },
+      { name: "Deletar", href: "/Paciente/deletar" },
+    ],
   },
   {
     name: "Agenda",
-    href: "#",
+    href: "/agenda",
     current: false,
-    submenu: ["Criar", "Editar", "Deletar"],
+    submenu: [
+      { name: "Criar", href: "/agenda/criar" },
+      { name: "Editar", href: "/agenda/editar" },
+      { name: "Deletar", href: "/agenda/deletar" },
+    ],
   },
 ];
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -135,21 +111,21 @@ const NavBarIn = () => {
                     </a>
                     {/* Submenu */}
                     {item.submenu && (
-                      <div className="absolute left-0 hidden group-hover:block mt-2 w-40 rounded-md bg-blue-300 shadow-lg">
-                        <ul className="py-1">
-                          {item.submenu.map((subItem, index) => (
-                            <li key={index}>
-                              <a
-                                href="#"
-                                className="block px-4 py-2 text-sm text-black hover:bg-blue-400"
-                              >
-                                {subItem}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
+  <div className="absolute left-0 hidden group-hover:block mt-2 w-40 rounded-md bg-blue-300 shadow-lg">
+    <ul className="py-1">
+      {item.submenu.map((subItem, index) => (
+        <li key={index}>
+          <a
+            href={subItem.href} // Certifique-se de que `href` está correto
+            className="block px-4 py-2 text-sm text-black hover:bg-blue-400"
+          >
+            {subItem.name} {/* Acessa a propriedade `name` */}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}
                   </div>
                 ))}
               </div>

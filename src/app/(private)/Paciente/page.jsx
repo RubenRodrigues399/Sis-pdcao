@@ -1,10 +1,10 @@
+//import Stats from "@/Componentes/Stats";
 import Footer from "@/components/Footer";
 import NavBarIn from "@/components/NavBarIn";
-import NavBar from "@/components/NavBarIn";
 
 import React from 'react';
 
-const Dashboard = () => {
+const DashboardPaciente = () => {
   return (
     <> 
     <NavBarIn />
@@ -28,8 +28,8 @@ const Dashboard = () => {
       
 
         {/* Stats Section */}
-        <section className="grid grid-cols-4 gap-4 mt-6">
-          {['Total de Pacientes', 'Total de Pessoal Clinico', 'Total de Pessoal Admin', 'Total de Labs'].map((item) => (
+        {/* <section className="grid grid-cols-4 pl-60 gap-4 mt-6">
+          {['Pacientes'].map((item) => (
             <div
               key={item}
               className="bg-white shadow-md p-6 rounded-lg flex flex-col items-center"
@@ -38,10 +38,10 @@ const Dashboard = () => {
               <p className="text-2xl font-bold">20</p>
             </div>
           ))}
-        </section>
+        </section> */}
 
         {/* Graph and Appointments */}
-        <section className="grid grid-cols-2 gap-4 mt-6">
+        <section className="grid grid-cols-2 gap-4 mt-0">
           {/* Graph Placeholder */}
           <div className="bg-white shadow-md p-6 rounded-lg">
             <h2 className="text-lg font-semibold">Patients</h2>
@@ -123,4 +123,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardPaciente;
