@@ -44,7 +44,7 @@ const Dashboard = () => {
         <section className="grid grid-cols-2 gap-4 mt-6">
           {/* Graph Placeholder */}
           <div className="bg-white shadow-md p-6 rounded-lg">
-            <h2 className="text-lg font-semibold">Patients</h2>
+            <h2 className="text-lg font-semibold">Pacientes</h2>
             <div className="mt-4 h-40 bg-gray-200 rounded-lg flex items-center justify-center">
               Graph Placeholder
             </div>
@@ -52,9 +52,9 @@ const Dashboard = () => {
 
           {/* Appointments */}
           <div className="bg-white shadow-md p-6 rounded-lg">
-            <h2 className="text-lg font-semibold">Appointments</h2>
+            <h2 className="text-lg font-semibold">Marcações</h2>
             <ul className="mt-4 space-y-2">
-              {[...Array(5)].map((_, idx) => (
+              {[...Array(2)].map((_, idx) => (
                 <li
                   key={idx}
                   className="p-4 bg-gray-100 rounded-lg flex justify-between items-center"

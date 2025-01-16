@@ -24,21 +24,21 @@ const navigation = [
     name: "P.Clínico",
     href: "/PessClinico",
     current: false,
-    submenu: [
-      { name: "Criar", href: "/PessClinico/criar" },
-      { name: "Editar", href: "/PessClinico/editar" },
-      { name: "Deletar", href: "/PessClinico/deletar" },
-    ],
+    // submenu: [
+    //   { name: "Criar", href: "/PessClinico/criar" },
+    //   { name: "Editar", href: "/PessClinico/editar" },
+    //   { name: "Deletar", href: "/PessClinico/deletar" },
+    // ],
   },
   {
     name: "P.Administrativo",
     href: "/pessAdmin",
     current: false,
-    submenu: [
-      { name: "Criar", href: "/pessAdmin/criar" },
-      { name: "Editar", href: "/pessAdmin/editar" },
-      { name: "Deletar", href: "/pessAdmin/deletar" },
-    ],
+    // submenu: [
+    //   { name: "Criar", href: "/pessAdmin/criar" },
+    //   { name: "Editar", href: "/pessAdmin/editar" },
+    //   { name: "Deletar", href: "/pessAdmin/deletar" },
+    // ],
   },
   {
     name: "Utentes",
@@ -54,11 +54,6 @@ const navigation = [
     name: "Agenda",
     href: "/agenda",
     current: false,
-    submenu: [
-      { name: "Criar", href: "/agenda/criar" },
-      { name: "Editar", href: "/agenda/editar" },
-      { name: "Deletar", href: "/agenda/deletar" },
-    ],
   },
 ];
 
