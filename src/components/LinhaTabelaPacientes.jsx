@@ -47,7 +47,8 @@ export default function LinhaTabelaPaciente({ id, nome, genero, data_nascimento,
         <Modal onClose={closeModal}>
           {modalType === "view" && (
             <div>
-              <h2 className="text-xl font-semibold">Detalhes do Paciente</h2>
+              <h2 className="text-2xl font-semibold text-center mb-6">Perfil do Paciente</h2>
+              
               <p><strong>ID:</strong> {id}</p>
               <p><strong>Nome:</strong> {nome}</p>
               <p><strong>Gênero:</strong> {genero}</p>
