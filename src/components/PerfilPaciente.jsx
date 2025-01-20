@@ -2,6 +2,9 @@ import React from "react";
 
 const PatientProfile = ({ paciente, onClose }) => {
   return (
+    <>
+      <NavBarIn />
+
     <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-3xl">
       <button
         className="absolute top-4 right-4 text-gray-600 hover:text-red-500"
@@ -43,6 +46,7 @@ const PatientProfile = ({ paciente, onClose }) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
