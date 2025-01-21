@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Footer from "@/components/Footer";
 import NavBarIn from "@/components/NavBarIn";
 import LinhaTabelaPaciente from "@/components/LinhaTabelaPacientes";
-import Modal from "@/components/ModalAddPaciente";
+import Modal from "@/components/ModalOpen";
 
 const PatientManagement = () => {
   const [isModalOpen, setModalOpen] = useState(false);
