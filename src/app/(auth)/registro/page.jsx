@@ -5,9 +5,10 @@ import NavBar from "@/components/NavBar";
 const logo = "/assets/img/2.png";
 import UseAuth from "@/hooks/useAuth";
 import { redirect } from "next/navigation";
+import { registro } from "@/actions/auth";
 
 export default function Registro() {
-  const { registro } = UseAuth();
+  //const { registro } = UseAuth();
 
   const [nome, setNome] = useState("");
   const [genero, setGenero] = useState("");
@@ -20,23 +21,47 @@ export default function Registro() {
   const [senha, setSenha] = useState("");
   const [error, setError] = useState("");
 
-  const handleRegistro = () => {
-    event.preventDefault();
-    if (!nome || !genero || !data_nasci || !email || !telefone || !senha) {
-      setError("Preencha todos os campos");
-      return;
-    }
+  // const handleRegistro = () => {
+  //   event.preventDefault();
+  //   if (!nome || !genero || !data_nasci || !email || !telefone || !senha) {
+  //     setError("Preencha todos os campos");
+  //     return;
+  //   }
 
-    const res = registro(nome, genero, data_nasci, email, telefone, senha);
+  //   const res = registro(nome, genero, data_nasci, email, telefone, senha);
 
-    if (res) {
-      setError(res);
-      return;
-    }
+  //   if (res) {
+  //     setError(res);
+  //     return;
+  //   }
 
-    alert("Utilizador cadastrado com sucesso!");
-    redirect("/login");
-  };
+  //   alert("Utilizador cadastrado com sucesso!");
+  //   redirect("/login");
+  // };
+
+  const handleRegistro = async(event) => {
+      event.preventDefault();
+      if (!nome || !genero || !data_nasci || !email || !telefone || !provincia || !municipio  || !bairro || !senha ) {
+        setError("Preencha todos os campos");
+        return;
+      }
+      console.log("telefone, senha", telefone, senha);
+      try {
+        
+      const res =await registro({nome, genero, data_nasci, email, telefone, provincia, municipio, bairro, senha});
+      console.log("res", res);
+      if(res.token){
+        console.log("token", res.token);
+        router.push("/login")
+        //redirect("/home");
+      }
+  
+      }catch(e) {
+        console.error("Error:", e);
+        setError("Falha ao fazer o registro");
+  
+      }
+    };
 
   return (
     <>

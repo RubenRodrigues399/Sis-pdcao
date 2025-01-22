@@ -17,6 +17,7 @@ import {
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 //import ruben from "../assets/img/Ruben.png";
+import { logoutUser } from "@/actions/auth";
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard", current: true },
@@ -63,7 +64,17 @@ function classNames(...classes) {
 }
 
 const NavBarIn = () => {
-  const { sair } = UseAuth();
+  const handleLogout = async () => {
+    try {
+      await logoutUser();
+      alert('Logout realizado com sucesso!');
+      // Redirecionar o usuário para a página de login
+      window.location.href = '/login';
+    } catch (error) {
+      console.error('Erro ao deslogar:', error);
+      alert('Erro ao realizar logout.');
+    }
+  };
   //const navigate = useNavigate();
 
   return (
@@ -172,7 +183,7 @@ const NavBarIn = () => {
                   >
                     Sair
                   </a> */}
-                  <button onClick={() => [sair(), navigate("/")]} className="w-44 block px-4 py-2 text-left text-sm text-black hover:bg-blue-400">
+                  <button onClick={handleLogout} className="w-44 block px-4 py-2 text-left text-sm text-black hover:bg-blue-400">
                     Sair
                   </button>
                 </MenuItem>
