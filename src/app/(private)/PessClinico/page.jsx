@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import NavBarIn from "@/components/NavBarIn";
 import Modal from "@/components/ModalOpen";
 import Footer from "@/components/Footer";
+import LinhaTabelaPessClinico from "@/components/LinhaTabelaPessClinico";
+
 
 const StaffManagement = () => {
     const [isModalOpen, setModalOpen] = useState(false);
@@ -28,30 +30,40 @@ const StaffManagement = () => {
             <thead>
               <tr className="bg-gray-100 text-left">
                 <th className="p-2 border">ID</th>
-                <th className="p-2 border">Name</th>
-                <th className="p-2 border">Role</th>
-                <th className="p-2 border">Gender</th>
+                <th className="p-2 border">Nome</th>
+                <th className="p-2 border">Função</th>
+                <th className="p-2 border">Gênero</th>
+                <th className="p-2 border">Data de nascimento</th>                
+                <th className="p-2 border">Telefone</th>
                 <th className="p-2 border">Email</th>
-                <th className="p-2 border">Mobile Number</th>
                 <th className="p-2 border">NIC</th>
-                <th className="p-2 border">DOB</th>
-                <th className="p-2 border">Status</th>
+                <th className="p-2 border">Endereço</th>
+                <th className="p-2 border">Actions</th>
               </tr>
             </thead>
             <tbody>
-              {[...Array(4)].map((_, idx) => (
-                <tr key={idx} className="hover:bg-gray-50">
-                  <td className="p-2 border">{idx + 1}</td>
-                  <td className="p-2 border">Madhusha</td>
-                  <td className="p-2 border">Doctor</td>
-                  <td className="p-2 border">Male</td>
-                  <td className="p-2 border">madhusha@gmail.com</td>
-                  <td className="p-2 border">078-66622516</td>
-                  <td className="p-2 border">86362626</td>
-                  <td className="p-2 border">1999-04-13</td>
-                  <td className="p-2 border text-green-500">Online</td>
-                </tr>
-              ))}
+             <LinhaTabelaPessClinico
+                                 id="1"
+                                 nome="Ruben Rodrigues"
+                                 funcao="Doctor"
+                                 genero="Masculino"
+                                 data_nascimento="03-03-1999"
+                                 telefone="937869519"
+                                 email="ruben339@gmail.com"
+                                 nic="24"
+                                 endereco="Talatona, Camama"
+                               />
+                               <LinhaTabelaPessClinico
+                                 id="2"
+                                 nome="Silk Manuel"
+                                 funcao="Enfermeiro"
+                                 genero="Masculino"
+                                 data_nascimento="17-06-2001"
+                                 telefone="946753908"
+                                 email="silkadas20@gmail.com"
+                                 nic="7"
+                                 endereco="Gamek, Rocha"
+                               />
             </tbody>
           </table>
         </section>

@@ -62,7 +62,7 @@ const Dashboard = () => {
         <section className="grid grid-cols-2 gap-4 mt-6">
           {/* Recent Doctors */}
           <div className="bg-white shadow-md p-6 rounded-lg">
-            <h2 className="text-lg font-semibold">Doctores</h2>
+            <h2 className="text-lg font-semibold">Pessoal Clínico</h2>
             <table className="w-full mt-4 border-collapse">
               <thead>
                 <tr className="bg-gray-100 text-left">
@@ -85,19 +85,21 @@ const Dashboard = () => {
 
           {/* Out of Stock */}
           <div className="bg-white shadow-md p-6 rounded-lg">
-            <h2 className="text-lg font-semibold">Out of Stock</h2>
+            <h2 className="text-lg font-semibold">Pessoal Admin</h2>
             <table className="w-full mt-4 border-collapse">
               <thead>
                 <tr className="bg-gray-100 text-left">
-                  <th className="p-2 border">Drug Name</th>
-                  <th className="p-2 border">Quantity</th>
+                  <th className="p-2 border">Nome</th>
+                  <th className="p-2 border">Telefone</th>
+                  <th className="p-2 border">Estado</th>
                 </tr>
               </thead>
               <tbody>
                 {[...Array(4)].map((_, idx) => (
                   <tr key={idx} className="hover:bg-gray-50">
-                    <td className="p-2 border">Medicine {idx + 1}</td>
-                    <td className="p-2 border">10</td>
+                    <td className="p-2 border">Doctor {idx + 1}</td>
+                    <td className="p-2 border">123-456-789</td>
+                    <td className="p-2 border">Online</td>
                   </tr>
                 ))}
               </tbody>

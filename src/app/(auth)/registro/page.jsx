@@ -251,7 +251,7 @@ export default function Registro() {
                       placeholder="Digite a sua senha"
                       value={senha}
                       onChange={(e) => [setSenha(e.target.value), setError("")]}
-                      className="block w-full mt-2 rounded-md border-0 py-1.5 pl-3 text-black shadow-sm ring-1 ring-inset ring-[#21aeb8] placeholder:text-gray focus:ring-2 focus:ring-inset focus:ring-[#21aeb8] sm:text-sm/6"
+                      className="block w-full -mt-1 rounded-md border-0 py-1.5 pl-3 text-black shadow-sm ring-1 ring-inset ring-[#21aeb8] placeholder:text-gray focus:ring-2 focus:ring-inset focus:ring-[#21aeb8] sm:text-sm/6"
                     />
                   </div>
                 </div>
