@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import NavBarIn from "@/components/NavBarIn";
 import NavBar from "@/components/NavBarIn";
+import Graph from "@/components/Graph";
 
 import React from 'react';
 
@@ -9,30 +10,17 @@ const Dashboard = () => {
     <> 
     <NavBarIn />
     <div className="flex min-h-screen">
-      {/* Sidebar */}
-      {/* <aside className="w-64 bg-gradient-to-b from-purple-500 to-indigo-600 text-white">
-        <div className="p-6 font-bold text-xl">MediLab</div>
-        <ul className="space-y-4">
-          <li className="p-4 hover:bg-purple-700 cursor-pointer">Dashboard</li>
-          <li className="p-4 hover:bg-purple-700 cursor-pointer">Staff</li>
-          <li className="p-4 hover:bg-purple-700 cursor-pointer">Lab</li>
-          <li className="p-4 hover:bg-purple-700 cursor-pointer">Ward</li>
-          <li className="p-4 hover:bg-purple-700 cursor-pointer">Treatment</li>
-          <li className="p-4 hover:bg-purple-700 cursor-pointer">Pharmacy</li>
-          <li className="p-4 hover:bg-purple-700 cursor-pointer">Patient</li>
-        </ul>
-      </aside> */}
 
       {/* Main Content */}
       <main className="flex-1 bg-gray-100 p-8">
       
 
         {/* Stats Section */}
-        <section className="grid grid-cols-4 gap-4 mt-6">
-          {['Total de Pacientes', 'Total de Pessoal Clinico', 'Total de Pessoal Admin', 'Total de Labs'].map((item) => (
+        <section className="grid grid-cols-4 pl-44 gap-60 mt-6">
+          {['Total de Pacientes', 'Total de Pessoal Clinico', 'Total de Pessoal Admin'].map((item) => (
             <div
               key={item}
-              className="bg-white shadow-md p-6 rounded-lg flex flex-col items-center"
+              className="bg-white shadow-md p-6 w-72 rounded-lg flex flex-col items-center"
             >
               <h2 className="text-lg font-semibold">{item}</h2>
               <p className="text-2xl font-bold">20</p>
@@ -46,7 +34,7 @@ const Dashboard = () => {
           <div className="bg-white shadow-md p-6 rounded-lg">
             <h2 className="text-lg font-semibold">Pacientes</h2>
             <div className="mt-4 h-40 bg-gray-200 rounded-lg flex items-center justify-center">
-              Graph Placeholder
+              <Graph />
             </div>
           </div>
 
@@ -59,10 +47,10 @@ const Dashboard = () => {
                   key={idx}
                   className="p-4 bg-gray-100 rounded-lg flex justify-between items-center"
                 >
-                  <span className="text-gray-700">Chance Vaccaro</span>
+                  <span className="text-gray-700">Ruben Rodrigues</span>
                   <div className="flex space-x-2">
-                    <button className="bg-[#21aeb8] text-white px-4 py-1 rounded">Accept</button>
-                    <button className="bg-red-500 text-white px-4 py-1 rounded">Reject</button>
+                    <button className="bg-[#21aeb8] text-white px-4 py-1 rounded">Aceitar</button>
+                    <button className="bg-red-500 text-white px-4 py-1 rounded">Rejeitar</button>
                   </div>
                 </li>
               ))}
@@ -74,13 +62,13 @@ const Dashboard = () => {
         <section className="grid grid-cols-2 gap-4 mt-6">
           {/* Recent Doctors */}
           <div className="bg-white shadow-md p-6 rounded-lg">
-            <h2 className="text-lg font-semibold">Recent Doctors</h2>
+            <h2 className="text-lg font-semibold">Doctores</h2>
             <table className="w-full mt-4 border-collapse">
               <thead>
                 <tr className="bg-gray-100 text-left">
-                  <th className="p-2 border">Name</th>
-                  <th className="p-2 border">Mobile</th>
-                  <th className="p-2 border">Status</th>
+                  <th className="p-2 border">Nome</th>
+                  <th className="p-2 border">Telefone</th>
+                  <th className="p-2 border">Estado</th>
                 </tr>
               </thead>
               <tbody>

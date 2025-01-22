@@ -12,9 +12,11 @@ export default function Registro() {
   const [nome, setNome] = useState("");
   const [genero, setGenero] = useState("");
   const [data_nasci, setData_nasci] = useState("");
-  const [email, setEmail] = useState("");
-  const [localidade, setLocalidade] = useState("");
+  const [bairro, setBairro] = useState("");
+  const [municipio, setMunicipio] = useState("");
+  const [provincia, setProvincia] = useState("");
   const [telefone, setTelefone] = useState("");
+  const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [error, setError] = useState("");
 
@@ -106,25 +108,6 @@ export default function Registro() {
 
                 <div className="sm:col-span-2">
                   <label
-                    htmlFor="email"
-                    className="block mt-4 text-sm/6  text-black"
-                  >
-                    Email
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      name="email"
-                      type="email"
-                      placeholder="Digite o seu email"
-                      value={email}
-                      onChange={(e) => [setEmail(e.target.value), setError("")]}
-                      className="block w-full mt-2 rounded-md border-0 px-3.5 py-1.5 pl-3 text-black shadow-sm ring-1 ring-inset ring-[#21aeb8] placeholder:text-gray focus:ring-2 focus:ring-inset focus:ring-[#21aeb8] sm:text-sm/6"
-                    />
-                  </div>
-                </div>
-
-                <div className="sm:col-span-2">
-                  <label
                     htmlFor="telefone"
                     className="mt-4 block text-sm/6  text-black"
                   >
@@ -144,8 +127,54 @@ export default function Registro() {
                     />
                   </div>
                 </div>
-              </div>
 
+                <div>
+                  <label
+                    htmlFor="provincia"
+                    className="block mt-4 text-sm/6 font-medium text-black"
+                  >
+                    Província
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      name="provincia"
+                      type="text"
+                      placeholder="Digite a sua província"
+                      value={provincia}
+                      onChange={(e) => [
+                        setProvincia(e.target.value),
+                        setError(""),
+                      ]}
+                      className="block w-full -mt-1 rounded-md border-0 py-1.5 pl-3 text-black shadow-sm ring-1 ring-inset ring-[#21aeb8] placeholder:text-gray focus:ring-2 focus:ring-inset focus:ring-[#21aeb8] sm:text-sm/6"
+                    />
+                  </div>
+                </div>
+                
+                <div>
+                  <label
+                    htmlFor="provincia"
+                    className="block mt-4 text-sm/6 font-medium text-black"
+                  >
+                    Bairro
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      name="bairro"
+                      type="text"
+                      placeholder="Digite a sua bairro"
+                      value={bairro}
+                      onChange={(e) => [
+                        setBairro(e.target.value),
+                        setError(""),
+                      ]}
+                      className="block w-full -mt-1 rounded-md border-0 py-1.5 pl-3 text-black shadow-sm ring-1 ring-inset ring-[#21aeb8] placeholder:text-gray focus:ring-2 focus:ring-inset focus:ring-[#21aeb8] sm:text-sm/6"
+                    />
+                  </div>
+                </div>
+
+              </div>
+              
+              {/* Segunda coluna */}
               <div className="">
                 <div>
                   <label
@@ -168,51 +197,48 @@ export default function Registro() {
                   </div>
                 </div>
 
-                <div>
+                <div className="sm:col-span-2">
                   <label
-                    htmlFor="localidade"
-                    className="block mt-4 text-sm/6 font-medium text-black"
+                    htmlFor="email"
+                    className="block mt-4 text-sm/6 text-black"
                   >
-                    Localidade
+                    Email
                   </label>
                   <div className="mt-2">
                     <input
-                      name="localidade"
-                      type="text"
-                      placeholder="Digite a sua localidade"
-                      value={localidade}
-                      onChange={(e) => [
-                        setLocalidade(e.target.value),
-                        setError(""),
-                      ]}
-                      className="block w-full -mt-1 rounded-md border-0 py-1.5 pl-3 text-black shadow-sm ring-1 ring-inset ring-[#21aeb8] placeholder:text-gray focus:ring-2 focus:ring-inset focus:ring-[#21aeb8] sm:text-sm/6"
+                      name="email"
+                      type="email"
+                      placeholder="Digite o seu email"
+                      value={email}
+                      onChange={(e) => [setEmail(e.target.value), setError("")]}
+                      className="block w-full mt-2 rounded-md border-0 px-3.5 py-1.5 pl-3 text-black shadow-sm ring-1 ring-inset ring-[#21aeb8] placeholder:text-gray focus:ring-2 focus:ring-inset focus:ring-[#21aeb8] sm:text-sm/6"
                     />
                   </div>
                 </div>
 
-                {/* <div>
-              <label
-                htmlFor="morada"
-                className="block text-sm/6 font-medium text-black"
-              >
-                Morada
-              </label>
-              <div className="mt-2">
-                <input
-                  id="morada"
-                  name="morada"
-                  type="morada"
-                  required
-                  autoComplete="morada"
-                  className="block w-full rounded-md border-0 py-1.5 pl-3 text-black shadow-sm ring-1 ring-inset ring-[#21aeb8] placeholder:text-gray focus:ring-2 focus:ring-inset focus:ring-[#21aeb8] sm:text-sm/6"
-                />
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="municipio"
+                    className="block mt-4 text-sm/6 text-black"
+                  >
+                    Municipio
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      name="municipio"
+                      type="municipio"
+                      placeholder="Digite o seu municipio"
+                      value={municipio}
+                      onChange={(e) => [setMunicipio(e.target.value), setError("")]}
+                      className="block w-full -mt-2 rounded-md border-0 px-3.5 py-1.5 pl-3 text-black shadow-sm ring-1 ring-inset ring-[#21aeb8] placeholder:text-gray focus:ring-2 focus:ring-inset focus:ring-[#21aeb8] sm:text-sm/6"
+                    />
+                  </div>
                 </div>
-                </div> */}
 
                 <div>
                   <div className="flex items-center justify-between">
                     <label
-                      htmlFor="password"
+                      htmlFor="senha"
                       className="block mt-5 text-sm/6 font-medium text-black"
                     >
                       Senha
@@ -220,8 +246,8 @@ export default function Registro() {
                   </div>
                   <div className="mt-2">
                     <input
-                      name="password"
-                      type="password"
+                      name="senha"
+                      type="senha"
                       placeholder="Digite a sua senha"
                       value={senha}
                       onChange={(e) => [setSenha(e.target.value), setError("")]}

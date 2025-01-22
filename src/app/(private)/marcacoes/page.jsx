@@ -1,10 +1,10 @@
 "use client"
 import React, { useState } from "react";
 import NavBarIn from "@/components/NavBarIn";
-import Modal from "@/components/ModalAddPrescricao";
+import Modal from "@/components/ModalOpen";
 import Footer from "@/components/Footer";
 
-const AppointmentManagement = () => {
+const Consultas = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   return (
     <>
@@ -21,7 +21,7 @@ const AppointmentManagement = () => {
         {/* Table Section */}
         <section className="bg-white shadow-md p-6 rounded-lg mt-6">
         <div className="flex justify-between items-center">
-        <h2 className="text-lg font-semibold mb-4">Marcações</h2>
+        <h2 className="text-lg font-semibold mb-4">Consultas marcadas</h2>
         <button
                   className="bg-[#21aeb8] w-28 text-white px-4 py-2 rounded mb-4 "
                   onClick={() => setModalOpen(true)}
@@ -130,8 +130,6 @@ const AppointmentManagement = () => {
   ></textarea>
   <div className="flex gap-4 justify-center mt-4">
     <button className="bg-green-500 text-white px-4 py-2 rounded">Register</button>
-    <button className="bg-purple-500 text-white px-4 py-2 rounded">Update</button>
-    <button className="bg-red-500 text-white px-4 py-2 rounded">Delete</button>
   </div>
 </section>
 </div>
@@ -141,4 +139,4 @@ const AppointmentManagement = () => {
   );
 };
 
-export default AppointmentManagement;
+export default Consultas;
