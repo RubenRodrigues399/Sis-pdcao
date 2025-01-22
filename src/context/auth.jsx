@@ -44,7 +44,7 @@ export const AuthProvider = ({children}) => {
         const hasUser = usersStorage?.filter((user) => user.telefone === telefone);
         
         if(hasUser?.length){
-            return "Ja te uma conta com esse numero de telefone";
+            return "Ja tem uma conta com esse numero de telefone";
         }
 
         let newUser;

@@ -67,7 +67,7 @@ const NavBarIn = () => {
   const handleLogout = async () => {
     try {
       await logoutUser();
-      alert('Logout realizado com sucesso!');
+      //alert('Logout realizado com sucesso!');
       // Redirecionar o usuário para a página de login
       window.location.href = '/login';
     } catch (error) {

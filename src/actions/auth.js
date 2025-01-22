@@ -2,15 +2,15 @@
 import { api } from "@/lib/axios";
 import { cookies } from 'next/headers';
 
-// Registrar super admin
-export const registerSuperAdmin = async (dados) => {
-  try {
-    const response = await api.post("/sis/admin/admin/super", dados);
-    return response.data; // Retorna os dados da API
-  } catch (error) {
-    throw error.response?.data?.message || "Erro ao registrar super admin";
-  }
-};
+// // Registrar super admin
+// export const registerSuperAdmin = async (dados) => {
+//   try {
+//     const response = await api.post("/sis/admin/admin/super", dados);
+//     return response.data; // Retorna os dados da API
+//   } catch (error) {
+//     throw error.response?.data?.message || "Erro ao registrar super admin";
+//   }
+// };
 
 // Login
 export const loginUser = async (credenciais) => {

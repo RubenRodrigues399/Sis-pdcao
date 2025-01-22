@@ -1,8 +1,8 @@
 "use client"
 import React, { useState } from "react";
 import NavBarIn from "@/components/NavBarIn";
-import Modal from "@/components/ModalOpen";
 import Footer from "@/components/Footer";
+import Modal from "@/components/ModalOpen";
 import LinhaTabelaPessClinico from "@/components/LinhaTabelaPessClinico";
 
 
@@ -118,8 +118,6 @@ const StaffManagement = () => {
 
           <div className="flex space-x-4 justify-center mt-6">
             <button className="bg-green-500 text-white px-6 py-2 rounded">Register</button>
-            <button className="bg-blue-500 text-white px-6 py-2 rounded">Update</button>
-            <button className="bg-red-500 text-white px-6 py-2 rounded">Delete</button>
           </div>
           </Modal>
           <Footer />
