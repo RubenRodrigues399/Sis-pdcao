@@ -5,7 +5,7 @@ import Modal from "./ModalGenerico"
 
 import { useState } from "react";
 
-export default function LinhaTabelaPessAdmin({ id, nome, funcao, genero, data_nascimento, telefone, email, endereco }) {
+export default function LinhaTabelaPessAdmin({ id, nome, funcao, genero, data_nascimento, telefone, email, endereco, showActions = true }) {
   const [modalType, setModalType] = useState(null); // Controla qual modal abrir
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -30,6 +30,7 @@ export default function LinhaTabelaPessAdmin({ id, nome, funcao, genero, data_na
         <td className="px-3 py-3">{telefone}</td>
         <td className="px-3 py-3">{email}</td>
         <td className="px-3 py-3">{endereco}</td>
+        {showActions && (
         <td className="px-4 py-3 flex items-center justify-end gap-2">
           <button onClick={() => openModal("view")} aria-label="Visualizar" className="hover:text-blue-500">
             <FaEye />
@@ -41,6 +42,7 @@ export default function LinhaTabelaPessAdmin({ id, nome, funcao, genero, data_na
             <FaTrash />
           </button>
         </td>
+        )}
       </tr>
 
       {/* Modal */}

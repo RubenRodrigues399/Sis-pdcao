@@ -5,7 +5,18 @@ import Modal from "./ModalGenerico"
 
 import { useState } from "react";
 
-export default function LinhaTabelaPessClinico({ id, nome, funcao, genero, data_nascimento, telefone, email, nic, endereco }) {
+export default function LinhaTabelaPessClinico({ 
+  id, 
+  nome, 
+  funcao, 
+  genero, 
+  data_nascimento, 
+  telefone, 
+  email, 
+  nic, 
+  endereco, 
+  showActions = true // Adiciona a propriedade showActions com valor padrão true
+}) {
   const [modalType, setModalType] = useState(null); // Controla qual modal abrir
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -31,17 +42,19 @@ export default function LinhaTabelaPessClinico({ id, nome, funcao, genero, data_
         <td className="px-3 py-3">{email}</td>
         <td className="px-3 py-3">{nic}</td>
         <td className="px-3 py-3">{endereco}</td>
-        <td className="px-4 py-3 flex items-center justify-end gap-2">
-          <button onClick={() => openModal("view")} aria-label="Visualizar" className="hover:text-blue-500">
-            <FaEye />
-          </button>
-          <button onClick={() => openModal("edit")} aria-label="Editar" className="hover:text-green-500">
-            <FaEdit />
-          </button>
-          <button onClick={() => openModal("delete")} aria-label="Apagar" className="hover:text-red-500">
-            <FaTrash />
-          </button>
-        </td>
+        {showActions && ( // Condiciona a exibição dos botões de ações
+          <td className="px-4 py-3 flex items-center justify-end gap-2">
+            <button onClick={() => openModal("view")} aria-label="Visualizar" className="hover:text-blue-500">
+              <FaEye />
+            </button>
+            <button onClick={() => openModal("edit")} aria-label="Editar" className="hover:text-green-500">
+              <FaEdit />
+            </button>
+            <button onClick={() => openModal("delete")} aria-label="Apagar" className="hover:text-red-500">
+              <FaTrash />
+            </button>
+          </td>
+        )}
       </tr>
 
       {/* Modal */}
@@ -99,4 +112,5 @@ export default function LinhaTabelaPessClinico({ id, nome, funcao, genero, data_
     </>
   );
 }
+
 

@@ -8,6 +8,7 @@ import React from 'react';
 import LinhaTabelaEspecialidade from "../../../components/LinhaTabelaEspecialidades";
 import LinhaTabelaPessAdmin from "@/components/LinhaTabelaPessAdmin";
 import LinhaTabelaPessClinico from "@/components/LinhaTabelaPessClinico";
+import LinhaTabelaConsultas from "@/components/LinhaTabelaMarcacaoConsulta";
 
 const Dashboard = () => {
   return (
@@ -36,7 +37,7 @@ const Dashboard = () => {
         <section className="grid grid-cols-2 gap-4 mt-6">
            {/* Appointments */}
            <div className="bg-white shadow-md p-6 rounded-lg">
-            <h2 className="text-lg font-semibold">Marcações</h2>
+            <h2 className="text-lg font-semibold">Marcações Consultas</h2>
             <ul className="mt-4 space-y-2">
               {[...Array(2)].map((_, idx) => (
                 <li
@@ -55,7 +56,7 @@ const Dashboard = () => {
 
           {/* Appointments */}
           <div className="bg-white shadow-md p-6 rounded-lg">
-            <h2 className="text-lg font-semibold">Marcações</h2>
+            <h2 className="text-lg font-semibold">Marcações de Exames</h2>
             <ul className="mt-4 space-y-2">
               {[...Array(2)].map((_, idx) => (
                 <li
@@ -99,6 +100,7 @@ const Dashboard = () => {
                   id="1"
                   nome="Clinica geral"
                   preco="2000KZS"
+                  showActions = {false}
                 />
               </tbody>
             </table>
@@ -111,15 +113,26 @@ const Dashboard = () => {
           <div className="bg-white shadow-md p-6 rounded-lg">
             <h2 className="text-lg font-semibold">Pessoal Clínico recente</h2>
             <table className="w-full mt-4 border-collapse">
-              <thead>
+            <thead>
                 <tr className="bg-gray-100 text-left">
+                <th className="p-2 border">ID</th>
                   <th className="p-2 border">Nome</th>
+                  <th className="p-2 border">Função</th>
+                  <th className="p-2 border">Gênero</th>
+                  <th className="p-2 border">Data de nascimento</th>
                   <th className="p-2 border">Telefone</th>
-                  <th className="p-2 border">Estado</th>
                 </tr>
               </thead>
               <tbody>
-              
+              <LinhaTabelaPessClinico
+                  id="1"
+                  nome="Denilson Rodrigues"
+                  funcao="Médico"
+                  genero="Masculino"
+                  data_nascimento="25-03-2002"
+                  telefone="937869519"
+                  showActions = {false}
+                />
               </tbody>
             </table>
           </div>
@@ -134,8 +147,8 @@ const Dashboard = () => {
                   <th className="p-2 border">Nome</th>
                   <th className="p-2 border">Função</th>
                   <th className="p-2 border">Gênero</th>
+                  <th className="p-2 border">Data de nascimento</th>
                   <th className="p-2 border">Telefone</th>
-                  <th className="p-2 border">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -144,7 +157,9 @@ const Dashboard = () => {
                   nome="Ruben Rodrigues"
                   funcao="Secretário"
                   genero="Masculino"
+                  data_nascimento="03-03-1999"
                   telefone="937869519"
+                  showActions = {false}
                 />
               </tbody>
             </table>

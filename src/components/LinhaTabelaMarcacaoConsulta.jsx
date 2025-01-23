@@ -5,7 +5,7 @@ import Modal from "./ModalGenerico"
 
 import { useState } from "react";
 
-export default function LinhaTabelaMarcacoes({ id, nome, genero, data_nascimento, telefone, email, endereco }) {
+export default function LinhaTabelaConsultas({ id, nome, genero, data_nascimento, telefone, endereco, nome_consulta, data_consulta, hora, preco }) {
   const [modalType, setModalType] = useState(null); // Controla qual modal abrir
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -27,8 +27,12 @@ export default function LinhaTabelaMarcacoes({ id, nome, genero, data_nascimento
         <td className="px-3 py-3">{genero}</td>
         <td className="px-3 py-3">{data_nascimento}</td>
         <td className="px-3 py-3">{telefone}</td>
-        <td className="px-3 py-3">{email}</td>
         <td className="px-3 py-3">{endereco}</td>
+        <td className="px-3 py-3">{nome_consulta}</td>
+        <td className="px-3 py-3">{data_consulta}</td>
+        <td className="px-3 py-3">{hora}</td>
+        <td className="px-3 py-3">{preco}</td>
+        
         <td className="px-4 py-3 flex items-center justify-end gap-2">
           <button onClick={() => openModal("view")} aria-label="Visualizar" className="hover:text-blue-500">
             <FaEye />
