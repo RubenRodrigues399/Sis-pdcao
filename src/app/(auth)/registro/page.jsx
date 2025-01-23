@@ -5,7 +5,7 @@ import NavBar from "@/components/NavBar";
 const logo = "/assets/img/2.png";
 import UseAuth from "@/hooks/useAuth";
 import { redirect } from "next/navigation";
-import { registro } from "@/actions/auth";
+import { registroPaciente } from "@/actions/auth";
 
 export default function Registro() {
   //const { registro } = UseAuth();
@@ -48,7 +48,7 @@ export default function Registro() {
       console.log("telefone, senha", telefone, senha);
       try {
         
-      const res =await registro({nome, genero, data_nasci, email, telefone, provincia, municipio, bairro, senha});
+      const res =await registroPaciente({nome, genero, data_nasci, email, telefone, provincia, municipio, bairro, senha});
       console.log("res", res);
       if(res.token){
         console.log("token", res.token);

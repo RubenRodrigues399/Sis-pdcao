@@ -5,7 +5,7 @@ import NavBarIn from "@/components/NavBarIn";
 import LinhaTabelaPaciente from "@/components/LinhaTabelaPacientes";
 import Modal from "@/components/ModalOpen";
 
-const PatientManagement = () => {
+const Paciente = () => {
   const [isModalOpen, setModalOpen] = useState(false);
 
   return (
@@ -32,7 +32,6 @@ const PatientManagement = () => {
                     <th className="p-2 border">Gênero</th>
                     <th className="p-2 border">Data de nascimento</th>
                     <th className="p-2 border">Telefone</th>
-                    <th className="p-2 border">Email</th>
                     <th className="p-2 border">Endereço</th>
                     <th className="p-2 border">Actions</th>
                   </tr>
@@ -44,7 +43,6 @@ const PatientManagement = () => {
                     genero="Masculino"
                     data_nascimento="03-03-2000"
                     telefone="937654978"
-                    email="luba123@gmail.com"
                     endereco="Gamek, rocha"
                   />
                   <LinhaTabelaPaciente
@@ -53,7 +51,6 @@ const PatientManagement = () => {
                     genero="Femenino"
                     data_nascimento="09-08-1999"
                     telefone="946753908"
-                    email="pussynigga25@gmail.com"
                     endereco="Talatona, camama"
                   />
                 </tbody>
@@ -73,13 +70,14 @@ const PatientManagement = () => {
             <option>Femenino</option>
           </select>
           <input type="date" placeholder="Date de Nascimento" className="border p-2 rounded" />
-          <input type="email" placeholder="Email" className="border placeholder-black p-2 rounded" />
           <input type="text" placeholder="Telefone" className="border placeholder-black p-2 rounded" />          
-          <input placeholder="Endereço" className="border placeholder-black p-2 rounded col-span-2" />
           <input type="text" placeholder="Entidade Financeira" className="border placeholder-black p-2 rounded" />
+          <input placeholder="Provincia" className="border placeholder-black p-2 rounded" />
+          <input placeholder="Município" className="border placeholder-black p-2 rounded" />
+          <input placeholder="Bairro" className="border placeholder-black p-2 rounded" />
           <input
             type="password"
-            placeholder="Password"
+            placeholder="Senha"
             className="border placeholder-black p-2 rounded"
           />
           {/* <input
@@ -97,4 +95,4 @@ const PatientManagement = () => {
   );
 };
 
-export default PatientManagement;
+export default Paciente;

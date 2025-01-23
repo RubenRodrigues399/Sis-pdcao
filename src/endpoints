@@ -1,0 +1,136 @@
+url principal: https://sis-production.up.railway.app
+
+
+ https://sis-production.up.railway.app
+
+--------------login----------------
+/sis/auth/login
+
+{
+    "senha": "123456789",
+    "telefone01": "999999999"
+}
+
+--------------criar super admin----------------
+/sis/admin/admin/super
+
+{
+  "usuario": {
+    "nome": "Super Admin",
+    "senha": "123456789",
+    "telefone01": "999999999",
+    "telefone02": "",
+    "data_nascimento": "1990-05-15",
+    "codPostal": "",
+    "correioElect": "",
+    "genero": "Masculino",
+    "provincia": "Luanda",
+    "municipio": "Luanda",
+    "bairro": "Rocha"
+  },
+  "tipo_profissional": "direcao"
+}
+
+--------------Criar outro admin----------------
+/sis/admin/admin/create
+
+{
+  "usuario": {
+    "nome": "Alves Alves",
+    "senha": "123456789",
+    "telefone01": "9123456789",
+    "telefone02": "",
+    "data_nascimento": "1990-05-15",
+    "codPostal": "",
+    "correioElect": "",
+    "genero": "Masculino",
+    "provincia": "Luanda",
+    "municipio": "Luanda",
+    "bairro": "Rocha"
+  },
+  "tipo_profissional": "recepcao",
+}
+
+-------------Criar especialidade---------------
+/sis/admin/especialidade/create
+
+{
+    "especialidade": "Ortopedia",
+    "preco": 150
+}
+
+-------------CADASTRO DE PACIENTE---------
+- endpoit: /sis/admin/paciente/create
+
+body: {
+    "usuario": 
+        {
+            "nome": "Silvano Manuel",
+            "senha": "12345678",
+            "telefone01": "910000011",
+            "telefone02": "",
+            "data_nascimento": "1990-05-15",
+            "codPostal": "",
+            "correioElect": "",
+            "genero": "Masculino",
+            "provincia": "Luanda",
+            "municipio": "Luanda",
+            "bairro": "Rocha"
+        },
+    "seguradora_id":""
+}
+
+----------------CRIAR EXAME----------------
+- endpoint: /sis/admin/exame/create
+
+body: {
+    "nome": "RX da Perna Direita",
+    "tipo": "imagem",
+    "preco": 5500.0,
+    "titulos": [
+        "Estado"
+    ]
+}
+
+----------------CRIAR MEDICO---------------
+- endpoint: /sis/admin/medico/create
+body:
+{
+  "usuario": {
+    "nome": "João Medico",
+    "senha": "123456789",
+    "telefone01": "9123436722",
+    "telefone02": "",
+    "data_nascimento": "1990-05-15",
+    "codPostal": "",
+    "correioElect": "",
+    "genero": "Masculino",
+    "provincia": "Luanda",
+    "municipio": "Luanda",
+    "bairro": "Rocha"
+  },
+  "especialidade_id": 1,
+  "numOrdem": "AB1232"
+}
+
+---------CADASTRAR PESSOAL CLINICO------
+- endpoint: /sis/admin/tecnico/create
+
+body:
+{
+  "usuario": {
+    "nome": "Alves Alves",
+    "senha": "123456789",
+    "telefone01": "9123456789",
+    "telefone02": "",
+    "data_nascimento": "1990-05-15",
+    "codPostal": "",
+    "correioElect": "",
+    "genero": "Masculino",
+    "provincia": "Luanda",
+    "municipio": "Luanda",
+    "bairro": "Rocha"
+  },
+  "tipo_profissional": "tecEnfermeiro",
+  "numOrdem": "AB1234"
+}

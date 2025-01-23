@@ -31,9 +31,9 @@ export const loginUser = async (credenciais) => {
 };
 
 // Registro
-export const registro = async (userData) => {
+export const registroPaciente = async (userData) => {
   try {
-    const response = await fetch('/sis/admin/admin/super', {
+    const response = await fetch('/sis/admin/paciente/create', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

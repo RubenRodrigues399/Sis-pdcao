@@ -6,7 +6,7 @@ import Modal from "@/components/ModalOpen";
 import LinhaTabelaPessClinico from "@/components/LinhaTabelaPessClinico";
 
 
-const StaffManagement = () => {
+const PessoalClinico = () => {
     const [isModalOpen, setModalOpen] = useState(false);
   return (
     <>
@@ -125,4 +125,4 @@ const StaffManagement = () => {
   );
 };
 
-export default StaffManagement;
+export default PessoalClinico;
