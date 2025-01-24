@@ -1,81 +1,98 @@
-import { PaperClipIcon } from '@heroicons/react/20/solid'
-import NavBarIn from "@/components/NavBarIn";
-import Footer from "@/components/Footer";
+const Profile = () => {
+  const [userProfile, setUserProfile] = useState(null);
 
-export default function Example() {
-  return (
-    <>
-    <NavBarIn />
-    <div className='justify-center min-h-screen'>
-      <div className="px-4 sm:px-0">
-        <h3 className="text-base/7 font-semibold text-gray-900">Applicant Information</h3>
-        <p className="mt-1 max-w-2xl text-sm/6 text-gray-500">Personal details and application.</p>
+  useEffect(() => {
+    const getUserProfile = async () => {
+      try {
+        const profile = await fetchUserProfile(); // Busca dados do perfil do usuário
+        setUserProfile(profile);
+      } catch (error) {
+        console.error("Erro ao carregar perfil:", error);
+      }
+    };
+    getUserProfile();
+  }, []);
+
+  // Renderiza um estado de carregamento enquanto `userProfile` é null
+  if (!userProfile) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <p className="text-blue-600 font-bold">Carregando perfil...</p>
       </div>
-      <div className="mt-6 border-t border-gray-100">
-        <dl className="divide-y divide-gray-100">
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt className="text-sm/6 font-medium text-gray-900">Full name</dt>
-            <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">Margot Foster</dd>
+    );
+  }
+
+  return (
+    <div className="bg-blue-100 p-8 rounded-md shadow-md max-w-4xl mx-auto">
+      {/* Header do Perfil */}
+      <div className="flex items-center gap-4 mb-6">
+        <img
+          src={userProfile.avatar || "../../../../../public/assets/img/Ruben.png"}
+          alt="Avatar do Usuário"
+          className="w-20 h-20 rounded-full border-2 border-blue-500"
+        />
+        <div>
+          <h1 className="text-2xl font-bold text-blue-700">{userProfile.nome}</h1>
+          <p className="text-sm text-gray-600">{userProfile.email}</p>
+        </div>
+      </div>
+
+      {/* Dados Pessoais */}
+      <div className="mb-6">
+        <h2 className="text-xl font-semibold text-blue-600">Dados Pessoais</h2>
+        <div className="mt-2 grid grid-cols-2 gap-4">
+          <div>
+            <p className="font-medium text-gray-700">Data de Nascimento:</p>
+            <p>{userProfile.dataNascimento || "Não informado"}</p>
           </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt className="text-sm/6 font-medium text-gray-900">Application for</dt>
-            <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">Backend Developer</dd>
+          <div>
+            <p className="font-medium text-gray-700">Gênero:</p>
+            <p>{userProfile.genero || "Não informado"}</p>
           </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt className="text-sm/6 font-medium text-gray-900">Email address</dt>
-            <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">margotfoster@example.com</dd>
+          <div>
+            <p className="font-medium text-gray-700">Estado Civil:</p>
+            <p>{userProfile.estadoCivil || "Não informado"}</p>
           </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt className="text-sm/6 font-medium text-gray-900">Salary expectation</dt>
-            <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">$120,000</dd>
+        </div>
+      </div>
+
+      {/* Contatos */}
+      <div className="mb-6">
+        <h2 className="text-xl font-semibold text-blue-600">Contatos</h2>
+        <div className="mt-2">
+          <p className="font-medium text-gray-700">Telefone:</p>
+          <p>{userProfile.telefone || "Não informado"}</p>
+        </div>
+        <div className="mt-2">
+          <p className="font-medium text-gray-700">Endereço:</p>
+          <p>{userProfile.endereco || "Não informado"}</p>
+        </div>
+      </div>
+
+      {/* Registro Clínico */}
+      <div className="mb-6">
+        <h2 className="text-xl font-semibold text-blue-600">Registro Clínico</h2>
+        <div className="mt-2 grid grid-cols-2 gap-4">
+          <div>
+            <p className="font-medium text-gray-700">Tipo Sanguíneo:</p>
+            <p>{userProfile.tipoSanguineo || "Não informado"}</p>
           </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt className="text-sm/6 font-medium text-gray-900">About</dt>
-            <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
-              Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur
-              qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud
-              pariatur mollit ad adipisicing reprehenderit deserunt qui eu.
-            </dd>
+          <div>
+            <p className="font-medium text-gray-700">Alergias:</p>
+            <p>{userProfile.alergias || "Nenhuma"}</p>
           </div>
-          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt className="text-sm/6 font-medium text-gray-900">Attachments</dt>
-            <dd className="mt-2 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-              <ul role="list" className="divide-y divide-gray-100 rounded-md border border-gray-200">
-                <li className="flex items-center justify-between py-4 pl-4 pr-5 text-sm/6">
-                  <div className="flex w-0 flex-1 items-center">
-                    <PaperClipIcon aria-hidden="true" className="size-5 shrink-0 text-gray-400" />
-                    <div className="ml-4 flex min-w-0 flex-1 gap-2">
-                      <span className="truncate font-medium">resume_back_end_developer.pdf</span>
-                      <span className="shrink-0 text-gray-400">2.4mb</span>
-                    </div>
-                  </div>
-                  <div className="ml-4 shrink-0">
-                    <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                      Download
-                    </a>
-                  </div>
-                </li>
-                <li className="flex items-center justify-between py-4 pl-4 pr-5 text-sm/6">
-                  <div className="flex w-0 flex-1 items-center">
-                    <PaperClipIcon aria-hidden="true" className="size-5 shrink-0 text-gray-400" />
-                    <div className="ml-4 flex min-w-0 flex-1 gap-2">
-                      <span className="truncate font-medium">coverletter_back_end_developer.pdf</span>
-                      <span className="shrink-0 text-gray-400">4.5mb</span>
-                    </div>
-                  </div>
-                  <div className="ml-4 shrink-0">
-                    <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                      Download
-                    </a>
-                  </div>
-                </li>
-              </ul>
-            </dd>
-          </div>
-        </dl>
+        </div>
+      </div>
+
+      {/* Outras Informações */}
+      <div>
+        <h2 className="text-xl font-semibold text-blue-600">Outras Informações</h2>
+        <p className="mt-2 text-gray-700">
+          {userProfile.observacoes || "Sem observações adicionais."}
+        </p>
       </div>
     </div>
-    <Footer />
-    </>
-  )
-}
+  );
+};
+
+export default Profile;

@@ -3,7 +3,7 @@ url principal: https://sis-production.up.railway.app
 
  https://sis-production.up.railway.app
 
---------------login----------------
+--------------login----------------[DONE]
 /sis/auth/login
 
 {
@@ -60,7 +60,7 @@ url principal: https://sis-production.up.railway.app
 }
 
 -------------CADASTRO DE PACIENTE---------
-- endpoit: /sis/admin/paciente/create
+ /sis/admin/paciente/create
 
 body: {
     "usuario": 
@@ -81,7 +81,7 @@ body: {
 }
 
 ----------------CRIAR EXAME----------------
-- endpoint: /sis/admin/exame/create
+ /sis/admin/exame/create
 
 body: {
     "nome": "RX da Perna Direita",
@@ -93,7 +93,7 @@ body: {
 }
 
 ----------------CRIAR MEDICO---------------
-- endpoint: /sis/admin/medico/create
+ /sis/admin/medico/create
 body:
 {
   "usuario": {

@@ -2,8 +2,7 @@
 
 const logo = "/assets/img/2.png";
 
-import React from "react"
-//import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import UseAuth from "../hooks/useAuth";
 
 import {
@@ -16,7 +15,6 @@ import {
   MenuItems,
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-//import ruben from "../assets/img/Ruben.png";
 import { logoutUser } from "@/actions/auth";
 
 const navigation = [
@@ -25,31 +23,16 @@ const navigation = [
     name: "P.Clínico",
     href: "/PessClinico",
     current: false,
-    // submenu: [
-    //   { name: "Criar", href: "/PessClinico/criar" },
-    //   { name: "Editar", href: "/PessClinico/editar" },
-    //   { name: "Deletar", href: "/PessClinico/deletar" },
-    // ],
   },
   {
     name: "P.Administrativo",
     href: "/pessAdmin",
     current: false,
-    // submenu: [
-    //   { name: "Criar", href: "/pessAdmin/criar" },
-    //   { name: "Editar", href: "/pessAdmin/editar" },
-    //   { name: "Deletar", href: "/pessAdmin/deletar" },
-    // ],
   },
   {
     name: "Utentes",
     href: "/Paciente",
     current: false,
-    // submenu: [
-    //   { name: "Criar", href: "/Paciente/criarPaciente" },
-    //   { name: "Editar", href: "/Paciente/editar" },
-    //   { name: "Deletar", href: "/Paciente/deletar" },
-    // ],
   },
   {
     name: "Agenda",
@@ -58,24 +41,42 @@ const navigation = [
   },
 ];
 
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 const NavBarIn = () => {
+  const [userInitials, setUserInitials] = useState("RR");
+
+  useEffect(() => {
+    const fetchUserInitials = async () => {
+      try {
+        const response = await fetch("/api/user"); // Endpoint para obter informações do usuário
+        const data = await response.json();
+        if (data?.nome) {
+          const initials = data.nome
+            .split(" ")
+            .map((word) => word.charAt(0).toUpperCase())
+            .join("");
+          setUserInitials(initials);
+        }
+      } catch (error) {
+        console.error("Erro ao buscar as iniciais do usuário:", error);
+      }
+    };
+
+    fetchUserInitials();
+  }, []);
+
   const handleLogout = async () => {
     try {
       await logoutUser();
-      //alert('Logout realizado com sucesso!');
-      // Redirecionar o usuário para a página de login
-      window.location.href = '/login';
+      window.location.href = "/login";
     } catch (error) {
-      console.error('Erro ao deslogar:', error);
-      alert('Erro ao realizar logout.');
+      console.error("Erro ao deslogar:", error);
+      alert("Erro ao realizar logout.");
     }
   };
-  //const navigate = useNavigate();
 
   return (
     <Disclosure as="nav" className="bg-[#21aeb8]">
@@ -115,23 +116,22 @@ const NavBarIn = () => {
                     >
                       {item.name}
                     </a>
-                    {/* Submenu */}
                     {item.submenu && (
-  <div className="absolute left-0 hidden group-hover:block mt-2 w-40 rounded-md bg-blue-300 shadow-lg">
-    <ul className="py-1">
-      {item.submenu.map((subItem, index) => (
-        <li key={index}>
-          <a
-            href={subItem.href} // Certifique-se de que `href` está correto
-            className="block px-4 py-2 text-sm text-black hover:bg-blue-400"
-          >
-            {subItem.name} {/* Acessa a propriedade `name` */}
-          </a>
-        </li>
-      ))}
-    </ul>
-  </div>
-)}
+                      <div className="absolute left-0 hidden group-hover:block mt-2 w-40 rounded-md bg-blue-300 shadow-lg">
+                        <ul className="py-1">
+                          {item.submenu.map((subItem, index) => (
+                            <li key={index}>
+                              <a
+                                href={subItem.href}
+                                className="block px-4 py-2 text-sm text-black hover:bg-blue-400"
+                              >
+                                {subItem.name}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
@@ -151,12 +151,7 @@ const NavBarIn = () => {
                 <MenuButton className="relative w-7 h-7 flex rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-blue-500">
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">Abrir menu do usuário</span>
-                  {/* <img
-                    alt="Ruben"
-                    src={ruben}
-                    className="size-9 rounded-full"
-                  /> */}
-                  <span className="text-center"> RR </span>
+                  <span className="text-center"> {userInitials} </span>
                 </MenuButton>
               </div>
               <MenuItems className="absolute right-0 z-10 mt-3 w-44 origin-top-right rounded-md bg-blue-300 py-1 shadow-lg ring-1 ring-black/5 focus:outline-none">
@@ -177,12 +172,6 @@ const NavBarIn = () => {
                   </a>
                 </MenuItem>
                 <MenuItem>
-                  {/* <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-black hover:bg-blue-400"
-                  >
-                    Sair
-                  </a> */}
                   <button onClick={handleLogout} className="w-44 block px-4 py-2 text-left text-sm text-black hover:bg-blue-400">
                     Sair
                   </button>
