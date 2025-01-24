@@ -5,7 +5,7 @@ import Modal from "./ModalGenerico"
 
 import { useState } from "react";
 
-export default function LinhaTabelaEspecialidade({ id, nome, preco, showActions = true}) {
+export default function LinhaTabelaEspecialidade({ id, nome, preco }) {
   const [modalType, setModalType] = useState(null); // Controla qual modal abrir
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -25,7 +25,6 @@ export default function LinhaTabelaEspecialidade({ id, nome, preco, showActions 
         <td className="px-3 py-3 font-medium">{id}</td>
         <td className="px-3 py-3 max-w-[200px] break-words">{nome}</td>
         <td className="px-3 py-3">{preco}</td>
-        {showActions && (
         <td className="px-4 py-3 flex items-center justify-end gap-2">
           <button onClick={() => openModal("view")} aria-label="Visualizar" className="hover:text-blue-500">
             <FaEye />
@@ -37,7 +36,6 @@ export default function LinhaTabelaEspecialidade({ id, nome, preco, showActions 
             <FaTrash />
           </button>
         </td>
-        )}
       </tr>
 
       {/* Modal */}

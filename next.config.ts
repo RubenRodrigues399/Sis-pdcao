@@ -4,4 +4,15 @@ const nextConfig: NextConfig = {
   /* config options here */
 };
 
+module.exports = {
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'https://sis-production.up.railway.app/sis/:path*', // URL do backend
+      },
+    ];
+  },
+};
+
 export default nextConfig;

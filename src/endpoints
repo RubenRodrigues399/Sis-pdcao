@@ -134,3 +134,25 @@ body:
   "tipo_profissional": "tecEnfermeiro",
   "numOrdem": "AB1234"
 }
+
+-----------PEGAR TODAS AS ESPECIALIDADES------------
+/sis/portal/especialidade/all
+
+------------CRIAR AGENDA DE CONSULTA----------------
+
+/sis/admin/agenda/consulta/create
+{
+    "especialidade_id": 1,
+    "medico_id": 1,
+    "paciente_max": 5,
+    "datas": [
+        "2025-12-17",
+        "2025-12-20",
+        "2025-12-06"
+    ]
+}
+
+ATT: Só admin pode usar
+
+------------PEGAR TODAS AGENDAS DE CONSULTAS----------
+/sis/portal/agenda/consulta/all
