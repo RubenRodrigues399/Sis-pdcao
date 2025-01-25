@@ -26,7 +26,7 @@ const PessoalAdmin = () => {
             </div>
             <table className="w-full mt-4 border-collapse">
               <thead>
-                <tr className="bg-gray-100 text-left">
+                <tr className="bg-gray-200 text-gray-900">
                   <th className="p-2 border">ID</th>
                   <th className="p-2 border">Nome</th>
                   <th className="p-2 border">Função</th>
@@ -38,27 +38,27 @@ const PessoalAdmin = () => {
                   <th className="p-2 border">Actions</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody><LinhaTabelaPessAdmin
+                id={<span className="p-2 text-gray-700">1</span>}
+                nome={<span className="p-2 text-gray-700">Ruben Rodrigues</span>}
+                funcao={<span className="p-2 text-gray-700">Secretário</span>}
+                genero={<span className="p-2 text-gray-700">Masculino</span>}
+                data_nascimento={<span className="p-2 text-gray-700">03-03-1999</span>}
+                telefone={<span className="p-2 text-gray-700">937869519</span>}
+                email={<span className="p-2 text-gray-700">ruben339@gmail.com</span>}
+                endereco={<span className="p-2 text-gray-700">Talatona, Camama</span>}
+              />
                 <LinhaTabelaPessAdmin
-                  id="1"
-                  nome="Ruben Rodrigues"
-                  funcao="Secretário"
-                  genero="Masculino"
-                  data_nascimento="03-03-1999"
-                  telefone="937869519"
-                  email="ruben339@gmail.com"
-                  endereco="Talatona, Camama"
+                  id={<span className="p-2 text-gray-700">2</span>}
+                  nome={<span className="p-2 text-gray-700">Silk Manuel</span>}
+                  funcao={<span className="p-2 text-gray-700">Director</span>}
+                  genero={<span className="p-2 text-gray-700">Masculino</span>}
+                  data_nascimento={<span className="p-2 text-gray-700">17-06-2001</span>}
+                  telefone={<span className="p-2 text-gray-700">946753908</span>}
+                  email={<span className="p-2 text-gray-700">silkadas20@gmail.com</span>}
+                  endereco={<span className="p-2 text-gray-700">Gamek, Rocha</span>}
                 />
-                <LinhaTabelaPessAdmin
-                  id="2"
-                  nome="Silk Manuel"
-                  funcao="Director"
-                  genero="Masculino"
-                  data_nascimento="17-06-2001"
-                  telefone="946753908"
-                  email="silkadas20@gmail.com"
-                  endereco="Gamek, Rocha"
-                />
+
               </tbody>
             </table>
           </section>

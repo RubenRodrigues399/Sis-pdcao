@@ -26,7 +26,7 @@ const Paciente = () => {
               </div>
               <table className="w-full mt-4 border-collapse">
                 <thead>
-                  <tr className="bg-gray-100 text-left">
+                  <tr className="bg-gray-200 text-gray-900">
                     <th className="p-2 border">ID</th>
                     <th className="p-2 border">Nome</th>
                     <th className="p-2 border">Gênero</th>
@@ -38,21 +38,22 @@ const Paciente = () => {
                 </thead>
                 <tbody>
                   <LinhaTabelaPaciente
-                    id="1"
-                    nome="André Lubambi"
-                    genero="Masculino"
-                    data_nascimento="03-03-2000"
-                    telefone="937654978"
-                    endereco="Gamek, rocha"
+                    id={<span className="p-2 text-gray-700">1</span>}
+                    nome={<span className="p-2 text-gray-700">André Lubambi</span>}
+                    genero={<span className="p-2 text-gray-700">Masculino</span>}
+                    data_nascimento={<span className="p-2 text-gray-700">03-03-2000</span>}
+                    telefone={<span className="p-2 text-gray-700">937654978</span>}
+                    endereco={<span className="p-2 text-gray-700">Gamek, rocha</span>}
                   />
                   <LinhaTabelaPaciente
-                    id="2"
-                    nome="Petia Paulo"
-                    genero="Femenino"
-                    data_nascimento="09-08-1999"
-                    telefone="946753908"
-                    endereco="Talatona, camama"
+                    id={<span className="p-2 text-gray-700">2</span>}
+                    nome={<span className="p-2 text-gray-700">Petia Paulo</span>}
+                    genero={<span className="p-2 text-gray-700">Femenino</span>}
+                    data_nascimento={<span className="p-2 text-gray-700">09-08-1999</span>}
+                    telefone={<span className="p-2 text-gray-700">946753908</span>}
+                    endereco={<span className="p-2 text-gray-700">Talatona, camama</span>}
                   />
+
                 </tbody>
               </table>
             </section>
@@ -70,7 +71,7 @@ const Paciente = () => {
             <option>Femenino</option>
           </select>
           <input type="date" placeholder="Date de Nascimento" className="border p-2 rounded" />
-          <input type="text" placeholder="Telefone" className="border placeholder-black p-2 rounded" />          
+          <input type="text" placeholder="Telefone" className="border placeholder-black p-2 rounded" />
           <input type="text" placeholder="Entidade Financeira" className="border placeholder-black p-2 rounded" />
           <input placeholder="Provincia" className="border placeholder-black p-2 rounded" />
           <input placeholder="Município" className="border placeholder-black p-2 rounded" />
