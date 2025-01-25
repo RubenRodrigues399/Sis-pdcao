@@ -157,7 +157,7 @@ const NavBarIn = () => {
               <MenuItems className="absolute right-0 z-10 mt-3 w-44 origin-top-right rounded-md bg-blue-300 py-1 shadow-lg ring-1 ring-black/5 focus:outline-none">
                 <MenuItem>
                   <a
-                    href="#"
+                    href="Paciente/Perfil"
                     className="block px-4 py-2 text-sm text-black hover:bg-blue-400"
                   >
                     Perfil

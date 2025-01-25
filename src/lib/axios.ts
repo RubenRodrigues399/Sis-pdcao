@@ -10,7 +10,6 @@ export const api = axios.create({
 });
 
 api.interceptors.request.use( async (config) => {
-  console.log("jkkjhkhkjh:");
   const cookieStore = await cookies();
   const authToken = cookieStore.get('sispdcao');
 
