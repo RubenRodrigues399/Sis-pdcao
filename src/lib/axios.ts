@@ -1,6 +1,4 @@
-"use server"
 import axios from 'axios';
-import { cookies } from 'next/headers';
 
 export const api = axios.create({
   baseURL: "https://sis-production.up.railway.app",
@@ -9,14 +7,13 @@ export const api = axios.create({
   }
 });
 
-api.interceptors.request.use( async (config) => {
-  console.log("jkkjhkhkjh:");
-  const cookieStore = await cookies();
-  const authToken = cookieStore.get('sispdcao');
+// api.interceptors.request.use( async (config) => {
+//   const cookieStore = await cookies();
+//   const authToken = cookieStore.get('sispdcao');
 
-  if (authToken?.value) {
-    config.headers.Authorization = `Bearer ${authToken.value}`;
-  }
+//   if (authToken?.value) {
+//     config.headers.Authorization = `Bearer ${authToken.value}`;
+//   }
 
-  return config;
-});
+//   return config;
+// });
