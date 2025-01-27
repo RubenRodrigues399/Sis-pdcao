@@ -28,3 +28,31 @@ export async function pegarTodasEspecialidades() {
   }
 
 }
+
+
+export async function editarEspecialidade(id: string, updatedData: string) {
+  try {
+    const { data } = await api.put(`/sis/admin/especialidade/update/${id}`, {
+      "especialidade": "Ortopedia",
+      "preco": 150
+    })
+    if (data) {
+      return data
+    }
+  } catch (error) {
+    console.error("[ERRO]", error)
+    throw error
+  }
+}
+
+export async function eliminarEspecialidade(id: string) {
+  try {
+    const { data } = await api.delete(`/sis/admin/especialidade/delete/${id}`)
+    if (data) {
+      return data
+    }
+  } catch (error) {
+    console.error("[ERRO]", error)
+    throw error
+  }
+}

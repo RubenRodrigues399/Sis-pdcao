@@ -1,127 +1,20 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import NavBarIn from "@/components/NavBarIn";
 import Footer from "@/components/Footer";
 import Modal from "@/components/ModalOpen";
+import NavBarIn from "@/components/NavBarIn";
+import { useState } from "react";
 import LinhaTabelaEspecialidade from "../../../components/LinhaTabelaEspecialidades";
-import { api } from "@/lib/axios";
 
-const URL_API =
-  "https://sis-production.up.railway.app/sis/portal/especialidade/all";
 const Especialidades = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [especialidades, setEspecialidades] = useState([]);
   const [formData, setFormData] = useState({ nome: "", preco: "" });
 
-  // Fetch especialidades from API
-  useEffect(() => {
-    const fetchEspecialidades = async () => {
-      try {
-        const response = await fetch(URL_API);
-        if (!response.ok) {
-          console.error(
-            "Erro na resposta da API:",
-            response.status,
-            response.statusText
-          );
-          return;
-        }
-        const data = await response.json();
 
-        // Verificar se 'dados' é um array antes de salvar
-        if (Array.isArray(data.dados)) {
-          setEspecialidades(data.dados);
-        } else {
-          console.error("Os 'dados' da resposta não são um array:", data.dados);
-          setEspecialidades([]); // Evitar quebra no frontend
-        }
-      } catch (error) {
-        console.error("Erro ao buscar especialidades:", error);
-        setEspecialidades([]); // Evitar quebra no frontend
-      }
-    };
 
-    fetchEspecialidades();
-  }, []);
-
-  // Handle form inputs
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-  };
-
-  // Add new especialidade
-  const handleAddEspecialidade = async () => {
-    try {
-      const response = await fetch(
-        "https://sis-production.up.railway.app/sis/admin/especialidade/create",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            especialidade: formData.nome,
-            preco: parseInt(formData.preco),
-          }),
-        }
-      );
-
-      if (response.ok) {
-        const newEspecialidade = await response.json();
-        setEspecialidades((prev) => [...prev, newEspecialidade]);
-        setModalOpen(false); // Close modal
-        setFormData({ nome: "", preco: "" }); // Reset form
-      } else {
-        console.error("Erro ao adicionar especialidade");
-      }
-    } catch (error) {
-      console.error("Erro na requisição:", error);
-    }
-  };
-
-  const handleEditEspecialidade = async (id, updatedData) => {
-    try {
-      const response = await fetch(
-        `https://sis-production.up.railway.app/sis/admin/especialidade/update/${id}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            especialidade: updatedData.nome,
-            preco: parseInt(updatedData.preco),
-          }),
-        }
-      );
-
-      if (response.ok) {
-        const updatedEspecialidade = await response.json();
-        setEspecialidades((prev) =>
-          prev.map((esp) => (esp.id === id ? updatedEspecialidade : esp))
-        );
-      } else {
-        console.error("Erro ao editar especialidade");
-      }
-    } catch (error) {
-      console.error("Erro na requisição de edição:", error);
-    }
-  };
-
-  const handleDeleteEspecialidade = async (id) => {
-    try {
-      const response = await fetch(
-        `https://sis-production.up.railway.app/sis/admin/especialidade/delete/${id}`,
-        {
-          method: "DELETE",
-        }
-      );
-
-      if (response.ok) {
-        setEspecialidades((prev) => prev.filter((esp) => esp.id !== id));
-      } else {
-        console.error("Erro ao apagar especialidade");
-      }
-    } catch (error) {
-      console.error("Erro na requisição de exclusão:", error);
-    }
   };
 
   return (
