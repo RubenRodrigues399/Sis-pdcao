@@ -1,9 +1,10 @@
 "use client"
-import React, { useState } from "react";
 import Footer from "@/components/Footer";
-import NavBarIn from "@/components/NavBarIn";
 import LinhaTabelaPaciente from "@/components/LinhaTabelaPacientes";
 import Modal from "@/components/ModalOpen";
+import NavBarIn from "@/components/NavBarIn";
+import React, { useState } from "react";
+import { AddPacienteForm } from "./add-paciente-form";
 
 const Paciente = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -61,34 +62,7 @@ const Paciente = () => {
       </div>
 
       <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
-        <span className="text-lg pl-56 font-semibold">Adicionar pacientes</span>
-        <form className="grid grid-cols-2 gap-4 mt-5">
-          <input type="text" placeholder="Nome" className="border placeholder-black p-2 rounded col-span-2" />
-          <select className="border p-2 rounded">
-            <option>Gênero</option>
-            <option>Masculino</option>
-            <option>Femenino</option>
-          </select>
-          <input type="date" placeholder="Date de Nascimento" className="border p-2 rounded" />
-          <input type="text" placeholder="Telefone" className="border placeholder-black p-2 rounded" />          
-          <input type="text" placeholder="Entidade Financeira" className="border placeholder-black p-2 rounded" />
-          <input placeholder="Provincia" className="border placeholder-black p-2 rounded" />
-          <input placeholder="Município" className="border placeholder-black p-2 rounded" />
-          <input placeholder="Bairro" className="border placeholder-black p-2 rounded" />
-          <input
-            type="password"
-            placeholder="Senha"
-            className="border placeholder-black p-2 rounded"
-          />
-          {/* <input
-            type="password"
-            placeholder="Confirm Password"
-            className="border p-2 rounded"
-          /> */}
-        </form>
-        <div className="flex mt-6 justify-center">
-          <button className="bg-[#21aeb8] text-white px-4 py-2 rounded">Adicionar Paciente</button>
-        </div>
+        <AddPacienteForm />
       </Modal>
       <Footer />
     </>

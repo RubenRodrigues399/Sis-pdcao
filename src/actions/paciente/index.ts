@@ -1,29 +1,59 @@
 'use server'
 import { api } from "@/lib/axios";
-export async function criarPaciente() {
+import { cookies } from "next/headers";
+
+export async function criarPaciente(prevState: any, formData: FormData) {
+
+  const nome = formData.get("nome") as string;
+  const senha = formData.get("senha") as string;
+  const telefone01 = formData.get("telefone01") as string;
+  const telefone02 = formData.get("telefone02") as string;
+  const dataNascimento = formData.get("data_nascimento") as string;
+  const codPostal = formData.get("codPostal") as string;
+  const correioElect = formData.get("correioElect") as string;
+  const genero = formData.get("genero") as string;
+  const provincia = formData.get("provincia") as string;
+  const municipio = formData.get("municipio") as string;
+  const bairro = formData.get("bairro") as string;
+  const seguradoraId = formData.get("seguradora_id") as string;
+
   try {
-    const { data } = await api.post(" /sis/admin/paciente/create", {
+    const cookie = await cookies()
+    const token = cookie.get("sispdcao")
+    if (!token?.value) {
+      throw new Error("SEM TOKEN")
+    }
+    const { data } = await api.post("/sis/admin/paciente/create", {
       usuario:
       {
-        nome: "Silvano Manuel",
-        senha: "12345678",
-        telefone01: "910000011",
-        telefone02: "",
-        data_nascimento: "1990-05-15",
-        codPostal: "",
-        correioElect: "",
-        genero: "Masculino",
-        provincia: "Luanda",
-        municipio: "Luanda",
-        bairro: "Rocha"
+        nome,
+        senha,
+        telefone01,
+        telefone02,
+        data_nascimento: dataNascimento,
+        codPostal,
+        correioElect,
+        genero,
+        provincia,
+        municipio,
+        bairro,
       },
-      seguradora_id: ""
-    })
+      seguradora_id: seguradoraId,
+    },
+      {
+        headers: {
+          Authorization: token.value,
+        },
+      })
+    console.log("[DATA]", data)
     if (data) {
       return data
     }
-  } catch (error) {
+  } catch (error: any) {
     console.error("[ERRO]", error)
-    throw error
+    if (error.response && error.response.status === 401) {
+      throw new Error("Não autorizado");
+    }
+    throw new Error("Ocorreu um erro ao criar o paciente.")
   }
 }
