@@ -30,7 +30,8 @@ export function AddPacienteForm() {
         <input name="municipio" placeholder="Município" className="border placeholder-black p-2 rounded" />
         <input name="bairro" placeholder="Bairro" className="border placeholder-black p-2 rounded" />
         <input
-          type="password"
+          type="password" name="senha"
+
           placeholder="Senha"
           className="border placeholder-black p-2 rounded"
         />
