@@ -2,10 +2,10 @@
 import React, { useState } from "react";
 import Footer from "@/components/Footer";
 import NavBarIn from "@/components/NavBarIn";
-import LinhaTabelaPaciente from "@/components/LinhaTabelaPacientes";
+import LinhaTabelaAgenda from "@/components/LinhaTabelaAgenda";
 import Modal from "@/components/ModalOpen";
 
-const Paciente = () => {
+const Agenda = () => {
   const [isModalOpen, setModalOpen] = useState(false);
 
   return (
@@ -34,13 +34,13 @@ const Paciente = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <LinhaTabelaPaciente
+                  <LinhaTabelaAgenda
                     id={<span className="p-2 text-gray-700">1</span>}
                     nome={<span className="p-2 text-gray-700">André Lubambi</span>}
                     genero={<span className="p-2 text-gray-700">Masculino</span>}
                     data_nascimento={<span className="p-2 text-gray-700">03-03-2000</span>}
                   />
-                  <LinhaTabelaPaciente
+                  <LinhaTabelaAgenda
                     id={<span className="p-2 text-gray-700">2</span>}
                     nome={<span className="p-2 text-gray-700">Petia Paulo</span>}
                     genero={<span className="p-2 text-gray-700">Femenino</span>}
@@ -83,4 +83,4 @@ const Paciente = () => {
   );
 };
 
-export default Paciente;
+export default Agenda;
