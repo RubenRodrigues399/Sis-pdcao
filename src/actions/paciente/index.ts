@@ -16,7 +16,9 @@ export async function criarPaciente(prevState: any, formData: FormData) {
   const municipio = formData.get("municipio") as string;
   const bairro = formData.get("bairro") as string;
   const seguradoraId = formData.get("seguradora_id") as string;
-
+  const dataFormatada = new Date(dataNascimento).toISOString().split('T')[0];
+  // console.log("[form_data]", formData)
+  // console.log("[data_formatada]", dataFormatada)
   try {
     const cookie = await cookies()
     const token = cookie.get("sispdcao")
@@ -30,7 +32,7 @@ export async function criarPaciente(prevState: any, formData: FormData) {
         senha,
         telefone01,
         telefone02,
-        data_nascimento: dataNascimento,
+        data_nascimento: dataFormatada,
         codPostal,
         correioElect,
         genero,
@@ -42,11 +44,13 @@ export async function criarPaciente(prevState: any, formData: FormData) {
     },
       {
         headers: {
-          Authorization: token.value,
+          Authorization: `Bearer ${token.value}`
         },
       })
     console.log("[DATA]", data)
     if (data) {
+      // revalidatePath("/Paciente")
+      //redirect("Paciente")
       return data
     }
   } catch (error: any) {
