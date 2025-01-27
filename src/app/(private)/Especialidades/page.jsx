@@ -52,25 +52,31 @@ const Especialidades = () => {
 
   // Add new especialidade
   const handleAddEspecialidade = async () => {
-  try {
-    const response = await api.post("/sis/admin/especialidade/create", {
-      especialidade: formData.nome,
-      preco: parseInt(formData.preco),
-    });
+    try {
+      const response = await fetch(
+        "https://sis-production.up.railway.app/sis/admin/especialidade/create",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            especialidade: formData.nome,
+            preco: parseInt(formData.preco),
+          }),
+        }
+      );
 
-    if (response.status === 201) {
-      const newEspecialidade = response.data;
-      setEspecialidades((prev) => [...prev, newEspecialidade]);
-      setModalOpen(false); // Fecha o modal
-      setFormData({ nome: "", preco: "" }); // Reseta o formulário
-    } else {
-      console.error("Erro ao adicionar especialidade:", response.statusText);
+      if (response.ok) {
+        const newEspecialidade = await response.json();
+        setEspecialidades((prev) => [...prev, newEspecialidade]);
+        setModalOpen(false); // Close modal
+        setFormData({ nome: "", preco: "" }); // Reset form
+      } else {
+        console.error("Erro ao adicionar especialidade");
+      }
+    } catch (error) {
+      console.error("Erro na requisição:", error);
     }
-  } catch (error) {
-    console.error("Erro na requisição:", error.response?.data || error.message);
-  }
-};
-
+  };
 
   const handleEditEspecialidade = async (id, updatedData) => {
     try {

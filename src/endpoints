@@ -156,3 +156,35 @@ ATT: Só admin pode usar
 
 ------------PEGAR TODAS AGENDAS DE CONSULTAS----------
 /sis/portal/agenda/consulta/all
+------------------------
+
+---------------Essa traz todos técnicos, menos os médicos.----------
+/sis/portal/tecnicos/all
+
+---------------------------------------
+
+== PEGA O PESSOAL CLÍNICO PELO TIPO
+
+/sis/portal/pessoalClinico/medico
+
+onde está medico, substitui pelo tipo.
+-----------------------------------------
+
+todas rotas que têm: portal
+Não precisas mandar token
+
+
+=== TIPO DE ROLES QUE PODEM USAR AO CRIAR USUARIO:
+    MEDICO("medico"),
+    RECEPCIONISTA("recepcao"),
+    DIRECAO("direcao"),
+    PACIENTE("paciente"),
+    TECENFERMEIRO("tecEnfermeiro"),
+    TECLABORATORIO("tecLaboratorio"),
+    TECIMAGIOLOGIA("tecImagiologia");
+
+
+    === TIPO DE ROLE QUE PODEM USAR AO CRIAR OS EXAMES
+    LABORATORIO("laboratorio"),
+    IMAGIOLOGIA("imagem");
+

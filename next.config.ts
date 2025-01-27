@@ -5,13 +5,8 @@ const nextConfig: NextConfig = {
 };
 
 module.exports = {
-  async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination: 'https://sis-production.up.railway.app/sis/:path*', // URL do backend
-      },
-    ];
+  experimental: {
+    turbopack: false,
   },
 };
 
