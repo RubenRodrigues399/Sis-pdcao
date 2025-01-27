@@ -20,12 +20,10 @@ export async function criarPaciente(prevState: any, formData: FormData) {
   try {
     const cookie = await cookies()
     const token = cookie.get("sispdcao")
-    console.log("[COOKEI]", token)
-
     if (!token?.value) {
       throw new Error("SEM TOKEN")
     }
-    const { status, data } = await api.post("/sis/admin/paciente/create", {
+    const { data } = await api.post("/sis/admin/paciente/create", {
       usuario:
       {
         nome,
@@ -56,6 +54,6 @@ export async function criarPaciente(prevState: any, formData: FormData) {
     if (error.response && error.response.status === 401) {
       throw new Error("Não autorizado");
     }
-    throw error
+    throw new Error("Ocorreu um erro ao criar o paciente.")
   }
 }
