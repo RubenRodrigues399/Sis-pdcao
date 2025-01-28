@@ -1,9 +1,9 @@
 'use server'
 import { api } from "@/lib/axios";
 import { cookies } from "next/headers";
-
+   
 export async function criarPaciente(prevState: any, formData: FormData) {
-
+ 
   const nome = formData.get("nome") as string;
   const senha = formData.get("senha") as string;
   const telefone01 = formData.get("telefone01") as string;

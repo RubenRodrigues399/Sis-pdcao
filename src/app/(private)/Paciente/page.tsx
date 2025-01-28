@@ -11,7 +11,7 @@ const Paciente = () => {
 
   return (
     <>
-      <NavBarIn />
+      <NavBarIn /> 
       <div className="flex min-h-screen">
         <main className="flex-1 bg-gray-100 p-8">
           <div className="flex items-center justify-center">
@@ -39,7 +39,7 @@ const Paciente = () => {
                 </thead>
                 <tbody>
                   <LinhaTabelaPaciente
-                    id={<span className="p-2 text-gray-700">1</span>}
+                     id={<span className="p-2 text-gray-700">1</span>}
                     nome={<span className="p-2 text-gray-700">André Lubambi</span>}
                     genero={<span className="p-2 text-gray-700">Masculino</span>}
                     data_nascimento={<span className="p-2 text-gray-700">03-03-2000</span>}

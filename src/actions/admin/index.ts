@@ -1,56 +1,63 @@
-'use server'
 import { api } from "@/lib/axios";
-export async function criarSuperAdmin() {
+import { cookies } from "next/headers";
+
+export async function criarAdmin(prevState: any, formData: FormData) {
+
+  
+  const nome = formData.get("nome") as string;
+  const senha = formData.get("senha") as string;
+  const telefone01 = formData.get("telefone01") as string;
+  const telefone02 = formData.get("telefone02") as string;
+  const dataNascimento = formData.get("data_nascimento") as string;
+  const codPostal = formData.get("codPostal") as string;
+  const correioElect = formData.get("correioElect") as string;
+  const genero = formData.get("genero") as string;
+  const provincia = formData.get("provincia") as string;
+  const municipio = formData.get("municipio") as string;
+  const bairro = formData.get("bairro") as string;
+  const funcao = formData.get("funcao") as string;
+
+  const dataFormatada = new Date(dataNascimento).toISOString().split('T')[0];
+ 
   try {
-    const { data } = await api.post("/sis/admin/admin/super", {
-      usuario: {
-        nome: "Super Admin",
-        senha: "123456789",
-        telefone01: "999999999",
-        telefone02: "",
-        data_nascimento: "1990-05-15",
-        codPostal: "",
-        correioElect: "",
-        genero: "Masculino",
-        provincia: "Luanda",
-        municipio: "Luanda",
-        bairro: "Rocha"
+    const cookie = await cookies()
+    const token = cookie.get("sispdcao")
+    if (!token?.value) {
+      throw new Error("SEM TOKEN")
+    }
+    const { data } = await api.post(
+      "/sis/admin/admin/super",
+      {
+        usuario: { 
+          nome,
+          senha,
+          telefone01,
+          telefone02,
+          dataFormatada,
+          codPostal,
+          correioElect,
+          genero,
+          provincia,
+          municipio,
+          bairro,
+          funcao,
+        },
+        funcao: funcao,
       },
-      tipo_profissional: "direcao"
-    })
+      { headers: { Authorization: `Bearer ${token.value}` } } 
+    )
+    console.log("[DATA]", data)
     if (data) {
+      // revalidatePath("/Paciente")
+      //redirect("Paciente")
       return data
     }
-  } catch (error) {
-    console.error("[ERRO]", error)
-    throw error
+
+  } catch (error: any) {
+    console.error("[Erro no Processo]", error);
+    throw new Error("Erro ao criar admins.");
   }
 }
 
-export async function criarAdmin() {
-  try {
-    const { data } = await api.post("/sis/admin/admin/create", {
 
-      usuario: {
-        nome: "Alves Alves",
-        senha: "123456789",
-        telefone01: "9123456789",
-        telefone02: "",
-        data_nascimento: "1990-05-15",
-        codPostal: "",
-        correioElect: "",
-        genero: "Masculino",
-        provincia: "Luanda",
-        municipio: "Luanda",
-        bairro: "Rocha"
-      },
-      tipo_profissional: "recepcao",
-    })
-    if (data) {
-      return data
-    }
-  } catch (error) {
-    console.error("[ERRO]", error)
-    throw error
-  }
-}
+

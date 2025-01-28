@@ -1,15 +1,15 @@
 "use client";
-import { criarPaciente } from "@/actions/paciente";
+import { criarEspecialidade } from "@/actions/especialidade";
 import { useActionState } from "react";
-import { SubmitButton } from "./submit-button";
+import { SubmitButton } from "../Paciente/submit-button";
 
 const initialState = {
   message: "",
 }; 
 
 
-export function AddPacienteForm() {
-  const [state, action, isPending] = useActionState(criarPaciente, initialState);
+export function AddEspecialidadeForm() {
+  const [state, action, isPending] = useActionState(criarEspecialidade, initialState);
 
  
   return ( 

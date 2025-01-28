@@ -1,7 +1,8 @@
 "use client";
+import { criarAgendaDeConsulta } from "@/actions/consulta";
 import { criarPaciente } from "@/actions/paciente";
 import { useActionState } from "react";
-import { SubmitButton } from "./submit-button";
+import { SubmitButton } from "../Paciente/submit-button";
 
 const initialState = {
   message: "",
@@ -9,7 +10,7 @@ const initialState = {
 
 
 export function AddPacienteForm() {
-  const [state, action, isPending] = useActionState(criarPaciente, initialState);
+  const [state, action, isPending] = useActionState(criarAgendaDeConsulta, initialState);
 
  
   return ( 

@@ -13,7 +13,7 @@ url principal: https://sis-production.up.railway.app
 
 --------------criar super admin----------------
 /sis/admin/admin/super
-
+ 
 {
   "usuario": {
     "nome": "Super Admin",
