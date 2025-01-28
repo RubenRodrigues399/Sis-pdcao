@@ -97,12 +97,12 @@ const Consultas = () => {
       className="border border-gray-300 rounded px-4 py-2"
     />    
     <select className="border border-gray-300 rounded px-4 py-2">
-      <option>Department Name</option>
+      <option>Departamento</option>
       <option>Cardiology</option>
       <option>Neurology</option>
     </select>
     <select className="border border-gray-300 rounded px-4 py-2">
-      <option>Doctor Name</option>
+      <option>Doctor</option>
       <option>Dr. Smith</option>
       <option>Dr. John</option>
     </select>

@@ -16,30 +16,36 @@ const Login = () => {
   const [senha, setSenha] = useState("");
   const [error, setError] = useState("");
 
-  const handleLogin = async(event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
+  
+    // Validações locais
     if (!telefone || !senha) {
-      setError("Preencha todos os campos");
+      setError("Preencha todos os campos.");
       return;
     }
-    console.log("telefone, senha", senha);
-    try {
-      
-
-    const res =await loginUser({telefone, senha});
-    console.log("res", res);
-    if(res.token){
-      console.log("token", res.token);
-      router.push("/dashboard")
-      //redirect("/home");
+  
+    if (!/^\d{9}$/.test(telefone)) {
+      setError("O número de telefone deve ter 9 dígitos.");
+      return;
     }
-
-    }catch(e) {
-      console.error("Error:", e);
-      setError("Falha ao fazer login");
-
+  
+    if (senha.length < 6) {
+      setError("A senha deve ter pelo menos 6 caracteres.");
+      return;
+    }
+  
+    try {
+      const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      const res = await loginUser({ telefone, senha, csrfToken });
+      if (res.token) {
+        router.push("/dashboard");
+      }
+    } catch (e) {
+      setError("Falha ao fazer login.");
     }
   };
+  
 
   return (
     <>
