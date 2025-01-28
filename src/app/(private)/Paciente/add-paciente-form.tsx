@@ -3,6 +3,7 @@ import { criarPaciente } from "@/actions/paciente";
 import { useActionState } from "react";
 import { SubmitButton } from "./submit-button";
 
+
 const initialState = {
   message: "",
 }; 
