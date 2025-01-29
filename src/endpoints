@@ -11,6 +11,17 @@ url principal: https://sis-production.up.railway.app
     "telefone01": "999999999"
 }
 
+-------------Criar especialidade---------------
+/sis/admin/especialidade/create
+
+{
+    "especialidade": "Ortopedia",
+    "preco": 150
+}
+
+-----------PEGAR TODAS AS ESPECIALIDADES------------
+/sis/portal/especialidade/all
+
 --------------criar super admin----------------
 /sis/admin/admin/super
 
@@ -49,14 +60,6 @@ url principal: https://sis-production.up.railway.app
     "bairro": "Rocha"
   },
   "tipo_profissional": "recepcao",
-}
-
--------------Criar especialidade---------------
-/sis/admin/especialidade/create
-
-{
-    "especialidade": "Ortopedia",
-    "preco": 150
 }
 
 -------------CADASTRO DE PACIENTE---------
@@ -135,8 +138,6 @@ body:
   "numOrdem": "AB1234"
 }
 
------------PEGAR TODAS AS ESPECIALIDADES------------
-/sis/portal/especialidade/all
 
 ------------CRIAR AGENDA DE CONSULTA----------------
 

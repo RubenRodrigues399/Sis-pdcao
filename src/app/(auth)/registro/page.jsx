@@ -73,7 +73,7 @@ export default function Registro() {
         </div>
 
         <div className="mt-2 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={action} className="space-y-6">
             <div>
               <label
                 htmlFor="nome"
