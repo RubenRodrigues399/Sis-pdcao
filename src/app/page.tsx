@@ -45,7 +45,7 @@ export default function Home() {
               </p>
               <div className="mt-5">
                 <a
-                  href="/especialidades"
+                  href="/portal/especialidade"
                   className="flex items-center justify-center rounded-md mb-6 bg-blue-300 px-4 py-2 text-sm font-semibold text-black hover:text-blue-500 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                 >
                   Visualizar
@@ -111,7 +111,7 @@ export default function Home() {
               </p>
               <div className="mt-5">
                 <a
-                  href="/agenda/"
+                  href="/portal/agenda"
                   className="flex items-center justify-center rounded-md mb-6 bg-blue-300 px-4 py-2 text-sm font-semibold text-black hover:text-blue-500 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                 >
                   Visualizar

@@ -7,7 +7,7 @@ import LinhaTabelaEspecialidade from "../../../components/LinhaTabelaEspecialida
 import { api } from "@/lib/axios";
 
 const URL_API =
-  "https://sis-production.up.railway.app/sis/portal/especialidade/all";
+  "https://sis-production-4c8f.up.railway.app/sis/portal/especialidade/all";
 const Especialidades = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [especialidades, setEspecialidades] = useState([]);
@@ -54,7 +54,7 @@ const Especialidades = () => {
   const handleAddEspecialidade = async () => {
     try {
       const response = await fetch(
-        "https://sis-production.up.railway.app/sis/admin/especialidade/create",
+        "https://sis-production-4c8f.up.railway.app/sis/admin/especialidade/create",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -81,7 +81,7 @@ const Especialidades = () => {
   const handleEditEspecialidade = async (id, updatedData) => {
     try {
       const response = await fetch(
-        `https://sis-production.up.railway.app/sis/admin/especialidade/update/${id}`,
+        `https://sis-production-4c8f.up.railway.app/sis/admin/especialidade/update/${id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -108,7 +108,7 @@ const Especialidades = () => {
   const handleDeleteEspecialidade = async (id) => {
     try {
       const response = await fetch(
-        `https://sis-production.up.railway.app/sis/admin/especialidade/delete/${id}`,
+        `https://sis-production-4c8f.up.railway.app/sis/admin/especialidade/delete/${id}`,
         {
           method: "DELETE",
         }
