@@ -1,10 +1,9 @@
-url principal: https://sis-production.up.railway.app
+url principal: https://sis-production-4c8f.up.railway.app
 
-
- https://sis-production.up.railway.app
-
---------------login----------------[DONE]
-/sis/auth/login
+ sis-production-4c8f.up.railway.app
+ 
+ --------login----------------[DONE]
+  /sis/auth/login
 
 {
     "senha": "123456789",
