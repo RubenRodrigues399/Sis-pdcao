@@ -1,6 +1,8 @@
 url principal: https://sis-production-4c8f.up.railway.app
 
  sis-production-4c8f.up.railway.app
+
+ ---------------------------------------------------------------------LOGIN E REGISTRO-----------------------------------------------------------------------------
  
  --------login----------------[DONE]
   /sis/auth/login
@@ -10,181 +12,191 @@ url principal: https://sis-production-4c8f.up.railway.app
     "telefone01": "999999999"
 }
 
--------------Criar especialidade---------------
-/sis/admin/especialidade/create
+---------------------------------------------------------------------ESPECIALIDADES---------------------------------------------------------------------------------
+                    -----------CRIAR ESPECIALIDADE------------
+                    /sis/admin/especialidade/create
 
-{
-    "especialidade": "Ortopedia",
-    "preco": 150
-}
+                    {
+                        "especialidade": "Ortopedia",
+                        "preco": 150
+                    }
 
------------PEGAR TODAS AS ESPECIALIDADES------------
-/sis/portal/especialidade/all
+                  -----------PEGAR TODAS AS ESPECIALIDADES------------
+                  /sis/portal/especialidade/all
 
---------------criar super admin----------------
-/sis/admin/admin/super
+---------------------------------------------------------------------ADMIN---------------------------------------------------------------------------------
 
-{
-  "usuario": {
-    "nome": "Super Admin",
-    "senha": "123456789",
-    "telefone01": "999999999",
-    "telefone02": "",
-    "data_nascimento": "1990-05-15",
-    "codPostal": "",
-    "correioElect": "",
-    "genero": "Masculino",
-    "provincia": "Luanda",
-    "municipio": "Luanda",
-    "bairro": "Rocha"
-  },
-  "tipo_profissional": "direcao"
-}
+                  --------------CRIAR SUPER ADMIN----------------
+                  /sis/admin/admin/super
 
---------------Criar outro admin----------------
-/sis/admin/admin/create
+                  {
+                    "usuario": {
+                      "nome": "Super Admin",
+                      "senha": "123456789",
+                      "telefone01": "999999999",
+                      "telefone02": "",
+                      "data_nascimento": "1990-05-15",
+                      "codPostal": "",
+                      "correioElect": "",
+                      "genero": "Masculino",
+                      "provincia": "Luanda",
+                      "municipio": "Luanda",
+                      "bairro": "Rocha"
+                    },
+                    "tipo_profissional": "direcao"
+                  }
 
-{
-  "usuario": {
-    "nome": "Alves Alves",
-    "senha": "123456789",
-    "telefone01": "9123456789",
-    "telefone02": "",
-    "data_nascimento": "1990-05-15",
-    "codPostal": "",
-    "correioElect": "",
-    "genero": "Masculino",
-    "provincia": "Luanda",
-    "municipio": "Luanda",
-    "bairro": "Rocha"
-  },
-  "tipo_profissional": "recepcao",
-}
+                  --------------CRIAR OUTRO ADMIN----------------
+                  /sis/admin/admin/create
 
--------------CADASTRO DE PACIENTE---------
- /sis/admin/paciente/create
+                  {
+                    "usuario": {
+                      "nome": "Alves Alves",
+                      "senha": "123456789",
+                      "telefone01": "9123456789",
+                      "telefone02": "",
+                      "data_nascimento": "1990-05-15",
+                      "codPostal": "",
+                      "correioElect": "",
+                      "genero": "Masculino",
+                      "provincia": "Luanda",
+                      "municipio": "Luanda",
+                      "bairro": "Rocha"
+                    },
+                    "tipo_profissional": "recepcao",
+                  }
 
-body: {
-    "usuario": 
-        {
-            "nome": "Silvano Manuel",
-            "senha": "12345678",
-            "telefone01": "910000011",
-            "telefone02": "",
-            "data_nascimento": "1990-05-15",
-            "codPostal": "",
-            "correioElect": "",
-            "genero": "Masculino",
-            "provincia": "Luanda",
-            "municipio": "Luanda",
-            "bairro": "Rocha"
-        },
-    "seguradora_id":""
-}
+---------------------------------------------------------------------PACIENTE---------------------------------------------------------------------------------
 
-----------------CRIAR EXAME----------------
- /sis/admin/exame/create
+                    -------------CADASTRO DE PACIENTE---------
+                    /sis/admin/paciente/create
 
-body: {
-    "nome": "RX da Perna Direita",
-    "tipo": "imagem",
-    "preco": 5500.0,
-    "titulos": [
-        "Estado"
-    ]
-}
+                    body: {
+                        "usuario": 
+                            {
+                                "nome": "Silvano Manuel",
+                                "senha": "12345678",
+                                "telefone01": "910000011",
+                                "telefone02": "",
+                                "data_nascimento": "1990-05-15",
+                                "codPostal": "",
+                                "correioElect": "",
+                                "genero": "Masculino",
+                                "provincia": "Luanda",
+                                "municipio": "Luanda",
+                                "bairro": "Rocha"
+                            },
+                        "seguradora_id":""
+                    }
+---------------------------------------------------------------------MEDICO---------------------------------------------------------------------------------
 
-----------------CRIAR MEDICO---------------
- /sis/admin/medico/create
-body:
-{
-  "usuario": {
-    "nome": "João Medico",
-    "senha": "123456789",
-    "telefone01": "9123436722",
-    "telefone02": "",
-    "data_nascimento": "1990-05-15",
-    "codPostal": "",
-    "correioElect": "",
-    "genero": "Masculino",
-    "provincia": "Luanda",
-    "municipio": "Luanda",
-    "bairro": "Rocha"
-  },
-  "especialidade_id": 1,
-  "numOrdem": "AB1232"
-}
+                    ----------------CRIAR MEDICO---------------
+                    /sis/admin/medico/create
+                    body:
+                    {
+                      "usuario": {
+                        "nome": "João Medico",
+                        "senha": "123456789",
+                        "telefone01": "9123436722",
+                        "telefone02": "",
+                        "data_nascimento": "1990-05-15",
+                        "codPostal": "",
+                        "correioElect": "",
+                        "genero": "Masculino",
+                        "provincia": "Luanda",
+                        "municipio": "Luanda",
+                        "bairro": "Rocha"
+                      },
+                      "especialidade_id": 1,
+                      "numOrdem": "AB1232"
+                    }
 
----------CADASTRAR PESSOAL CLINICO------
-- endpoint: /sis/admin/tecnico/create
+---------------------------------------------------------------------EXAME---------------------------------------------------------------------------------
 
-body:
-{
-  "usuario": {
-    "nome": "Alves Alves",
-    "senha": "123456789",
-    "telefone01": "9123456789",
-    "telefone02": "",
-    "data_nascimento": "1990-05-15",
-    "codPostal": "",
-    "correioElect": "",
-    "genero": "Masculino",
-    "provincia": "Luanda",
-    "municipio": "Luanda",
-    "bairro": "Rocha"
-  },
-  "tipo_profissional": "tecEnfermeiro",
-  "numOrdem": "AB1234"
-}
+                      ----------------CRIAR EXAME----------------
+                      /sis/admin/exame/create
 
+                      body: {
+                          "nome": "RX da Perna Direita",
+                          "tipo": "imagem",
+                          "preco": 5500.0,
+                          "titulos": [
+                              "Estado"
+                          ]
+                      }
 
-------------CRIAR AGENDA DE CONSULTA----------------
+---------------------------------------------------------------------CONSULTA---------------------------------------------------------------------------------
 
-/sis/admin/agenda/consulta/create
-{
-    "especialidade_id": 1,
-    "medico_id": 1,
-    "paciente_max": 5,
-    "datas": [
-        "2025-12-17",
-        "2025-12-20",
-        "2025-12-06"
-    ]
-}
+                        ------------PEGAR TODAS AGENDAS DE CONSULTAS----------
+                        /sis/portal/agenda/consulta/all
+                        ------------------------
 
-ATT: Só admin pode usar
+                        ---------------Essa traz todos técnicos, menos os médicos.----------
+                        /sis/portal/tecnicos/all
 
-------------PEGAR TODAS AGENDAS DE CONSULTAS----------
-/sis/portal/agenda/consulta/all
-------------------------
+                        ------------CRIAR AGENDA DE CONSULTA----------------
 
----------------Essa traz todos técnicos, menos os médicos.----------
-/sis/portal/tecnicos/all
+                        /sis/admin/agenda/consulta/create
+                        {
+                            "especialidade_id": 1,
+                            "medico_id": 1,
+                            "paciente_max": 5,
+                            "datas": [
+                                "2025-12-17",
+                                "2025-12-20",
+                                "2025-12-06"
+                            ]
+                        }
 
----------------------------------------
+                        ATT: Só admin pode usar
 
-== PEGA O PESSOAL CLÍNICO PELO TIPO
+---------------------------------------------------------------------PESSOAL CLINICO---------------------------------------------------------------------------------
 
-/sis/portal/pessoalClinico/medico
+                          ---------CADASTRAR PESSOAL CLINICO------
+                          - endpoint: /sis/admin/tecnico/create
 
-onde está medico, substitui pelo tipo.
------------------------------------------
-
-todas rotas que têm: portal
-Não precisas mandar token
-
-
-=== TIPO DE ROLES QUE PODEM USAR AO CRIAR USUARIO:
-    MEDICO("medico"),
-    RECEPCIONISTA("recepcao"),
-    DIRECAO("direcao"),
-    PACIENTE("paciente"),
-    TECENFERMEIRO("tecEnfermeiro"),
-    TECLABORATORIO("tecLaboratorio"),
-    TECIMAGIOLOGIA("tecImagiologia");
+                          body:
+                          {
+                            "usuario": {
+                              "nome": "Alves Alves",
+                              "senha": "123456789",
+                              "telefone01": "9123456789",
+                              "telefone02": "",
+                              "data_nascimento": "1990-05-15",
+                              "codPostal": "",
+                              "correioElect": "",
+                              "genero": "Masculino",
+                              "provincia": "Luanda",
+                              "municipio": "Luanda",
+                              "bairro": "Rocha"
+                            },
+                            "tipo_profissional": "tecEnfermeiro",
+                            "numOrdem": "AB1234"
+                          }
 
 
-    === TIPO DE ROLE QUE PODEM USAR AO CRIAR OS EXAMES
-    LABORATORIO("laboratorio"),
-    IMAGIOLOGIA("imagem");
+                          == PEGA O PESSOAL CLÍNICO PELO TIPO
+
+                          /sis/portal/pessoalClinico/medico
+
+                          onde está medico, substitui pelo tipo.
+                          -----------------------------------------
+
+                          todas rotas que têm: portal
+                          Não precisas mandar token
+
+---------------------------------------------------------------------ROLES---------------------------------------------------------------------------------
+                          === TIPO DE ROLES QUE PODEM USAR AO CRIAR USUARIO:
+                              MEDICO("medico"),
+                              RECEPCIONISTA("recepcao"),
+                              DIRECAO("direcao"),
+                              PACIENTE("paciente"),
+                              TECENFERMEIRO("tecEnfermeiro"),
+                              TECLABORATORIO("tecLaboratorio"),
+                              TECIMAGIOLOGIA("tecImagiologia");
+
+
+                              === TIPO DE ROLE QUE PODEM USAR AO CRIAR OS EXAMES
+                              LABORATORIO("laboratorio"),
+                              IMAGIOLOGIA("imagem");
 
