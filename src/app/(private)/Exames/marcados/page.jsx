@@ -21,7 +21,7 @@ const Exames = () => {
         {/* Table Section */}
         <section className="bg-white shadow-md p-6 rounded-lg mt-6">
         <div className="flex justify-between items-center">
-        <h2 className="text-lg font-semibold mb-4">Marcações de Exames</h2>
+        <h2 className="text-lg font-semibold mb-4">Exames marcados</h2>
         <button
                   className="bg-[#21aeb8] w-28 text-white px-4 py-2 rounded mb-4 "
                   onClick={() => setModalOpen(true)}

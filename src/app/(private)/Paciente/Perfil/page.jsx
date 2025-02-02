@@ -17,6 +17,8 @@ const Profile = () => {
     tipoSanguineo: "O+",
     alergias: "Nenhuma",
     observacoes: "Ativo, sem histórico de problemas clínicos graves.",
+    senhaActual: "Digite a senha actual",
+    novaSenha: "Digite a nova senha",
   };
 
   const [userProfile, setUserProfile] = useState(initialProfile);
