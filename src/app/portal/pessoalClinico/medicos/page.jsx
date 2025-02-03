@@ -5,9 +5,9 @@ import Footer from "@/components/Footer";
 import Linha from "../../../../components/linhaPortal/LinhaPortalMedicos";
 
 const URL_API =
-  "https://sis-production-4c8f.up.railway.app/sis/portal/especialidade/all";
+  "https://sis-production-4c8f.up.railway.app/sis/portal/pessoalClinico/medico";
 const portalMedicos = () => {
-  const [especialidades, setEspecialidades] = useState([]);
+  const [medicos, setMedicos] = useState([]);
 
   // Fetch especialidades from API
   useEffect(() => {
@@ -26,14 +26,14 @@ const portalMedicos = () => {
 
         // Verificar se 'dados' é um array antes de salvar
         if (Array.isArray(data.dados)) {
-          setEspecialidades(data.dados);
+          setMedicos(data.dados);
         } else {
           console.error("Os 'dados' da resposta não são um array:", data.dados);
-          setEspecialidades([]); // Evitar quebra no frontend
+          setMedicos([]); // Evitar quebra no frontend
         }
       } catch (error) {
         console.error("Erro ao buscar especialidades:", error);
-        setEspecialidades([]); // Evitar quebra no frontend
+        setMedicos([]); // Evitar quebra no frontend
       }
     };
 
@@ -62,20 +62,22 @@ const portalMedicos = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {especialidades.length > 0 ? (
-                    especialidades.map((esp) => (
+                  {medicos.length > 0 ? (
+                    medicos.map((medicos) => (
                       <Linha
-                        key={esp.id}
-                        id={esp.id}
-                        nome={esp.nome}
-                        preco={`${esp.preco}KZS`}
-                        showActions={false}
+                        key={medicos.id}
+                        id={medicos.id}
+                        nome={medicos.nome}
+                        genero={medicos.genero}
+                        telefone01={medicos.telefone01}
+                        especialidade={medicos.especialidade}
+                        numOrdem={medicos.numOrdem}
                       />
                     ))
                   ) : (
                     <tr>
                       <td colSpan="4" className="text-center p-4">
-                        Nenhuma especialidade encontrada.
+                        Nenhuma médico encontrado.
                       </td>
                     </tr>
                   )}

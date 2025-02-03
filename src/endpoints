@@ -21,7 +21,7 @@ url principal: https://sis-production-4c8f.up.railway.app
                         "preco": 150
                     }
 
-                  -----------PEGAR TODAS AS ESPECIALIDADES------------
+                  -----------PEGAR TODAS AS ESPECIALIDADES------------[DONE]
                   /sis/portal/especialidade/all
 
 ---------------------------------------------------------------------ADMIN---------------------------------------------------------------------------------
@@ -66,7 +66,7 @@ url principal: https://sis-production-4c8f.up.railway.app
                     "tipo_profissional": "recepcao",
                   }
 
----------------------------------------------------------------------PACIENTE---------------------------------------------------------------------------------
+---------------------------------------------------------------------PACIENTE---------------------------------------------------------------------------------[DONE]
 
                     -------------CADASTRO DE PACIENTE---------
                     /sis/admin/paciente/create
