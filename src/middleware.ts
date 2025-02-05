@@ -5,10 +5,10 @@ export function middleware(req: NextRequest) {
     const currentPath = new URL(req.url).pathname;
 
     // Lista de rotas públicas
-    const publicRoutes = ['/', '/login', '/registro'];
+    const publicRoutes = ['/', '/login', '/registro','/dashboard'];
 
     // Lista de rotas privadas
-    const privateRoutes = ['/dashboard', '/especialista', '/exames', '/pessoalclinico'];
+    const privateRoutes = ['/especialista', '/exames', '/pessoalclinico'];
 
     // Verifica se a rota atual é pública
     const isPublicRoute = publicRoutes.includes(currentPath);

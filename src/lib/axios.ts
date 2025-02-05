@@ -2,6 +2,9 @@ import axios from 'axios';
 
 export const api = axios.create({
   baseURL: "https://sis-production.up.railway.app",
+  httpsAgent: new (require('https').Agent)({  
+    rejectUnauthorized: false 
+  }),
   headers: {
     'Content-Type': 'application/json'
   }
