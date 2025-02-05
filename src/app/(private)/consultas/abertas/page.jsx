@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import NavBarIn from "@/components/NavBarIn";
 import Modal from "@/components/ModalOpen";
 import Footer from "@/components/Footer";
-import LinhaTabelaConsultas from "../../../components/LinhaTabelaMarcacaoConsulta";
+import LinhaTabelaConsultas from "../../../../components/LinhaTabelaMarcacaoConsulta";
 
 const Consultas = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -22,7 +22,7 @@ const Consultas = () => {
         {/* Table Section */}
         <section className="bg-white shadow-md p-6 rounded-lg mt-6">
         <div className="flex justify-between items-center">
-        <h2 className="text-lg font-semibold mb-4">Consultas marcadas</h2>
+        <h2 className="text-lg font-semibold mb-4">Consultas abertas</h2>
         <button
                   className="bg-[#21aeb8] w-28 text-white px-4 py-2 rounded mb-4 "
                   onClick={() => setModalOpen(true)}
@@ -97,12 +97,12 @@ const Consultas = () => {
       className="border border-gray-300 rounded px-4 py-2"
     />    
     <select className="border border-gray-300 rounded px-4 py-2">
-      <option>Department Name</option>
+      <option>Departamento</option>
       <option>Cardiology</option>
       <option>Neurology</option>
     </select>
     <select className="border border-gray-300 rounded px-4 py-2">
-      <option>Doctor Name</option>
+      <option>Doctor</option>
       <option>Dr. Smith</option>
       <option>Dr. John</option>
     </select>

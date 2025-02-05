@@ -17,10 +17,9 @@
     "@mui/styled-engine-sc": "^6.4.0",
     "@mui/x-charts": "^7.24.0",
     "axios": "^1.7.9",
-    "cookie-parser": "^1.4.7",
+    "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "csurf": "^1.10.0",
-    "express-rate-limit": "^7.5.0",
     "framer-motion": "^11.18.0",
     "http-proxy-middleware": "^3.0.3",
     "install": "^0.13.0",
@@ -29,8 +28,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.4.0",
-    "styled-components": "^6.1.14",
-    "yup": "^1.6.1"
+    "sanitize-html": "^2.14.0",
+    "styled-components": "^6.1.14"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

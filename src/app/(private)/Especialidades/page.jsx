@@ -7,7 +7,7 @@ import LinhaTabelaEspecialidade from "../../../components/LinhaTabelaEspecialida
 import { api } from "@/lib/axios";
 
 const URL_API =
-  "https://sis-production.up.railway.app/sis/portal/especialidade/all";
+  "https://sis-production-4c8f.up.railway.app/sis/portal/especialidade/all";
 const Especialidades = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [especialidades, setEspecialidades] = useState([]);
@@ -52,30 +52,36 @@ const Especialidades = () => {
 
   // Add new especialidade
   const handleAddEspecialidade = async () => {
-  try {
-    const response = await api.post("/sis/admin/especialidade/create", {
-      especialidade: formData.nome,
-      preco: parseInt(formData.preco),
-    });
+    try {
+      const response = await fetch(
+        "https://sis-production-4c8f.up.railway.app/sis/admin/especialidade/create",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            especialidade: formData.nome,
+            preco: parseInt(formData.preco),
+          }),
+        }
+      );
 
-    if (response.status === 201) {
-      const newEspecialidade = response.data;
-      setEspecialidades((prev) => [...prev, newEspecialidade]);
-      setModalOpen(false); // Fecha o modal
-      setFormData({ nome: "", preco: "" }); // Reseta o formulário
-    } else {
-      console.error("Erro ao adicionar especialidade:", response.statusText);
+      if (response.ok) {
+        const newEspecialidade = await response.json();
+        setEspecialidades((prev) => [...prev, newEspecialidade]);
+        setModalOpen(false); // Close modal
+        setFormData({ nome: "", preco: "" }); // Reset form
+      } else {
+        console.error("Erro ao adicionar especialidade");
+      }
+    } catch (error) {
+      console.error("Erro na requisição:", error);
     }
-  } catch (error) {
-    console.error("Erro na requisição:", error.response?.data || error.message);
-  }
-};
-
+  };
 
   const handleEditEspecialidade = async (id, updatedData) => {
     try {
       const response = await fetch(
-        `https://sis-production.up.railway.app/sis/admin/especialidade/update/${id}`,
+        `https://sis-production-4c8f.up.railway.app/sis/admin/especialidade/update/${id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -102,7 +108,7 @@ const Especialidades = () => {
   const handleDeleteEspecialidade = async (id) => {
     try {
       const response = await fetch(
-        `https://sis-production.up.railway.app/sis/admin/especialidade/delete/${id}`,
+        `https://sis-production-4c8f.up.railway.app/sis/admin/especialidade/delete/${id}`,
         {
           method: "DELETE",
         }

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 const logo = "/assets/img/2.png";
 
@@ -38,6 +38,24 @@ const navigation = [
     name: "Agenda",
     href: "/agenda",
     current: false,
+  },
+  {
+    name: "Consulta",
+    href: "/consultas",
+    current: false,
+    submenu: [
+      { name: "Consultas Marcadas", href: "/consultas/marcadas" },
+      { name: "Consultas Abertas", href: "/consultas/abertas" },
+    ],
+  },
+  {
+    name: "Exame",
+    href: "/Exames",
+    current: false,
+    submenu: [
+      { name: "Exames Marcados", href: "/exames/marcados" },
+      { name: "Exames Abertos", href: "/exames/abertos" },
+    ],
   },
 ];
 
@@ -109,8 +127,8 @@ const NavBarIn = () => {
                       aria-current={item.current ? "page" : undefined}
                       className={classNames(
                         item.current
-                        ? "hover:bg-blue-300 text-white"
-                        : "text-white hover:bg-blue-300 hover:text-black",
+                          ? "hover:bg-blue-300 text-white"
+                          : "text-white hover:bg-blue-300 hover:text-black",
                         "rounded-md px-3 py-2 text-sm font-medium"
                       )}
                     >
@@ -172,7 +190,18 @@ const NavBarIn = () => {
                   </a>
                 </MenuItem>
                 <MenuItem>
-                  <button onClick={handleLogout} className="w-44 block px-4 py-2 text-left text-sm text-black hover:bg-blue-400">
+                  <a
+                    href="#"
+                    className="block px-4 py-2 text-sm text-black hover:bg-blue-400"
+                  >
+                    Alterar senha
+                  </a>
+                </MenuItem>
+                <MenuItem>
+                  <button
+                    onClick={handleLogout}
+                    className="w-44 block px-4 py-2 text-left text-sm text-black hover:bg-blue-400"
+                  >
                     Sair
                   </button>
                 </MenuItem>
@@ -182,27 +211,47 @@ const NavBarIn = () => {
         </div>
       </div>
       <DisclosurePanel className="sm:hidden">
-        <div className="space-y-1 px-2 pb-3 pt-2">
-          {navigation.map((item) => (
-            <DisclosureButton
-              key={item.name}
-              as="a"
-              href={item.href}
-              aria-current={item.current ? "page" : undefined}
-              className={classNames(
-                item.current
-                  ? "bg-gray-900 text-white"
-                  : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                "block rounded-md px-3 py-2 text-base font-medium"
-              )}
-            >
-              {item.name}
-            </DisclosureButton>
-          ))}
+        <div className="hidden sm:ml-6 sm:block">
+          <div className="ml-96 flex space-x-4">
+            {navigation.map((item) => (
+              <div key={item.name} className="relative group">
+                <a
+                  href={item.href}
+                  aria-current={item.current ? "page" : undefined}
+                  className={classNames(
+                    item.current
+                      ? "hover:bg-blue-300 text-white"
+                      : "text-white hover:bg-blue-300 hover:text-black",
+                    "rounded-md px-3 py-2 text-sm font-medium"
+                  )}
+                >
+                  {item.name}
+                </a>
+
+                {/* Submenu - se existir */}
+                {item.submenu && (
+                  <div className="absolute left-0 hidden group-hover:block mt-2 w-40 rounded-md bg-blue-300 shadow-lg">
+                    <ul className="py-1">
+                      {item.submenu.map((subItem, index) => (
+                        <li key={index}>
+                          <a
+                            href={subItem.href}
+                            className="block px-4 py-2 text-sm text-black hover:bg-blue-400"
+                          >
+                            {subItem.name}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </DisclosurePanel>
     </Disclosure>
   );
-}
+};
 
 export default NavBarIn;
