@@ -78,7 +78,7 @@ export default function Home() {
             <div className="relative w-96 h-52 border-2 border-[#21aeb8] rounded-xl items-center gap-x-4 flex flex-col justify-center text-center">
               <h3 className="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-black">
                 <a
-                  href="/exames"
+                  href="/portal/Exames"
                   className="relative z-10 rounded-full px-3 py-1.5 font-medium text-black hover:text-blue-300"
                 >
                   <span className="absolute inset-0" /> Exames
@@ -89,7 +89,7 @@ export default function Home() {
               </p>
               <div className="mt-5">
                 <a
-                  href="/exames"
+                  href="/portal/Exames"
                   className="flex items-center justify-center rounded-md mb-6 bg-blue-300 px-4 py-2 text-sm font-semibold text-black hover:text-blue-500 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                 >
                   Visualizar
