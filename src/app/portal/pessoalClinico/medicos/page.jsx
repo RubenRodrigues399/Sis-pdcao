@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import Linha from "../../../../components/linhaPortal/LinhaPortalMedicos";
-import {fetchEspecialidades} from '@/actions/especialidade/index';
+//import {fetchEspecialidades} from '@/actions/especialidade/index';
 
 const URL_API =
   "https://sis-production-4c8f.up.railway.app/sis/portal/pessoalClinico/medico";
