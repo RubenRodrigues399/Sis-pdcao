@@ -53,7 +53,6 @@ const portalPessoalClinico = () => {
                   Conheça o pessoal clínico do Hospital
                 </h2>
               </div>
-              <Stats />
               <div className="mx-auto mb-10 flex flex-cols max-w-2xl gap-x-8 gap-y-8 border-t border-gray-200 pt-10 sm:mt-16 lg:max-w-screen-md lg:grid-cols-3">
                 <div className="relative w-80 border-2 border-[#21aeb8] rounded-xl items-center gap-x-4 flex flex-col justify-center text-center">
                   <h3 className="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600">
