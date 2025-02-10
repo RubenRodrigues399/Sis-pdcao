@@ -3,17 +3,16 @@ import { criarPaciente } from "@/actions/paciente";
 import { useActionState } from "react";
 import { SubmitButton } from "./submit-button";
 
-
 const initialState = {
   message: "",
-}; 
+};
 
 
 export function AddPacienteForm() {
   const [state, action, isPending] = useActionState(criarPaciente, initialState);
 
- 
-  return ( 
+
+  return (
     <>
       <span className="text-lg pl-56 font-semibold">Adicionar pacientes</span>
       <form action={action} className="grid grid-cols-2 gap-4 mt-5">

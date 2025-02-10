@@ -111,7 +111,7 @@ url principal: https://sis-production-4c8f.up.railway.app
                       "numOrdem": "AB1232"
                     }
 
----------------------------------------------------------------------EXAME---------------------------------------------------------------------------------
+-----------------------------------------------------------------------EXAME-------------------------------------------------------------------------------------
 
                       ----------------CRIAR EXAME----------------
                       /sis/admin/exame/create
@@ -125,7 +125,7 @@ url principal: https://sis-production-4c8f.up.railway.app
                           ]
                       }
 
----------------------------------------------------------------------CONSULTA---------------------------------------------------------------------------------
+------------------------------------------------------------------------CONSULTA-----------------------------------------------------------------------------------
 
                         ------------PEGAR TODAS AGENDAS DE CONSULTAS----------
                         /sis/portal/agenda/consulta/all
@@ -175,15 +175,19 @@ url principal: https://sis-production-4c8f.up.railway.app
                           }
 
 
-                          == PEGA O PESSOAL CLÍNICO PELO TIPO
+------------------------------------------------------------------PEGAR O PESSOAL CLÍNICO PELO TIPO---------------------------------------------------------
 
-                          /sis/portal/pessoalClinico/medico
+                              /sis/portal/pessoalClinico/medico[DONE]
 
-                          onde está medico, substitui pelo tipo.
-                          -----------------------------------------
+                              /sis/portal/pessoalClinico/tecEnfermeiro[DONE]
 
-                          todas rotas que têm: portal
-                          Não precisas mandar token
+                              /sis/portal/pessoalClinico/tecLaboratorio[DONE]
+
+                              /sis/portal/pessoalClinico/tecImagiologia[DONE]
+                              -----------------------------------------
+
+                              todas rotas que têm: portal
+                              Não precisas mandar token
 
 ---------------------------------------------------------------------ROLES---------------------------------------------------------------------------------
                           === TIPO DE ROLES QUE PODEM USAR AO CRIAR USUARIO:

@@ -28,25 +28,25 @@ export async function pegarTodasEspecialidades() {
   }
 }
 
-export const fetchEspecialidades = async () => {
-  try {
-    const response = await fetch(
-      "https://sis-production-4c8f.up.railway.app/sis/portal/especialidade/all"
-    );
-    if (!response.ok) {
-      throw new Error("Erro ao buscar especialidades");
-    }
-    const data = await response.json();
+// export const fetchEspecialidades = async () => {
+//   try {
+//     const response = await fetch(
+//       "https://sis-production-4c8f.up.railway.app/sis/portal/especialidade/all"
+//     );
+//     if (!response.ok) {
+//       throw new Error("Erro ao buscar especialidades");
+//     }
+//     const data = await response.json();
 
-    // Criar um objeto { id: nome } para mapear especialidades
-    const especialidadesMap = {};
-    data.dados.forEach((especialidade) => {
-      especialidadesMap[especialidade.id] = especialidade.nome;
-    });
+//     // Criar um objeto { id: nome } para mapear especialidades
+//     const especialidadesMap = {};
+//     data.dados.forEach((especialidade) => {
+//       especialidadesMap[especialidade.id] = especialidade.nome;
+//     });
 
-    return especialidadesMap;
-  } catch (error) {
-    console.error("Erro ao carregar especialidades:", error);
-    return {};
-  }
-};
+//     return especialidadesMap;
+//   } catch (error) {
+//     console.error("Erro ao carregar especialidades:", error);
+//     return {};
+//   }
+// };

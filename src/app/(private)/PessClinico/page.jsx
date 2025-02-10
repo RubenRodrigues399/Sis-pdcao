@@ -5,7 +5,7 @@ import NavBar from "@/components/NavBarIn";
 import Graph from "@/components/Graph";
 
 import React from 'react';
-import LinhaTabelaEspecialidade from "../../../../../components/LinhaTabelaEspecialidades";
+import LinhaTabelaEspecialidade from "../../../components/LinhaTabelaEspecialidades";
 import LinhaTabelaPessAdmin from "@/components/LinhaTabelaPessAdmin";
 import LinhaTabelaPessClinico from "@/components/LinhaTabelaPessClinico";
 import LinhaTabelaConsultas from "@/components/LinhaTabelaMarcacaoConsulta";
