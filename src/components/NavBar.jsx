@@ -8,9 +8,7 @@ export default function NavBar() {
                 <img src={logo} className='w-9' />
             </div>
             <div className='w-3/4 h-full flex items-center justify-end gap-4'>
-                <a href="/login" className='text-black hover:text-white px-4'>Login</a> 
-
-                <a href="/registro" className='text-black hover:text-white px-4 mr-10'>Registrar-se</a>
+                <a href="/login" className='text-black hover:text-white px-4'>Login</a>
             </div>
         </nav>
     );

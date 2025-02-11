@@ -11,7 +11,7 @@ const Dashboard = () => {
   const [medicos, setMedicos] = useState([]);
   const [especialidades, setEspecialidades] = useState([]);
   const [formData, setFormData] = useState({ nome: "", preco: "" });
-  const [isModalOpen, setModalOpen] = useState(false);
+  const [modalType, setModalType] = useState(null);
 
   // Fetch especialidades from API
   useEffect(() => {
@@ -44,11 +44,15 @@ const Dashboard = () => {
     fetchEspecialidades();
   }, []);
 
-  // Handle form inputs
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+    // Função para abrir a modal
+    const handleOpenModal = (type) => {
+      setModalType(type);
+    };
+  
+    // Função para fechar a modal
+    const handleCloseModal = () => {
+      setModalType(null);
+    };
 
   return (
     <>
@@ -72,7 +76,7 @@ const Dashboard = () => {
                     <div className="flex space-x-2">
                     <button
                   className="bg-[#21aeb8] w-28 text-white px-4 py-2 rounded mb-4 "
-                  onClick={() => setModalOpen(true)}
+                  onClick={() => handleOpenModal("consulta")}
                 >
                   Marcar
                 </button>
@@ -85,7 +89,7 @@ const Dashboard = () => {
                     <div className="flex space-x-2">
                     <button
                   className="bg-[#21aeb8] w-28 text-white px-4 py-2 rounded mb-4 "
-                  onClick={() => setModalOpen(true)}
+                  onClick={() => handleOpenModal("exame")}
                 >
                   Marcar
                 </button>
@@ -204,62 +208,75 @@ const Dashboard = () => {
         </main>
       </div>
 
-      <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
-          <div className='flex items-center justify-center'>
-      
+      {modalType === "consulta" && (
+  <Modal isOpen={true} onClose={handleCloseModal}>
+    <div className="flex items-center justify-center">
       <section className="bg-white w-11/12 shadow-md p-6 rounded-lg mt-6">
-      <h2 className="text-lg font-semibold mb-4">Marcação de consulta</h2>
-      
+        <h2 className="text-lg font-semibold mb-4">Marcação de Consulta</h2>
         <div className="grid grid-cols-2 gap-4">
-          <input
-            type="text"
-            placeholder="Nome"
-            className="border border-gray-300 rounded px-4 py-2 col-span-2"
-          />
+          <input type="text" placeholder="Nome" className="border border-gray-300 rounded px-4 py-2 col-span-2" />
           <select className="border border-gray-300 rounded px-4 py-2">
             <option>Gênero</option>
             <option>Masculino</option>
-            <option>Femenino</option>
+            <option>Feminino</option>
           </select>
-          <input
-            type="date"
-            className="border border-gray-300 rounded px-4 py-2"
-          />  
-          <input
-            type="text"
-            placeholder="Telefone"
-            className="border border-gray-300 rounded px-4 py-2"
-          />
-          <textarea
-            type=""
-            placeholder="Endereço"
-            className="border border-gray-300 rounded px-4 py-2"
-          />    
+          <input type="date" className="border border-gray-300 rounded px-4 py-2" />
+          <input type="text" placeholder="Telefone" className="border border-gray-300 rounded px-4 py-2" />
           <select className="border border-gray-300 rounded px-4 py-2">
             <option>Departamento</option>
-            <option>Cardiology</option>
-            <option>Neurology</option>
+            <option>Cardiologia</option>
+            <option>Neurologia</option>
           </select>
           <select className="border border-gray-300 rounded px-4 py-2">
-            <option>Doctor</option>
+            <option>Doutor</option>
             <option>Dr. Smith</option>
             <option>Dr. John</option>
           </select>
-          <input
-            type="datetime-local"
-            className="border border-gray-300 rounded px-4 py-2"
-          />
-        <textarea
-          placeholder="Descrição"
-          className="border border-gray-300 rounded px-4 py-2 mt-4 w-full"
-        ></textarea>
+          <input type="datetime-local" className="border border-gray-300 rounded px-4 py-2" />
+          <textarea placeholder="Descrição" className="border border-gray-300 rounded px-4 py-2 mt-4 w-full"></textarea>
         </div>
         <div className="flex gap-4 justify-center mt-4">
-          <button className="bg-green-500 text-white px-4 py-2 rounded">Register</button>
+          <button className="bg-green-500 text-white px-4 py-2 rounded">Registrar Consulta</button>
         </div>
       </section>
-      </div>
-                </Modal>
+    </div>
+  </Modal>
+)}
+
+{modalType === "exame" && (
+  <Modal isOpen={true} onClose={handleCloseModal}>
+    <div className="flex items-center justify-center">
+      <section className="bg-white w-11/12 shadow-md p-6 rounded-lg mt-6">
+        <h2 className="text-lg font-semibold mb-4">Marcação de Exame</h2>
+        <div className="grid grid-cols-2 gap-4">
+          <input type="text" placeholder="Nome" className="border border-gray-300 rounded px-4 py-2 col-span-2" />
+          <select className="border border-gray-300 rounded px-4 py-2">
+            <option>Gênero</option>
+            <option>Masculino</option>
+            <option>Feminino</option>
+          </select>
+          <input type="date" className="border border-gray-300 rounded px-4 py-2" />
+          <input type="text" placeholder="Telefone" className="border border-gray-300 rounded px-4 py-2" />
+          <select className="border border-gray-300 rounded px-4 py-2">
+            <option>Tipo de Exame</option>
+            <option>Raio-X</option>
+            <option>Tomografia</option>
+          </select>
+          <select className="border border-gray-300 rounded px-4 py-2">
+            <option>Técnico Responsável</option>
+            <option>Téc. Carlos</option>
+            <option>Téc. Maria</option>
+          </select>
+          <input type="datetime-local" className="border border-gray-300 rounded px-4 py-2" />
+          <textarea placeholder="Observações" className="border border-gray-300 rounded px-4 py-2 mt-4 w-full"></textarea>
+        </div>
+        <div className="flex gap-4 justify-center mt-4">
+          <button className="bg-blue-500 text-white px-4 py-2 rounded">Registrar Exame</button>
+        </div>
+      </section>
+    </div>
+        </Modal>
+      )}
       <Footer />
     </>
   );

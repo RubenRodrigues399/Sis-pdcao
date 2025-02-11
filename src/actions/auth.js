@@ -76,3 +76,5 @@ export const logoutUser = async () => {
     throw new Error('Erro ao realizar logout');
   }
 };
+
+
