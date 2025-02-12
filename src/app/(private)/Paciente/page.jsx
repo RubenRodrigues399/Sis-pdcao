@@ -4,9 +4,13 @@ import NavBarIn from "@/components/NavBarIn";
 import Modal from "@/components/ModalOpen";
 import React, { useState, useEffect } from 'react';
 import LinhaTabelaEspecialidade from "../../../components/LinhaTabelaEspecialidades";
+import Linha from "../../../components/linhaPortal/LinhaPortalMedicos";
+import {criarAgendaDeConsulta} from "@/actions/consulta"
 
-const URL_API =
+const URL_ESPECIALIDADES =
   "https://sis-production-4c8f.up.railway.app/sis/portal/especialidade/all";
+  const URL_MEDICOS =
+  "https://sis-production-4c8f.up.railway.app/sis/portal/pessoalClinico/medico";
 const Dashboard = () => {
   const [medicos, setMedicos] = useState([]);
   const [especialidades, setEspecialidades] = useState([]);
@@ -17,7 +21,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchEspecialidades = async () => {
       try {
-        const response = await fetch(URL_API);
+        const response = await fetch(URL_ESPECIALIDADES);
         if (!response.ok) {
           console.error(
             "Erro na resposta da API:",
@@ -42,6 +46,37 @@ const Dashboard = () => {
     };
 
     fetchEspecialidades();
+  }, []);
+
+   // Fetch medicos from API
+   useEffect(() => {
+    const fetchMedicos = async () => {
+      try {
+        const response = await fetch(URL_MEDICOS);
+        if (!response.ok) {
+          console.error(
+            "Erro na resposta da API:",
+            response.status,
+            response.statusText
+          );
+          return;
+        }
+        const data = await response.json();
+
+        // Verificar se 'dados' é um array antes de salvar
+        if (Array.isArray(data.dados)) {
+          setMedicos(data.dados);
+        } else {
+          console.error("Os 'dados' da resposta não são um array:", data.dados);
+          setMedicos([]); // Evitar quebra no frontend
+        }
+      } catch (error) {
+        console.error("Erro ao buscar medicos:", error);
+        setMedicos([]); // Evitar quebra no frontend
+      }
+    };
+
+    fetchMedicos();
   }, []);
 
     // Função para abrir a modal
@@ -213,35 +248,50 @@ const Dashboard = () => {
     <div className="flex items-center justify-center">
       <section className="bg-white w-11/12 shadow-md p-6 rounded-lg mt-6">
         <h2 className="text-lg font-semibold mb-4">Marcação de Consulta</h2>
-        <div className="grid grid-cols-2 gap-4">
-          <input type="text" placeholder="Nome" className="border border-gray-300 rounded px-4 py-2 col-span-2" />
-          <select className="border border-gray-300 rounded px-4 py-2">
-            <option>Gênero</option>
-            <option>Masculino</option>
-            <option>Feminino</option>
-          </select>
-          <input type="date" className="border border-gray-300 rounded px-4 py-2" />
-          <input type="text" placeholder="Telefone" className="border border-gray-300 rounded px-4 py-2" />
-          <select className="border border-gray-300 rounded px-4 py-2">
-            <option>Departamento</option>
-            <option>Cardiologia</option>
-            <option>Neurologia</option>
-          </select>
-          <select className="border border-gray-300 rounded px-4 py-2">
-            <option>Doutor</option>
-            <option>Dr. Smith</option>
-            <option>Dr. John</option>
-          </select>
-          <input type="datetime-local" className="border border-gray-300 rounded px-4 py-2" />
-          <textarea placeholder="Descrição" className="border border-gray-300 rounded px-4 py-2 mt-4 w-full"></textarea>
-        </div>
-        <div className="flex gap-4 justify-center mt-4">
-          <button className="bg-green-500 text-white px-4 py-2 rounded">Registrar Consulta</button>
-        </div>
+        <form
+          onSubmit={async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const response = await criarAgendaDeConsulta(null, formData);
+            if (response) {
+              alert("Consulta marcada com sucesso!");
+              handleCloseModal();
+            }
+          }}
+        >
+          <div className="grid grid-cols-2 gap-4">
+            <input type="text" name="nome" placeholder="Nome" required className="border border-gray-300 rounded px-4 py-2 col-span-2" />
+            <select name="genero" required className="border border-gray-300 rounded px-4 py-2">
+              <option value="">Gênero</option>
+              <option value="Masculino">Masculino</option>
+              <option value="Feminino">Feminino</option>
+            </select>
+            <input type="date" name="data" required className="border border-gray-300 rounded px-4 py-2" />
+            <input type="text" name="telefone01" placeholder="Telefone" required className="border border-gray-300 rounded px-4 py-2" />
+            <select name="especialidade_id" required className="border border-gray-300 rounded px-4 py-2">
+              <option value="">Especialidade</option>
+              {especialidades.map((esp) => (
+                <option key={esp.id} value={esp.id}>{esp.nome}</option>
+              ))}
+            </select>
+            <select name="medico_id" required className="border border-gray-300 rounded px-4 py-2">
+              <option value="">Doutor</option>
+              {medicos.map((med) => (
+                <option key={med.id} value={med.id}>{med.nome}</option>
+              ))}
+            </select>
+            <input type="datetime-local" name="data_marcacoa" required className="border border-gray-300 rounded px-4 py-2" />
+            <textarea name="descricao" placeholder="Descrição" className="border border-gray-300 rounded px-4 py-2 mt-4 w-full"></textarea>
+          </div>
+          <div className="flex gap-4 justify-center mt-4">
+            <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded">Marcar Consulta</button>
+          </div>
+        </form>
       </section>
     </div>
   </Modal>
 )}
+
 
 {modalType === "exame" && (
   <Modal isOpen={true} onClose={handleCloseModal}>
@@ -271,7 +321,7 @@ const Dashboard = () => {
           <textarea placeholder="Observações" className="border border-gray-300 rounded px-4 py-2 mt-4 w-full"></textarea>
         </div>
         <div className="flex gap-4 justify-center mt-4">
-          <button className="bg-blue-500 text-white px-4 py-2 rounded">Registrar Exame</button>
+          <button className="bg-blue-500 text-white px-4 py-2 rounded">Marcar Exame</button>
         </div>
       </section>
     </div>

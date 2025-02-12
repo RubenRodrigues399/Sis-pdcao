@@ -93,23 +93,23 @@ url principal: https://sis-production-4c8f.up.railway.app
                     ----------------CRIAR MEDICO---------------
                     /sis/admin/medico/create
                     body:
-                    {
-                      "usuario": {
-                        "nome": "João Medico",
-                        "senha": "123456789",
-                        "telefone01": "9123436722",
-                        "telefone02": "",
-                        "data_nascimento": "1990-05-15",
-                        "codPostal": "",
-                        "correioElect": "",
-                        "genero": "Masculino",
-                        "provincia": "Luanda",
-                        "municipio": "Luanda",
-                        "bairro": "Rocha"
-                      },
-                      "especialidade_id": 1,
-                      "numOrdem": "AB1232"
-                    }
+                      {
+                        "usuario": {
+                          "nome": "João Medico",
+                          "senha": "123456789",
+                          "telefone01": "9123436722",
+                          "telefone02": "",
+                          "data_nascimento": "1990-05-15",
+                          "codPostal": "",
+                          "correioElect": "",
+                          "genero": "Masculino",
+                          "provincia": "Luanda",
+                          "municipio": "Luanda",
+                          "bairro": "Rocha"
+                        },
+                        "especialidade_id": 1,
+                        "numOrdem": "AB1232"
+                      }
 
 -----------------------------------------------------------------------EXAME-------------------------------------------------------------------------------------
 
