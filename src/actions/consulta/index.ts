@@ -6,7 +6,7 @@ export async function criarAgendaDeConsulta(prevState: any, formData: FormData) 
 
   const nome = formData.get("nome") as string;
   const genero = formData.get("genero") as string;
-  const dataa = formData.get("data") as string;
+  const date = formData.get("data") as string;
   const telefone01 = formData.get("telefone01") as string;
   const especialidade = formData.get("especialidade_id") as string;
   const medico = formData.get("medico_id") as string;
@@ -23,7 +23,7 @@ export async function criarAgendaDeConsulta(prevState: any, formData: FormData) 
          {
            nome,
            genero,
-           dataa,
+           date,
            telefone01,
            especialidade,
            medico,

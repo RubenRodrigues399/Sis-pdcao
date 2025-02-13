@@ -187,26 +187,26 @@ const Dashboard = () => {
         </tr>
       </thead>
       <tbody>
-        {medicos.length > 0 ? (
-          medicos.map((medico) => (
-            <Linha
-              key={medico.id}
-              id={medico.id}
-              nome={medico.nome}
-              genero={medico.genero}
-              telefone01={medico.telefone01}
-              especialidade={medico.especialidade}
-              numOrdem={medico.numOrdem}
-            />
-          ))
-        ) : (
-          <tr>
-            <td colSpan="6" className="text-center p-4">
-              Nenhuma encontrado.
-            </td>
-          </tr>
-        )}
-      </tbody>
+                  {medicos.length > 0 ? (
+                    medicos.map((med) => (
+                      <Linha
+                        key={med.id}
+                        id={med.id}
+                        nome={med.nome}
+                        genero={med.genero}
+                        telefone01={med.telefone01}
+                        especialidade={med.especialidade}
+                        numOrdem={med.numOrdem}
+                      />
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="4" className="text-center p-4">
+                        Nenhum médico encontrado.
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
     </table>
   </div>
 </div>
@@ -260,14 +260,14 @@ const Dashboard = () => {
           }}
         >
           <div className="grid grid-cols-2 gap-4">
-            <input type="text" name="nome" placeholder="Nome" required className="border border-gray-300 rounded px-4 py-2 col-span-2" />
+            {/* <input type="text" name="nome" placeholder="Nome" required className="border border-gray-300 rounded px-4 py-2 col-span-2" />
             <select name="genero" required className="border border-gray-300 rounded px-4 py-2">
               <option value="">Gênero</option>
               <option value="Masculino">Masculino</option>
               <option value="Feminino">Feminino</option>
-            </select>
+            </select> */}
             <input type="date" name="data" required className="border border-gray-300 rounded px-4 py-2" />
-            <input type="text" name="telefone01" placeholder="Telefone" required className="border border-gray-300 rounded px-4 py-2" />
+            {/* <input type="text" name="telefone01" placeholder="Telefone" required className="border border-gray-300 rounded px-4 py-2" /> */}
             <select name="especialidade_id" required className="border border-gray-300 rounded px-4 py-2">
               <option value="">Especialidade</option>
               {especialidades.map((esp) => (
@@ -280,8 +280,7 @@ const Dashboard = () => {
                 <option key={med.id} value={med.id}>{med.nome}</option>
               ))}
             </select>
-            <input type="datetime-local" name="data_marcacoa" required className="border border-gray-300 rounded px-4 py-2" />
-            <textarea name="descricao" placeholder="Descrição" className="border border-gray-300 rounded px-4 py-2 mt-4 w-full"></textarea>
+            <input type="datetime-local" name="data_marcacao" required className="border border-gray-300 rounded px-4 py-2" />
           </div>
           <div className="flex gap-4 justify-center mt-4">
             <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded">Marcar Consulta</button>
@@ -299,19 +298,19 @@ const Dashboard = () => {
       <section className="bg-white w-11/12 shadow-md p-6 rounded-lg mt-6">
         <h2 className="text-lg font-semibold mb-4">Marcação de Exame</h2>
         <div className="grid grid-cols-2 gap-4">
-          <input type="text" placeholder="Nome" className="border border-gray-300 rounded px-4 py-2 col-span-2" />
-          <select className="border border-gray-300 rounded px-4 py-2">
-            <option>Gênero</option>
-            <option>Masculino</option>
-            <option>Feminino</option>
-          </select>
-          <input type="date" className="border border-gray-300 rounded px-4 py-2" />
-          <input type="text" placeholder="Telefone" className="border border-gray-300 rounded px-4 py-2" />
           <select className="border border-gray-300 rounded px-4 py-2">
             <option>Tipo de Exame</option>
             <option>Raio-X</option>
             <option>Tomografia</option>
           </select>
+          <input type="text" placeholder="Nome do Exame" className="border border-gray-300 rounded px-4 py-2 col-span-2" />
+          {/* <select className="border border-gray-300 rounded px-4 py-2">
+            <option>Gênero</option>
+            <option>Masculino</option>
+            <option>Feminino</option>
+          </select> */}
+          <input type="date" className="border border-gray-300 rounded px-4 py-2" />
+          <input type="text" placeholder="Telefone" className="border border-gray-300 rounded px-4 py-2" />
           <select className="border border-gray-300 rounded px-4 py-2">
             <option>Técnico Responsável</option>
             <option>Téc. Carlos</option>
