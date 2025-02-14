@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import NavBarIn from "@/components/NavBarIn";
 import Footer from "@/components/Footer";
 import Modal from "@/components/ModalOpen";
+import { AddPCForm } from "../add-pesscli-form";
 import LinhaTabelaPessClinico from "@/components/LinhaTabelaPessClinico";
 import Linha from "../../../../components/linhaPortal/LinhaPortalMedicos";
 //import {fetchEspecialidades} from '@/actions/especialidade/index';
@@ -120,55 +121,7 @@ const PessoalClinico = () => {
         </main>
       </div>
       <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
-        <h2 className="text-lg font-semibold mb-4 text-center">Cadastro de Pessoal Clínico</h2>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="flex flex-col">
-            <input type="text" className="border rounded p-2" placeholder="First Name" />
-          </div>
-          <div className="flex flex-col">
-            <input type="text" className="border rounded p-2" placeholder="Last Name" />
-          </div>
-          <div className="flex flex-col">
-            <select className="border rounded p-2">
-              <option>Role</option>
-              <option>Doctor</option>
-              <option>Nurse</option>
-              <option>Admin</option>
-            </select>
-          </div>
-          <div className="flex flex-col">
-            <select className="border rounded p-2">
-              <option>Genero</option>
-              <option>Male</option>
-              <option>Female</option>
-            </select>
-          </div>
-          <div className="flex flex-col">
-            <input type="email" className="border rounded p-2" placeholder="Email" />
-          </div>
-          <div className="flex flex-col">
-            <input type="text" className="border rounded p-2" placeholder="Mobile Number" />
-          </div>
-          <div className="flex flex-col">
-            <input type="text" className="border rounded p-2" placeholder="Address" />
-          </div>
-          <div className="flex flex-col">
-            <input type="text" className="border rounded p-2" placeholder="NIC" />
-          </div>
-          <div className="flex flex-col">
-            <input type="date" className="border rounded p-2" />
-          </div>
-          <div className="flex flex-col">
-            <input type="password" className="border rounded p-2" placeholder="Password" />
-          </div>
-          <div className="flex flex-col">
-            <input type="password" className="border rounded p-2" placeholder="Confirm Password" />
-          </div>
-        </div>
-
-        <div className="flex space-x-4 justify-center mt-6">
-          <button className="bg-green-500 text-white px-6 py-2 rounded">Register</button>
-        </div>
+        <AddPCForm />
       </Modal>
       <Footer />
     </>
