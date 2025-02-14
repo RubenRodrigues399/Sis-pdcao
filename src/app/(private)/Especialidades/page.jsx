@@ -78,51 +78,51 @@ const Especialidades = () => {
     }
   };
 
-  const handleEditEspecialidade = async (id, updatedData) => {
-    try {
-      const response = await fetch(
-        `https://sis-production-4c8f.up.railway.app/sis/admin/especialidade/update/${id}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            especialidade: updatedData.nome,
-            preco: parseInt(updatedData.preco),
-          }),
-        }
-      );
+  // const handleEditEspecialidade = async (id, updatedData) => {
+  //   try {
+  //     const response = await fetch(
+  //       `https://sis-production-4c8f.up.railway.app/sis/admin/especialidade/update/${id}`,
+  //       {
+  //         method: "PUT",
+  //         headers: { "Content-Type": "application/json" },
+  //         body: JSON.stringify({
+  //           especialidade: updatedData.nome,
+  //           preco: parseInt(updatedData.preco),
+  //         }),
+  //       }
+  //     );
 
-      if (response.ok) {
-        const updatedEspecialidade = await response.json();
-        setEspecialidades((prev) =>
-          prev.map((esp) => (esp.id === id ? updatedEspecialidade : esp))
-        );
-      } else {
-        console.error("Erro ao editar especialidade");
-      }
-    } catch (error) {
-      console.error("Erro na requisição de edição:", error);
-    }
-  };
+  //     if (response.ok) {
+  //       const updatedEspecialidade = await response.json();
+  //       setEspecialidades((prev) =>
+  //         prev.map((esp) => (esp.id === id ? updatedEspecialidade : esp))
+  //       );
+  //     } else {
+  //       console.error("Erro ao editar especialidade");
+  //     }
+  //   } catch (error) {
+  //     console.error("Erro na requisição de edição:", error);
+  //   }
+  // };
 
-  const handleDeleteEspecialidade = async (id) => {
-    try {
-      const response = await fetch(
-        `https://sis-production-4c8f.up.railway.app/sis/admin/especialidade/delete/${id}`,
-        {
-          method: "DELETE",
-        }
-      );
+  // const handleDeleteEspecialidade = async (id) => {
+  //   try {
+  //     const response = await fetch(
+  //       `https://sis-production-4c8f.up.railway.app/sis/admin/especialidade/delete/${id}`,
+  //       {
+  //         method: "DELETE",
+  //       }
+  //     );
 
-      if (response.ok) {
-        setEspecialidades((prev) => prev.filter((esp) => esp.id !== id));
-      } else {
-        console.error("Erro ao apagar especialidade");
-      }
-    } catch (error) {
-      console.error("Erro na requisição de exclusão:", error);
-    }
-  };
+  //     if (response.ok) {
+  //       setEspecialidades((prev) => prev.filter((esp) => esp.id !== id));
+  //     } else {
+  //       console.error("Erro ao apagar especialidade");
+  //     }
+  //   } catch (error) {
+  //     console.error("Erro na requisição de exclusão:", error);
+  //   }
+  // };
 
   return (
     <>

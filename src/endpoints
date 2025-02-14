@@ -198,7 +198,7 @@ url principal: https://sis-production-4c8f.up.railway.app
                               TECENFERMEIRO("tecEnfermeiro"),
                               TECLABORATORIO("tecLaboratorio"),
                               TECIMAGIOLOGIA("tecImagiologia");
-
+  
 
                               === TIPO DE ROLE QUE PODEM USAR AO CRIAR OS EXAMES
                               LABORATORIO("laboratorio"),

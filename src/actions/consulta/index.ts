@@ -3,52 +3,47 @@ import { api } from "@/lib/axios";
 import { cookies } from "next/headers";
 
 export async function criarAgendaDeConsulta(prevState: any, formData: FormData) {
-
-  const nome = formData.get("nome") as string;
-  const genero = formData.get("genero") as string;
-  const date = formData.get("data") as string;
-  const telefone01 = formData.get("telefone01") as string;
+  const numPacientes = formData.get("numPacientes") as string;
+  const dataAgenda = [formData.get("dataAgenda")]; // Transforma em array
   const especialidade = formData.get("especialidade_id") as string;
   const medico = formData.get("medico_id") as string;
-  const data_marcacao = formData.get("data_marcacoa") as string;
 
   try {
-   const cookie = await cookies()
-       const token = cookie.get("sispdcao")
-       if (!token?.value) {
-         throw new Error("SEM TOKEN")
-       }
-       const { data } = await api.post("/sis/admin/agenda/consulta/create", {
-         usuario:
-         {
-           nome,
-           genero,
-           date,
-           telefone01,
-           especialidade,
-           medico,
-           data_marcacao
-         },
-       },
-         {
-           headers: {
-             Authorization: `Bearer ${token.value}`
-           },
-         })
-       console.log("[DATA]", data)
-       if (data) {
-         // revalidatePath("/Paciente")
-         //redirect("Paciente")
-         return data
-       }
-     } catch (error: any) {
-       console.error("[ERRO]", error)
-       if (error.response && error.response.status === 401) {
-         throw new Error("Não autorizado");
-       }
-       throw new Error("Ocorreu um erro ao marcar a consulta.")
-     }
-   }
+    const cookie = await cookies();
+    const token = cookie.get("sispdcao");
+
+    if (!token?.value) {
+      throw new Error("SEM TOKEN");
+    }
+
+    console.log("TOKEN RECUPERADO:", token?.value);
+    // Debug: Verificando dados antes do envio
+    console.log("Enviando dados:", { numPacientes, dataAgenda, especialidade, medico });
+
+    const { data } = await api.post("/sis/admin/agenda/consulta/create", {
+      especialidade_id: especialidade,
+      medico_id: medico,
+      paciente_max: numPacientes,
+      datas: [formData.get("dataAgenda")].filter(Boolean), // Remove valores nulos
+    },
+      {
+        headers: { Authorization: `Bearer ${token.value}` },
+      }
+    );
+
+    console.log("[SUCESSO]", data);
+    return data;
+  } catch (error: any) {
+    console.error("[ERRO DETALHADO]", error.response?.data || error.message);
+
+    if (error.response?.status === 401) {
+      throw new Error("Não autorizado");
+    }
+
+    throw new Error(error.response?.data?.mensagem || "Ocorreu um erro ao criar a agenda.");
+  }
+}
+
 
 export async function pegarTodasAgendasDeConsulta() {
   try {

@@ -64,27 +64,27 @@ function classNames(...classes) {
 }
 
 const NavBarIn = () => {
-  const [userInitials, setUserInitials] = useState("RR");
+  // const [userInitials, setUserInitials] = useState("RR");
 
-  useEffect(() => {
-    const fetchUserInitials = async () => {
-      try {
-        const response = await fetch("/api/user"); // Endpoint para obter informações do usuário
-        const data = await response.json();
-        if (data?.nome) {
-          const initials = data.nome
-            .split(" ")
-            .map((word) => word.charAt(0).toUpperCase())
-            .join("");
-          setUserInitials(initials);
-        }
-      } catch (error) {
-        console.error("Erro ao buscar as iniciais do usuário:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchUserInitials = async () => {
+  //     try {
+  //       const response = await fetch("/api/user"); // Endpoint para obter informações do usuário
+  //       const data = await response.json();
+  //       if (data?.nome) {
+  //         const initials = data.nome
+  //           .split(" ")
+  //           .map((word) => word.charAt(0).toUpperCase())
+  //           .join("");
+  //         setUserInitials(initials);
+  //       }
+  //     } catch (error) {
+  //       console.error("Erro ao buscar as iniciais do usuário:", error);
+  //     }
+  //   };
 
-    fetchUserInitials();
-  }, []);
+  //   fetchUserInitials();
+  // }, []);
 
   const handleLogout = async () => {
     try {
@@ -169,7 +169,8 @@ const NavBarIn = () => {
                 <MenuButton className="relative w-7 h-7 flex rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-blue-500">
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">Abrir menu do usuário</span>
-                  <span className="text-center"> {userInitials} </span>
+                  <span className="text-center"> RR </span>
+                  {/* <span className="text-center"> {userInitials} </span> */}
                 </MenuButton>
               </div>
               <MenuItems className="absolute right-0 z-10 mt-3 w-44 origin-top-right rounded-md bg-blue-300 py-1 shadow-lg ring-1 ring-black/5 focus:outline-none">

@@ -3,7 +3,6 @@ import Footer from "@/components/Footer";
 import NavBarIn from "@/components/NavBarIn";
 import NavBar from "@/components/NavBarIn";
 import Graph from "@/components/Graph";
-
 import React from 'react';
 import LinhaTabelaEspecialidade from "../../../components/LinhaTabelaEspecialidades";
 import LinhaTabelaPessAdmin from "@/components/LinhaTabelaPessAdmin";
