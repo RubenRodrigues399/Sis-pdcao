@@ -23,6 +23,7 @@ const navigation = [
     name: "P.Clínico",
     href: "/PessClinico",
     current: false,
+    canSee: 'DIRECAO' || ''
   },
   {
     name: "P.Administrativo",
@@ -65,26 +66,27 @@ function classNames(...classes) {
 
 const NavBarIn = () => {
   const [userInitials, setUserInitials] = useState("RR");
-
-  useEffect(() => {
-    const fetchUserInitials = async () => {
-      try {
-        const response = await fetch("/api/user"); // Endpoint para obter informações do usuário
-        const data = await response.json();
-        if (data?.nome) {
-          const initials = data.nome
-            .split(" ")
-            .map((word) => word.charAt(0).toUpperCase())
-            .join("");
-          setUserInitials(initials);
+   const [userData, setUserData] = useState<{ usuario: any; } | null>(null);
+  const role = useUserRole()
+    useEffect(() => {
+      const fetchUserData = async () => {
+        const {usuario} = await getUserAuth(); 
+        console.log("Dados do usuário:",   usuario);
+    console.log('rolee,', role)
+        if (usuario) {
+       setUserData(usuario)
+        } else {
+          console.log("Nenhum dado encontrado nos cookies.");
         }
-      } catch (error) {
-        console.error("Erro ao buscar as iniciais do usuário:", error);
-      }
-    };
+      };
+    
+      fetchUserData();
+    }, []);
+    
+  
+  const isDirecao = userData?.role =='DIRECAO'
+  const userCl = 'clinico'
 
-    fetchUserInitials();
-  }, []);
 
   const handleLogout = async () => {
     try {
