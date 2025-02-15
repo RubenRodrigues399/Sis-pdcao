@@ -1,9 +1,10 @@
-"use client"
+"use client";
+
+import { useEffect } from 'react';
 import Footer from "@/components/Footer";
 import Graph from "@/components/Graph";
 import NavBarIn from "@/components/NavBarIn";
 import { useAuth } from "@/hooks/useAuth";
-import { useEffect } from "react";
 
 
 const Dashboard = () => {
@@ -20,6 +21,11 @@ const Dashboard = () => {
         {/* Main Content */}
         <main className="flex-1 bg-gray-100 p-8">
 
+            {/* Exibir informações do usuário */}
+            <section className="bg-white shadow-lg p-6 rounded-lg">
+            <h2 className="text-lg font-semibold text-gray-800">Dados do Usuário</h2>
+            <p className="text-gray-700">Nome: {userData?.nome || "Carregando..."}</p>
+          </section>
 
           {/* Stats Section */}
           <section className="grid grid-cols-4 pl-44 gap-60 mt-6">
