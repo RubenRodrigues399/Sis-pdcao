@@ -1,0 +1,202 @@
+{
+    "erro": false,
+    "mensagem": "Sucesso ao criar paciente.",
+    "dados": {
+        "paciente_id": 3,
+        "seguradora_id": null,
+        "grupo_sanguinero": null,
+        "usuarioModel": {
+            "usuario_id": "b0ebf5f4-2f7e-4df2-9fd3-8b05bf6bb83a",
+            "nome": "Any Paciente",
+            "senha": "$2a$10$nPbZldJj4HlkcwcLd8Vy5efOSV7zpy1/MUD/85qaSnCb486ydUGw.",
+            "telefone01": "923445566",
+            "telefone02": "",
+            "data_nascimento": "2005-05-15",
+            "code_postal": "",
+            "provincia": "Luanda",
+            "municipio": "Luanda",
+            "bairro": "Rocha",
+            "correio_electronico": "",
+            "genero": "Masculino",
+            "role": "PACIENTE",
+            "createdAt": "2025-02-12T12:37:47.156691",
+            "updatedAt": "2025-02-12T12:37:47.156714"
+        }
+    }
+}
+
+
+
+
+{
+    "erro": false,
+    "mensagem": "Sucesso ao criar técnico clinico.",
+    "dados": {
+        "profissional_id": 7,
+        "num_ordem": "AB1234",
+        "usuario": {
+            "usuario_id": "9b67d122-9764-42c4-b157-354e19ef93ae",
+            "nome": "Ti Ligadura",
+            "senha": "$2a$10$z9QZHDMcnlvAroa1Govf8.iOuYDnxRFaYxGCB.q4LKGvf8necxn3e",
+            "telefone01": "922113344",
+            "telefone02": "",
+            "data_nascimento": "1992-02-14",
+            "code_postal": "",
+            "provincia": "Luanda",
+            "municipio": "Luanda",
+            "bairro": "Rocha",
+            "correio_electronico": "",
+            "genero": "Masculino",
+            "role": "TECENFERMEIRO",
+            "createdAt": "2025-02-12T12:40:33.52531",
+            "updatedAt": "2025-02-12T12:40:33.525337"
+        }
+    }
+}
+
+
+{
+    "erro": false,
+    "mensagem": "Sucesso ao criar medico",
+    "dados": {
+        "medico_id": 8,
+        "num_ordem": "AB1232",
+        "especialidades": [
+            {
+                "id": 4,
+                "nome": "Endocrinologia",
+                "preco": 80000.0
+            }
+        ],
+        "usuario": {
+            "usuario_id": "dfaf9b98-e361-40d0-8e24-220a3d76b8dc",
+            "nome": "Pica Sem Dor",
+            "senha": "$2a$10$HBs2D19er..k9mJRxlBsyuOtgxZmYRtJuKlTdtI.2Mu33R9A6zwua",
+            "telefone01": "988777666",
+            "telefone02": "",
+            "data_nascimento": "1982-08-23",
+            "code_postal": "",
+            "provincia": "Luanda",
+            "municipio": "Luanda",
+            "bairro": "Rocha",
+            "correio_electronico": "",
+            "genero": "Masculino",
+            "role": "MEDICO",
+            "createdAt": "2025-02-12T12:45:06.745967",
+            "updatedAt": "2025-02-12T12:45:06.746004"
+        }
+    }
+}
+
+
+{
+    "erro": false,
+    "mensagem": "Sucesso ao criar admin",
+    "dados": {
+        "usuario_id": "b53a8266-97f0-4db7-bf11-840a92be3ef1",
+        "nome": "Dura a Atender",
+        "senha": "$2a$10$iKrlES/uaREiswkZ2xOQm.4lKh../MoLcuay.cyW2zHn2L6g2G8da",
+        "telefone01": "910234567",
+        "telefone02": "",
+        "data_nascimento": "2001-07-30",
+        "code_postal": "",
+        "provincia": "Luanda",
+        "municipio": "Cacuaco",
+        "bairro": "Paraiso",
+        "correio_electronico": "",
+        "genero": "Femenino",
+        "role": "RECEPCIONISTA",
+        "createdAt": "2025-02-12T12:47:26.640908",
+        "updatedAt": "2025-02-12T12:47:26.640937"
+    }
+}
+
+
+{
+    "erro": false,
+    "mensagem": "Sucesso ao criar super admin",
+    "dados": {
+        "usuario_id": "bcf96749-2c22-403b-ba6a-c6648aa337c4",
+        "nome": "Ruben Rodrigues",
+        "senha": "$2a$10$r8JCpjBm.FYxKiWar/GW5.3MDAEPL3RxHmt2/yhHl.3h7zLkoJ0u.",
+        "telefone01": "956692780",
+        "telefone02": "",
+        "data_nascimento": "1999-03-03",
+        "code_postal": "",
+        "provincia": "Luanda",
+        "municipio": "Talatona",
+        "bairro": "Camama 1",
+        "correio_electronico": "",
+        "genero": "Masculino",
+        "role": "DIRECAO",
+        "createdAt": "2025-02-12T12:50:44.585555",
+        "updatedAt": "2025-02-12T12:50:44.585582"
+    }
+}
+
+
+{
+    "erro": false,
+    "mensagem": "Sucesso ao criar agenda da consulta",
+    "dados": {
+        "agenda": {
+            "id": 2,
+            "paciente_max": 3,
+            "estado": "Disponivel",
+            "role": "CONSULTA",
+            "createdAt": "2025-02-12T21:18:05.405986241",
+            "updatedAt": "2025-02-12T21:18:05.434542"
+        },
+        "especialidade": {
+            "id": 1,
+            "nome": "Cardiologia",
+            "preco": 50000.0
+        },
+        "medico_id": 1,
+        "num_ordem": "AB1232",
+        "usuario": {
+            "usuario_id": "bf0f649b-6508-4b38-ae5a-cdc0daba5823",
+            "nome": "João Medico",
+            "senha": "$2a$10$TdvRwH8F59Zx9PrVHfhQVuJ2jhyPydHGTXvprUqayxXKdDjauucci",
+            "telefone01": "912345678",
+            "telefone02": "",
+            "data_nascimento": "1990-05-15",
+            "code_postal": "",
+            "provincia": "Luanda",
+            "municipio": "Luanda",
+            "bairro": "Rocha",
+            "correio_electronico": "",
+            "genero": "Masculino",
+            "role": "MEDICO",
+            "createdAt": "2025-02-02T16:59:17.738623",
+            "updatedAt": "2025-02-02T16:59:17.738658"
+        },
+        "datas": [
+            "2025-02-12",
+            "2025-07-20",
+            "2025-10-06"
+        ]
+    }
+}
+
+
+{
+    "erro": false,
+    "mensagem": "Sucesso ao criar novo exame",
+    "dados": {
+        "exame_id": 3,
+        "nome": "RX da Perna Direita",
+        "preco": 5500.0,
+        "role": "IMAGIOLOGIA",
+        "createdAt": "2025-02-13T18:18:57.827729602",
+        "updatedAt": "2025-02-13T18:18:57.857559",
+        "camposResultados": [
+            {
+                "id": 3,
+                "titulo": "Estado",
+                "resultado": null,
+                "exame_id": 3
+            }
+        ]
+    }
+}

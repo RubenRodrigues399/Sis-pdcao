@@ -3,7 +3,6 @@ import Footer from "@/components/Footer";
 import NavBarIn from "@/components/NavBarIn";
 import NavBar from "@/components/NavBarIn";
 import Graph from "@/components/Graph";
-
 import React from 'react';
 import LinhaTabelaEspecialidade from "../../../components/LinhaTabelaEspecialidades";
 import LinhaTabelaPessAdmin from "@/components/LinhaTabelaPessAdmin";
@@ -18,13 +17,13 @@ const Dashboard = () => {
 
         {/* Main Content */}
         <main className="flex-1 bg-gray-100 p-8">
-
+        <h2 className="text-gray-700 text-2xl text-center">Dashaboard do Pessoal Clínico</h2>
 
           {/* Stats Section */}
           <section className="grid grid-cols-4 pl-44 gap-60 mt-6">
             {['Total de Pacientes', 'Total de Pessoal Clinico', 'Total de Pessoal Admin'].map((item) => (
               <div
-                key={item}
+                key={item}  
                 className="bg-white shadow-lg hover:shadow-2xl transition-shadow duration-300 p-6 w-72 rounded-lg flex flex-col items-center"
               >
                 <h2 className="text-lg font-semibold text-gray-800">{item}</h2>
