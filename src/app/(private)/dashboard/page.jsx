@@ -1,16 +1,17 @@
 "use client"
 import Footer from "@/components/Footer";
-import NavBarIn from "@/components/NavBarIn";
-import NavBar from "@/components/NavBarIn";
 import Graph from "@/components/Graph";
+import NavBarIn from "@/components/NavBarIn";
+import { useAuth } from "@/hooks/useAuth";
+import { useEffect } from "react";
 
-import React from 'react';
-import LinhaTabelaEspecialidade from "../../../components/LinhaTabelaEspecialidades";
-import LinhaTabelaPessAdmin from "@/components/LinhaTabelaPessAdmin";
-import LinhaTabelaPessClinico from "@/components/LinhaTabelaPessClinico";
-import LinhaTabelaConsultas from "@/components/LinhaTabelaMarcacaoConsulta";
 
 const Dashboard = () => {
+  const { user } = useAuth()
+  useEffect(() => {
+    console.log("LOGGG", user)
+  }, [])
+
   return (
     <>
       <NavBarIn />

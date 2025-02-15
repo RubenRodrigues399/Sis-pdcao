@@ -1,8 +1,10 @@
 "use client";
-import { useState } from "react";
 import { loginUser } from "@/actions/auth";
+import { useAuth } from "@/hooks/useAuth";
+
+import { useState } from "react";
 import NavBar from "../../../components/NavBar";
-import useAuth from "../../../hooks/useAuth";
+
 import { useRouter } from "next/navigation";
 
 const logo = "/assets/img/2.png";
@@ -26,11 +28,10 @@ const Login = () => {
 
     try {
       const res = await loginUser({ telefone, senha });
-
+      login(res)
       if (res.token) {
         console.log("Token recebido:", res.token);
         console.log("Tipo de usuário recebido:", res.userType); // Verifique se a API está retornando o userType corretamente
-
         const userRole = (res.userType || userType).toUpperCase(); // Prioriza o tipo retornado pela API
 
         switch (userRole) {
@@ -50,7 +51,7 @@ const Login = () => {
           default:
             router.push("/login");
         }
-        
+
       }
     } catch (e) {
       console.error("Erro:", e);
@@ -82,8 +83,8 @@ const Login = () => {
                 {userType === "paciente"
                   ? "Paciente"
                   : userType === "clinico"
-                  ? "Pessoal Clínico"
-                  : "Pessoal Administrativo"}
+                    ? "Pessoal Clínico"
+                    : "Pessoal Administrativo"}
               </h2>
               {/* Login + Dropdown */}
               <div className="flex items-center justify-between">
