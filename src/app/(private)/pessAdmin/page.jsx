@@ -72,22 +72,29 @@ const Dashboard = () => {
                 Marcações Consultas
               </h2>
               <ul className="mt-4 space-y-2">
-                {[...Array(2)].map((_, idx) => (
-                  <li
-                    key={idx}
-                    className="p-4 bg-gray-100 rounded-lg flex justify-between items-center"
-                  >
-                    <span className="text-gray-700">Ruben Rodrigues</span>
-                    <div className="flex space-x-2">
-                      <button className="bg-[#21aeb8] text-white px-4 py-1 rounded">
-                        Aceitar
-                      </button>
-                      <button className="bg-red-500 text-white px-4 py-1 rounded">
-                        Rejeitar
-                      </button>
-                    </div>
-                  </li>
-                ))}
+                <li className="p-4 bg-gray-100 rounded-lg flex justify-between items-center">
+                  <span className="text-gray-700">Ruben Rodrigues</span>
+                  <div className="flex space-x-2">
+                    <button className="bg-[#21aeb8] text-white px-4 py-1 rounded">
+                      Aceitar
+                    </button>
+                    <button className="bg-red-500 text-white px-4 py-1 rounded">
+                      Rejeitar
+                    </button>
+                  </div>
+                </li>
+
+                <li className="p-4 bg-gray-100 rounded-lg flex justify-between items-center">
+                  <span className="text-gray-700">Andre Lubambi</span>
+                  <div className="flex space-x-2">
+                    <button className="bg-[#21aeb8] text-white px-4 py-1 rounded">
+                      Aceitar
+                    </button>
+                    <button className="bg-red-500 text-white px-4 py-1 rounded">
+                      Rejeitar
+                    </button>
+                  </div>
+                </li>
               </ul>
             </div>
 
@@ -97,22 +104,29 @@ const Dashboard = () => {
                 Marcações de Exames
               </h2>
               <ul className="mt-4 space-y-2">
-                {[...Array(2)].map((_, idx) => (
-                  <li
-                    key={idx}
-                    className="p-4 bg-gray-100 rounded-lg flex justify-between items-center"
-                  >
-                    <span className="text-gray-700">Ruben Rodrigues</span>
-                    <div className="flex space-x-2">
-                      <button className="bg-[#21aeb8] text-white px-4 py-1 rounded">
-                        Aceitar
-                      </button>
-                      <button className="bg-red-500 text-white px-4 py-1 rounded">
-                        Rejeitar
-                      </button>
-                    </div>
-                  </li>
-                ))}
+                <li className="p-4 bg-gray-100 rounded-lg flex justify-between items-center">
+                  <span className="text-gray-700">Petia Paulo</span>
+                  <div className="flex space-x-2">
+                    <button className="bg-[#21aeb8] text-white px-4 py-1 rounded">
+                      Aceitar
+                    </button>
+                    <button className="bg-red-500 text-white px-4 py-1 rounded">
+                      Rejeitar
+                    </button>
+                  </div>
+                </li>
+
+                <li className="p-4 bg-gray-100 rounded-lg flex justify-between items-center">
+                  <span className="text-gray-700">Silk Silvano</span>
+                  <div className="flex space-x-2">
+                    <button className="bg-[#21aeb8] text-white px-4 py-1 rounded">
+                      Aceitar
+                    </button>
+                    <button className="bg-red-500 text-white px-4 py-1 rounded">
+                      Rejeitar
+                    </button>
+                  </div>
+                </li>
               </ul>
             </div>
           </section>
