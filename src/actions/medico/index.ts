@@ -1,6 +1,10 @@
 'use server'
 import { api } from "@/lib/axios";
+import { cookies } from 'next/headers';
 export async function criarMedico() {
+  const cookie = await cookies()
+  //  const token = cookie.get('sispdcao')?.value
+
   try {
     const { data } = await api.post("/sis/admin/medico/create", {
       usuario: {

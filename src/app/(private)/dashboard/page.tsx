@@ -1,14 +1,12 @@
 "use client";
 
-import Footer from "@/components/Footer";
 import Graph from "@/components/Graph";
-import NavBarIn from "@/components/NavBarIn";
 import { useAuth } from "@/hooks/useAuth";
-import { useEffect } from 'react';
 
 
 const Dashboard = () => {
   const { user } = useAuth()
+
   return (
     <>
 

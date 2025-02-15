@@ -19,28 +19,28 @@ import { ACL } from "./global/acl";
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard", current: true, allowedRoles: ["ADMIN", "DIRECAO", "USER"] },
-  { name: "P.Clínico", href: "/PessClinico", current: false, allowedRoles: ["DIRECAO"] },
-  { name: "P.Administrativo", href: "/pessAdmin", current: false, allowedRoles: ["ADMIN"] },
-  { name: "Utentes", href: "/Paciente", current: false, allowedRoles: ["DIRECAO", "USER"] },
-  { name: "Agenda", href: "/agenda", current: false, allowedRoles: ["USER"] },
+  { name: "P.Clínico", href: "/PessClinico", current: false, allowedRoles: ["ADMIN", "DIRECAO", "USER"] },
+  { name: "P.Administrativo", href: "/pessAdmin", current: false, allowedRoles: ["ADMIN", "DIRECAO", "USER"] },
+  { name: "Utentes", href: "/Paciente", current: false, allowedRoles: ["ADMIN", "DIRECAO", "USER"] },
+  { name: "Agenda", href: "/agenda", current: false, allowedRoles: ["ADMIN", "DIRECAO", "USER"] },
   {
     name: "Consulta",
     href: "/consultas",
     current: false,
-    allowedRoles: ["DIRECAO", "USER"],
+    allowedRoles: ["ADMIN", "DIRECAO", "USER"],
     submenu: [
-      { name: "Consultas Marcadas", href: "/consultas/marcadas", allowedRoles: ["DIRECAO", "USER"] },
-      { name: "Consultas Abertas", href: "/consultas/abertas", allowedRoles: ["DIRECAO", "USER"] },
+      { name: "Consultas Marcadas", href: "/consultas/marcadas", allowedRoles: ["ADMIN", "DIRECAO", "USER"] },
+      { name: "Consultas Abertas", href: "/consultas/abertas", allowedRoles: ["ADMIN", "DIRECAO", "USER"] },
     ],
   },
   {
     name: "Exame",
     href: "/Exames",
     current: false,
-    allowedRoles: ["DIRECAO", "USER"],
+    allowedRoles: ["ADMIN", "DIRECAO", "USER"],
     submenu: [
-      { name: "Exames Marcados", href: "/exames/marcados", allowedRoles: ["DIRECAO", "USER"] },
-      { name: "Exames Abertos", href: "/exames/abertos", allowedRoles: ["DIRECAO", "USER"] },
+      { name: "Exames Marcados", href: "/exames/marcados", allowedRoles: ["ADMIN", "DIRECAO", "USER"] },
+      { name: "Exames Abertos", href: "/exames/abertos", allowedRoles: ["ADMIN", "DIRECAO", "USER"] },
     ],
   },
 ];
