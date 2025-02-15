@@ -126,7 +126,6 @@ const Especialidades = () => {
 
   return (
     <>
-      <NavBarIn />
       <div className="flex min-h-screen">
         <main className="flex-1 bg-gray-100 p-8">
           <div className="flex items-center justify-center">
@@ -205,7 +204,6 @@ const Especialidades = () => {
           </button>
         </div>
       </Modal>
-      <Footer />
     </>
   );
 };

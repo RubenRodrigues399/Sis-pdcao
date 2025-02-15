@@ -2,9 +2,9 @@
 
 const logo = "/assets/img/2.png";
 
-import React, { useEffect, useState } from "react";
-import UseAuth from "../hooks/useAuth";
 
+import { logoutUser } from "@/actions/auth";
+import { useAuth } from "@/hooks/useAuth";
 import {
   Disclosure,
   DisclosureButton,
@@ -15,78 +15,44 @@ import {
   MenuItems,
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { logoutUser } from "@/actions/auth";
+import { ACL } from "./global/acl";
 
 const navigation = [
-  { name: "Dashboard", href: "/dashboard", current: true },
-  {
-    name: "P.Clínico",
-    href: "/PessClinico",
-    current: false,
-    canSee: 'DIRECAO' || ''
-  },
-  {
-    name: "P.Administrativo",
-    href: "/pessAdmin",
-    current: false,
-  },
-  {
-    name: "Utentes",
-    href: "/Paciente",
-    current: false,
-  },
-  {
-    name: "Agenda",
-    href: "/agenda",
-    current: false,
-  },
+  { name: "Dashboard", href: "/dashboard", current: true, allowedRoles: ["ADMIN", "DIRECAO", "USER"] },
+  { name: "P.Clínico", href: "/PessClinico", current: false, allowedRoles: ["DIRECAO"] },
+  { name: "P.Administrativo", href: "/pessAdmin", current: false, allowedRoles: ["ADMIN"] },
+  { name: "Utentes", href: "/Paciente", current: false, allowedRoles: ["DIRECAO", "USER"] },
+  { name: "Agenda", href: "/agenda", current: false, allowedRoles: ["USER"] },
   {
     name: "Consulta",
     href: "/consultas",
     current: false,
+    allowedRoles: ["DIRECAO", "USER"],
     submenu: [
-      { name: "Consultas Marcadas", href: "/consultas/marcadas" },
-      { name: "Consultas Abertas", href: "/consultas/abertas" },
+      { name: "Consultas Marcadas", href: "/consultas/marcadas", allowedRoles: ["DIRECAO", "USER"] },
+      { name: "Consultas Abertas", href: "/consultas/abertas", allowedRoles: ["DIRECAO", "USER"] },
     ],
   },
   {
     name: "Exame",
     href: "/Exames",
     current: false,
+    allowedRoles: ["DIRECAO", "USER"],
     submenu: [
-      { name: "Exames Marcados", href: "/exames/marcados" },
-      { name: "Exames Abertos", href: "/exames/abertos" },
+      { name: "Exames Marcados", href: "/exames/marcados", allowedRoles: ["DIRECAO", "USER"] },
+      { name: "Exames Abertos", href: "/exames/abertos", allowedRoles: ["DIRECAO", "USER"] },
     ],
   },
 ];
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 const NavBarIn = () => {
-  // const [userInitials, setUserInitials] = useState("RR");
 
-  // useEffect(() => {
-  //   const fetchUserInitials = async () => {
-  //     try {
-  //       const response = await fetch("/api/user"); // Endpoint para obter informações do usuário
-  //       const data = await response.json();
-  //       if (data?.nome) {
-  //         const initials = data.nome
-  //           .split(" ")
-  //           .map((word) => word.charAt(0).toUpperCase())
-  //           .join("");
-  //         setUserInitials(initials);
-  //       }
-  //     } catch (error) {
-  //       console.error("Erro ao buscar as iniciais do usuário:", error);
-  //     }
-  //   };
-
-  //   fetchUserInitials();
-  // }, []);
-
+  const { user } = useAuth();
   const handleLogout = async () => {
     try {
       await logoutUser();
@@ -122,36 +88,40 @@ const NavBarIn = () => {
             <div className="hidden sm:ml-6 sm:block">
               <div className="ml-96 flex space-x-4">
                 {navigation.map((item) => (
-                  <div key={item.name} className="relative group">
-                    <a
-                      href={item.href}
-                      aria-current={item.current ? "page" : undefined}
-                      className={classNames(
-                        item.current
-                          ? "hover:bg-blue-300 text-white"
-                          : "text-white hover:bg-blue-300 hover:text-black",
-                        "rounded-md px-3 py-2 text-sm font-medium"
+                  <ACL key={item.name} allowedRoles={item.allowedRoles}>
+                    <div className="relative group">
+                      <a
+                        href={item.href}
+                        aria-current={item.current ? "page" : undefined}
+                        className={classNames(
+                          item.current
+                            ? "hover:bg-blue-300 text-white"
+                            : "text-white hover:bg-blue-300 hover:text-black",
+                          "rounded-md px-3 py-2 text-sm font-medium"
+                        )}
+                      >
+                        {item.name}
+                      </a>
+                      {item.submenu && (
+                        <div className="absolute left-0 hidden group-hover:block mt-2 w-40 rounded-md bg-blue-300 shadow-lg">
+                          <ul className="py-1">
+                            {item.submenu.map((subItem, index) => (
+                              <ACL key={index} allowedRoles={subItem.allowedRoles}>
+                                <li>
+                                  <a
+                                    href={subItem.href}
+                                    className="block px-4 py-2 text-sm text-black hover:bg-blue-400"
+                                  >
+                                    {subItem.name}
+                                  </a>
+                                </li>
+                              </ACL>
+                            ))}
+                          </ul>
+                        </div>
                       )}
-                    >
-                      {item.name}
-                    </a>
-                    {item.submenu && (
-                      <div className="absolute left-0 hidden group-hover:block mt-2 w-40 rounded-md bg-blue-300 shadow-lg">
-                        <ul className="py-1">
-                          {item.submenu.map((subItem, index) => (
-                            <li key={index}>
-                              <a
-                                href={subItem.href}
-                                className="block px-4 py-2 text-sm text-black hover:bg-blue-400"
-                              >
-                                {subItem.name}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
+                    </div>
+                  </ACL>
                 ))}
               </div>
             </div>

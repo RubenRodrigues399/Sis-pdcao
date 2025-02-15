@@ -119,7 +119,6 @@ const Agenda = () => {
 
   return (
     <>
-      <NavBarIn />
       <div className="flex min-h-screen">
         <main className="flex-1 bg-gray-100 p-8">
           <div className="flex items-center justify-center">
@@ -237,7 +236,6 @@ const Agenda = () => {
           </div>
         </form>
       </Modal>
-      <Footer />
     </>
   );
 };

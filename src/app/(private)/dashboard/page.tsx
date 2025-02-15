@@ -1,30 +1,27 @@
 "use client";
 
-import { useEffect } from 'react';
 import Footer from "@/components/Footer";
 import Graph from "@/components/Graph";
 import NavBarIn from "@/components/NavBarIn";
 import { useAuth } from "@/hooks/useAuth";
+import { useEffect } from 'react';
 
 
 const Dashboard = () => {
   const { user } = useAuth()
-  useEffect(() => {
-    console.log("LOGGG", user)
-  }, [])
-
   return (
     <>
-      <NavBarIn />
+
       <div className="flex min-h-screen">
 
         {/* Main Content */}
         <main className="flex-1 bg-gray-100 p-8">
 
-            {/* Exibir informações do usuário */}
-            <section className="bg-white shadow-lg p-6 rounded-lg">
+          {/* Exibir informações do usuário */}
+          <section className="bg-white shadow-lg p-6 rounded-lg">
             <h2 className="text-lg font-semibold text-gray-800">Dados do Usuário</h2>
-            <p className="text-gray-700">Nome: {user?.nome || "Carregando..."}</p>
+            <p className="text-gray-700">Nome: {user?.nome}</p>
+
           </section>
 
           {/* Stats Section */}
@@ -182,7 +179,7 @@ const Dashboard = () => {
           </section>
         </main>
       </div>
-      <Footer />
+
     </>
   );
 };

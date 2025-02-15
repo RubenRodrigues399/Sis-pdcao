@@ -1,6 +1,4 @@
 "use client";
-import Footer from "@/components/Footer";
-import NavBarIn from "@/components/NavBarIn";
 import { useAuth } from "@/hooks/useAuth";
 import { useState } from "react";
 
@@ -52,7 +50,7 @@ const Profile = () => {
 
   return (
     <>
-      <NavBarIn />
+
       <div className="bg-blue-100 p-8 rounded-md shadow-md max-w-4xl mx-auto mt-10">
         {/* Header do Perfil */}
         <div className="flex items-center gap-4 mb-6">
@@ -187,7 +185,7 @@ const Profile = () => {
         </div>
       )}
 
-      <Footer />
+
     </>
   );
 };
