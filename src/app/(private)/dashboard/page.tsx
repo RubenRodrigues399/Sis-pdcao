@@ -18,8 +18,7 @@ const Dashboard = () => {
           {/* Exibir informações do usuário */}
           <section className="bg-white shadow-lg p-6 rounded-lg">
             <h2 className="text-lg font-semibold text-gray-800">Dados do Usuário</h2>
-            <p className="text-gray-700">Nome: {user?.nome}</p>
-
+            <p className="text-gray-700">Nome: {user?.nome || "Carregando..."}</p>
           </section>
 
           {/* Stats Section */}
