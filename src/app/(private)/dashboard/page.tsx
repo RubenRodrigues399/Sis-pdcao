@@ -1,36 +1,18 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Footer from "@/components/Footer";
-import NavBarIn from "@/components/NavBarIn";
 import Graph from "@/components/Graph";
-import { getUserAuth } from '@/actions/auth';
-import { useUserRole } from '@/hooks/useUserRole';
-
+import NavBarIn from "@/components/NavBarIn";
+import { useAuth } from "@/hooks/useAuth";
 
 
 const Dashboard = () => {
-  const [userData, setUserData] = useState<{ usuario: any; } | null>(null);
-const role = useUserRole()
+  const { user } = useAuth()
   useEffect(() => {
-    const fetchUserData = async () => {
-      const {usuario} = await getUserAuth(); 
-      console.log("Dados do usuário:",   usuario);
-  console.log('rolee,', role)
-      if (usuario) {
-     setUserData(usuario)
-      } else {
-        console.log("Nenhum dado encontrado nos cookies.");
-      }
-    };
-  
-    fetchUserData();
-  }, []);
-  
+    console.log("LOGGG", user)
+  }, [])
 
-const isDirecao = userData?.role =='DIRECAO'
-
-  
   return (
     <>
       <NavBarIn />

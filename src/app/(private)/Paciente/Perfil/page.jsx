@@ -1,10 +1,12 @@
 "use client";
-import { useState } from "react";
 import Footer from "@/components/Footer";
 import NavBarIn from "@/components/NavBarIn";
+import { useAuth } from "@/hooks/useAuth";
+import { useState } from "react";
 
 const Profile = () => {
   // Dados fictícios do perfil
+  const { user } = useAuth()
   const initialProfile = {
     avatar: "/assets/img/Ruben.png", // Caminho da imagem ou substitua por um avatar padrão
     nome: "Ruben Rodrigues",
@@ -85,6 +87,8 @@ const Profile = () => {
               <p className="font-medium text-gray-700">Estado Civil:</p>
               <p>{userProfile.estadoCivil}</p>
             </div>
+
+
           </div>
         </div>
 
