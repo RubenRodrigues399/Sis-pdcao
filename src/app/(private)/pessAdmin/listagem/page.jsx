@@ -1,9 +1,6 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import NavBarIn from "@/components/NavBarIn";
 import Modal from "@/components/ModalOpen";
-import Footer from "@/components/Footer";
-import LinhaTabelaPessAdmin from "@/components/LinhaTabelaPessAdmin";
+import React, { useEffect, useState } from "react";
 import Linha from "../../../../components/linhaPortal/LinhaPortalMedicos";
 
 const URL_API =
@@ -12,61 +9,61 @@ const URL_API =
 const PessoalAdmin = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [medicos, setMedicos] = useState([]);
-    const [especialidades, setEspecialidades] = useState([]);
-  
-    useEffect(() => {
-      const getEspecialidades = async () => {
-        const especialidadesMap = await fetchEspecialidades();
-        setEspecialidades(especialidadesMap);
-      };
-    
-      getEspecialidades();
-    }, []);
-  
-    // Fetch especialidades from API
-    useEffect(() => {
-      const fetchPortalMedicos = async () => {
-        try {
-          const response = await fetch(URL_API);
-          if (!response.ok) {
-            console.error(
-              "Erro na resposta da API:",
-              response.status,
-              response.statusText
-            );
-            return;
-          }
-          const data = await response.json();
-    
-          // Verificar se 'dados' é um array antes de salvar
-          if (Array.isArray(data.dados)) {
-            // Ajustar a estrutura para extrair os dados do objeto 'usuario'
-            const medicosFormatados = data.dados.map((medico) => ({
-              id: medico.usuario?.id || null,
-              nome: medico.usuario?.nome || "Sem nome",
-              genero: medico.usuario?.genero || "Não informado",
-              telefone01: medico.usuario?.telefone01 || "Sem telefone",
-              especialidade: especialidades[medico.especialidade_id] || "Desconhecida",
-              numOrdem: medico.numOrdem || "Sem número de ordem",
-            }));
-    
-            setMedicos(medicosFormatados);
-          } else {
-            console.error("Os 'dados' da resposta não são um array:", data.dados);
-            setMedicos([]); // Evitar quebra no frontend
-          }
-        } catch (error) {
-          console.error("Erro ao buscar médicos:", error);
+  const [especialidades, setEspecialidades] = useState([]);
+
+  useEffect(() => {
+    const getEspecialidades = async () => {
+      const especialidadesMap = await fetchEspecialidades();
+      setEspecialidades(especialidadesMap);
+    };
+
+    getEspecialidades();
+  }, []);
+
+  // Fetch especialidades from API
+  useEffect(() => {
+    const fetchPortalMedicos = async () => {
+      try {
+        const response = await fetch(URL_API);
+        if (!response.ok) {
+          console.error(
+            "Erro na resposta da API:",
+            response.status,
+            response.statusText
+          );
+          return;
+        }
+        const data = await response.json();
+
+        // Verificar se 'dados' é um array antes de salvar
+        if (Array.isArray(data.dados)) {
+          // Ajustar a estrutura para extrair os dados do objeto 'usuario'
+          const medicosFormatados = data.dados.map((medico) => ({
+            id: medico.usuario?.id || null,
+            nome: medico.usuario?.nome || "Sem nome",
+            genero: medico.usuario?.genero || "Não informado",
+            telefone01: medico.usuario?.telefone01 || "Sem telefone",
+            especialidade: especialidades[medico.especialidade_id] || "Desconhecida",
+            numOrdem: medico.numOrdem || "Sem número de ordem",
+          }));
+
+          setMedicos(medicosFormatados);
+        } else {
+          console.error("Os 'dados' da resposta não são um array:", data.dados);
           setMedicos([]); // Evitar quebra no frontend
         }
-      };
-    
-      fetchPortalMedicos();
-    }, [especialidades]);
+      } catch (error) {
+        console.error("Erro ao buscar médicos:", error);
+        setMedicos([]); // Evitar quebra no frontend
+      }
+    };
+
+    fetchPortalMedicos();
+  }, [especialidades]);
 
   return (
     <>
-      <NavBarIn />
+
       <div className="flex min-h-screen">
         {/* Main Content */}
         <main className="flex-1 bg-gray-100 p-8">
@@ -106,25 +103,25 @@ const PessoalAdmin = () => {
                 email={<span className="p-2 text-gray-700">ruben339@gmail.com</span>}
                 endereco={<span className="p-2 text-gray-700">Talatona, Camama</span>}
               /> */}
-                                  {medicos.length > 0 ? (
-                                    medicos.map((medico) => (
-                                      <Linha
-                                        key={medico.id}
-                                        id={medico.id}
-                                        nome={medico.nome}
-                                        genero={medico.genero}
-                                        telefone01={medico.telefone01}
-                                        especialidade={medico.especialidade}
-                                        numOrdem={medico.numOrdem}
-                                      />
-                                    ))
-                                  ) : (
-                                    <tr>
-                                      <td colSpan="4" className="text-center p-4">
-                                        Nenhuma médico encontrado.
-                                      </td>
-                                    </tr>
-                                  )}
+                {medicos.length > 0 ? (
+                  medicos.map((medico) => (
+                    <Linha
+                      key={medico.id}
+                      id={medico.id}
+                      nome={medico.nome}
+                      genero={medico.genero}
+                      telefone01={medico.telefone01}
+                      especialidade={medico.especialidade}
+                      numOrdem={medico.numOrdem}
+                    />
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="4" className="text-center p-4">
+                      Nenhuma médico encontrado.
+                    </td>
+                  </tr>
+                )}
 
               </tbody>
             </table>
@@ -185,7 +182,7 @@ const PessoalAdmin = () => {
           </button>
         </div>
       </Modal>
-      <Footer />
+
     </>
   );
 };

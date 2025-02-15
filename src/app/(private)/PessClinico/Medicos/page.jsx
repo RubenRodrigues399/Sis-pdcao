@@ -1,19 +1,12 @@
 "use client"
-import Footer from "@/components/Footer";
-import NavBarIn from "@/components/NavBarIn";
-import NavBar from "@/components/NavBarIn";
 import Graph from "@/components/Graph";
 
 import React from 'react';
-import LinhaTabelaEspecialidade from "../../../../components/LinhaTabelaEspecialidades";
-import LinhaTabelaPessAdmin from "@/components/LinhaTabelaPessAdmin";
-import LinhaTabelaPessClinico from "@/components/LinhaTabelaPessClinico";
-import LinhaTabelaConsultas from "@/components/LinhaTabelaMarcacaoConsulta";
 
 const Dashboard = () => {
   return (
     <>
-      <NavBarIn />
+
       <div className="flex min-h-screen">
 
         {/* Main Content */}
@@ -175,7 +168,7 @@ const Dashboard = () => {
           </section>
         </main>
       </div>
-      <Footer />
+
     </>
   );
 };

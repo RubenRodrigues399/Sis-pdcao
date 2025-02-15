@@ -6,7 +6,7 @@ type ACLProps = {
   children: ReactNode;
 }
 
-export function ACL({ allowedRoles, children }: ACLProps) {
+export function ACL({ allowedRoles, children }: Readonly<ACLProps>) {
   const { user } = useAuth();
   if (!user || !allowedRoles.includes(user.role)) {
     return null;
