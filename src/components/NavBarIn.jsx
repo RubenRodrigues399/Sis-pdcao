@@ -23,6 +23,7 @@ const navigation = [
     name: "P.Clínico",
     href: "/PessClinico",
     current: false,
+    canSee: 'DIRECAO' || ''
   },
   {
     name: "P.Administrativo",

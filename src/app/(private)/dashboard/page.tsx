@@ -1,16 +1,36 @@
-"use client"
+"use client";
+
+import { useEffect, useState } from 'react';
 import Footer from "@/components/Footer";
 import NavBarIn from "@/components/NavBarIn";
-import NavBar from "@/components/NavBarIn";
 import Graph from "@/components/Graph";
+import { getUserAuth } from '@/actions/auth';
+import { useUserRole } from '@/hooks/useUserRole';
 
-import React from 'react';
-import LinhaTabelaEspecialidade from "../../../components/LinhaTabelaEspecialidades";
-import LinhaTabelaPessAdmin from "@/components/LinhaTabelaPessAdmin";
-import LinhaTabelaPessClinico from "@/components/LinhaTabelaPessClinico";
-import LinhaTabelaConsultas from "@/components/LinhaTabelaMarcacaoConsulta";
+
 
 const Dashboard = () => {
+  const [userData, setUserData] = useState<{ usuario: any; } | null>(null);
+const role = useUserRole()
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const {usuario} = await getUserAuth(); 
+      console.log("Dados do usuário:",   usuario);
+  console.log('rolee,', role)
+      if (usuario) {
+     setUserData(usuario)
+      } else {
+        console.log("Nenhum dado encontrado nos cookies.");
+      }
+    };
+  
+    fetchUserData();
+  }, []);
+  
+
+const isDirecao = userData?.role =='DIRECAO'
+
+  
   return (
     <>
       <NavBarIn />
@@ -19,6 +39,11 @@ const Dashboard = () => {
         {/* Main Content */}
         <main className="flex-1 bg-gray-100 p-8">
 
+            {/* Exibir informações do usuário */}
+            <section className="bg-white shadow-lg p-6 rounded-lg">
+            <h2 className="text-lg font-semibold text-gray-800">Dados do Usuário</h2>
+            <p className="text-gray-700">Nome: {userData?.nome || "Carregando..."}</p>
+          </section>
 
           {/* Stats Section */}
           <section className="grid grid-cols-4 pl-44 gap-60 mt-6">
