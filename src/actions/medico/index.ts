@@ -3,6 +3,7 @@ import { api } from "@/lib/axios";
 import { cookies } from "next/headers";
 
 export async function criarMedico(prevState: any, formData: FormData) {
+  const nome = formData.get("nome") as string;
   const senha = formData.get("password") as string;
   const data_nascimento = formData.get("data_nascimento") as string;
   const numOrdem = formData.get("numOrdem") as string;
