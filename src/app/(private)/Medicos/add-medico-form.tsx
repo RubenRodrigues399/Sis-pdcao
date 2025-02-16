@@ -1,14 +1,17 @@
 "use client";
-import { criarPessoalTecnico } from "@/actions/tecnico";
-import { useActionState } from "react";
+import { criarMedico } from "@/actions/medico";
+import { useActionState, useEffect, useState } from "react";
 import { SubmitButton } from "./submit-button";
 
 const initialState = {
   message: "",
 };
 
-export function AddPCForm() {
-  const [state, action, isPending] = useActionState(criarPessoalTecnico, initialState);
+const URL_ESPECIALIDADES =
+  "https://sis-production-4c8f.up.railway.app/sis/portal/especialidade/all";
+export function AddMedicoForm() {
+  const [state, action, isPending] = useActionState(criarMedico, initialState);
+  const [especialidades, setEspecialidades] = useState([]);
   //TODO:  //TODO: Precisa actualizar os campos no formulário que estão faltando para criação
 
   /* 
@@ -24,6 +27,38 @@ export function AddPCForm() {
    NOTA: não esqueça de adicionar os id e name de cada campo para ser obtida lá na server action
    exemplo: const varNome = formData.get("nome_no_form") as string (ou outro tipo como number)
      */
+
+  // Fetch especialidades from API
+  useEffect(() => {
+    const fetchEspecialidades = async () => {
+      try {
+        const response = await fetch(URL_ESPECIALIDADES);
+        if (!response.ok) {
+          console.error(
+            "Erro na resposta da API:",
+            response.status,
+            response.statusText
+          );
+          return;
+        }
+        const data = await response.json();
+
+        // Verificar se 'dados' é um array antes de salvar
+        if (Array.isArray(data.dados)) {
+          setEspecialidades(data.dados);
+        } else {
+          console.error("Os 'dados' da resposta não são um array:", data.dados);
+          setEspecialidades([]); // Evitar quebra no frontend
+        }
+      } catch (error) {
+        console.error("Erro ao buscar especialidades:", error);
+        setEspecialidades([]); // Evitar quebra no frontend
+      }
+    };
+
+    fetchEspecialidades();
+  }, []);
+
   return (
     <>
       <span className="text-lg pl-56 font-semibold">Adicionar pessoal clínico</span>
@@ -32,12 +67,12 @@ export function AddPCForm() {
           <input id="nome" name="nome" type="text" className="border rounded p-2" placeholder="Nome" />
         </div>
         <div className="flex flex-col">
-          <select id="especialidade" name="especialidade" className="border rounded p-2">
-            <option>Especialidade</option>
-            <option>Doctor</option>
-            <option>Nurse</option>
-            <option>Admin</option>
-          </select>
+        <select name="especialidade_id" required className="border border-gray-300 rounded px-4 py-2">
+                    <option value="">Especialidade</option>
+                    {especialidades.map((esp) => (
+                      <option key={esp.id} value={esp.id}>{esp.nome}</option>
+                    ))}
+                  </select>
         </div>
         <div className="flex flex-col">
           <select id="genero" name="genero" className="border rounded p-2">
@@ -50,13 +85,13 @@ export function AddPCForm() {
           <input name="email" id="email" type="email" className="border rounded p-2" placeholder="Email" />
         </div>
         <div className="flex flex-col">
-          <input type="text" id="telefone" name="telefone" className="border rounded p-2" placeholder="Telefone" />
+          <input type="text" id="telefone" name="telefone01" className="border rounded p-2" placeholder="Telefone" />
         </div>
         <div className="flex flex-col">
-          <input type="text" id="numOrder" name="numOrder" className="border rounded p-2" placeholder="Número de ordem" />
+          <input type="text" id="numOrder" name="numOrdem" className="border rounded p-2" placeholder="Número de ordem" />
         </div>
         <div className="flex flex-col">
-          <input type="date" id="dataNasc" name="dataNasc" className="border rounded p-2" />
+          <input type="date" id="data_nascimento" name="data_nascimento" className="border rounded p-2" />
         </div>
         <div className="flex flex-col">
           <input type="text" id="provincia" name="provincia" className="border rounded p-2" placeholder="Provincia" />

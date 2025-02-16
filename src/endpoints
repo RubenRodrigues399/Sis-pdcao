@@ -20,7 +20,7 @@ url principal: https://sis-production-4c8f.up.railway.app
                         "especialidade": "Ortopedia",
                         "preco": 150
                     }
-
+  
                   -----------PEGAR TODAS AS ESPECIALIDADES------------[DONE]
                   /sis/portal/especialidade/all
 
@@ -191,13 +191,13 @@ url principal: https://sis-production-4c8f.up.railway.app
 
 ---------------------------------------------------------------------ROLES---------------------------------------------------------------------------------
                           === TIPO DE ROLES QUE PODEM USAR AO CRIAR USUARIO:
-                              MEDICO("medico"),
                               RECEPCIONISTA("recepcao"),
                               DIRECAO("direcao"),
-                              PACIENTE("paciente"),
+                              MEDICO("medico"),
                               TECENFERMEIRO("tecEnfermeiro"),
                               TECLABORATORIO("tecLaboratorio"),
-                              TECIMAGIOLOGIA("tecImagiologia");
+                              TECIMAGIOLOGIA("tecImagiologia"),
+                              PACIENTE("paciente");
   
 
                               === TIPO DE ROLE QUE PODEM USAR AO CRIAR OS EXAMES

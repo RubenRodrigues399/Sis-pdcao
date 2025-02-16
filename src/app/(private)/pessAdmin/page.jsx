@@ -1,9 +1,10 @@
 "use client";
 import Graph from "@/components/Graph";
-
+import { useAuth } from "@/hooks/useAuth";
 import React from "react";
 
 const Dashboard = () => {
+  const { user } = useAuth()
   return (
     <>
 
@@ -14,11 +15,18 @@ const Dashboard = () => {
             Dashaboard do Pessoal Administrativo
           </h2>
 
+          {/* Exibir informações do usuário */}
+          <section className="bg-white shadow-lg p-6 mt-2 rounded-lg">
+            <h2 className="text-lg font-semibold text-gray-800">Dados do Usuário</h2>
+            <p className="text-gray-700">Nome: {user?.nome || "Carregando..."}</p>
+            <p className="text-gray-700">Função: {user?.role || "Carregando..."}</p>
+          </section>
+
           {/* Stats Section */}
-          <section className="grid grid-cols-4 pl-26 mt-6">
+          <section className="grid grid-flow-col-dense shadow-lg gap-4 pl-26 mt-6">
             <a
               href="/Paciente/listagem"
-              className="bg-white shadow-lg hover:shadow-2xl transition-shadow duration-300 p-6 w-72 rounded-lg flex flex-col items-center"
+              className="bg-white shadow-lg hover:shadow-2xl transition-shadow duration-300 p-6 w-60 rounded-lg flex flex-col items-center"
             >
               <h2 className="text-lg font-semibold text-gray-800">
                 Total de Pacientes
@@ -27,8 +35,18 @@ const Dashboard = () => {
             </a>
 
             <a
+              href="/Medicos/listagem"
+              className="bg-white shadow-lg hover:shadow-2xl transition-shadow duration-300 p-6 w-52 rounded-lg flex flex-col items-center"
+            >
+              <h2 className="text-lg font-semibold text-gray-800">
+                Total de Médicos
+              </h2>
+              <p className="text-2xl font-bold text-gray-900">3</p>
+            </a>
+
+            <a
               href="/PessClinico/listagem"
-              className="bg-white shadow-lg hover:shadow-2xl transition-shadow duration-300 p-6 w-72 rounded-lg flex flex-col items-center"
+              className="bg-white shadow-lg hover:shadow-2xl transition-shadow duration-300 p-6 w-64 rounded-lg flex flex-col items-center"
             >
               <h2 className="text-lg font-semibold text-gray-800">
                 Total de Pessoal Clínico
@@ -38,7 +56,7 @@ const Dashboard = () => {
 
             <a
               href="/pessAdmin/listagem"
-              className="bg-white shadow-lg hover:shadow-2xl transition-shadow duration-300 p-6 w-72 rounded-lg flex flex-col items-center"
+              className="bg-white shadow-lg hover:shadow-2xl transition-shadow duration-300 p-6 w-64 rounded-lg flex flex-col items-center"
             >
               <h2 className="text-lg font-semibold text-gray-800">
                 Total de Pessoal Admin
@@ -48,7 +66,7 @@ const Dashboard = () => {
 
             <a
               href="/Especialidades/"
-              className="bg-white shadow-lg hover:shadow-2xl transition-shadow duration-300 p-6 w-72 rounded-lg flex flex-col items-center"
+              className="bg-white shadow-lg hover:shadow-2xl transition-shadow duration-300 p-6 w-64 rounded-lg flex flex-col items-center"
             >
               <h2 className="text-lg font-semibold text-gray-800">
                 Total de Especialidades

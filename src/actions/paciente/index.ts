@@ -21,7 +21,7 @@ export async function criarPaciente(prevState: any, formData: FormData) {
   // console.log("[data_formatada]", dataFormatada)
   try {
     const cookie = await cookies()
-    const token = cookie.get("sispdcao")
+    const token = cookie.get("sispdcao").value
     if (!token?.value) {
       throw new Error("SEM TOKEN")
     }

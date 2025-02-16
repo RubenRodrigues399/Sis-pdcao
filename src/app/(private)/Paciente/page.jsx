@@ -4,6 +4,7 @@ import Modal from "@/components/ModalOpen";
 import React, { useEffect, useState } from 'react';
 import LinhaTabelaEspecialidade from "../../../components/LinhaTabelaEspecialidades";
 import Linha from "../../../components/linhaPortal/LinhaPortalMedicos";
+import { useAuth } from "@/hooks/useAuth";
 
 const URL_ESPECIALIDADES =
   "https://sis-production-4c8f.up.railway.app/sis/portal/especialidade/all";
@@ -14,6 +15,7 @@ const Dashboard = () => {
   const [especialidades, setEspecialidades] = useState([]);
   const [formData, setFormData] = useState({ nome: "", preco: "" });
   const [modalType, setModalType] = useState(null);
+  const { user } = useAuth()
 
   // Fetch especialidades from API
   useEffect(() => {
@@ -95,7 +97,14 @@ const Dashboard = () => {
         {/* Main Content */}
         <main className="flex-1 bg-gray-100 p-8">
 
-          <h2 className="text-gray-700 text-2xl text-center">Dashaboard do paciente</h2>
+          <h2 className="text-gray-700 text-2xl text-center">Dashboard do paciente</h2>
+
+           {/* Exibir informações do usuário */}
+           <section className="bg-white shadow-lg p-6 mt-2 rounded-lg">
+            <h2 className="text-lg font-semibold text-gray-800">Dados do Usuário</h2>
+            <p className="text-gray-700">Nome: {user?.nome || "Carregando..."}</p>
+            <p className="text-gray-700">Função: {user?.role || "Carregando..."}</p>
+          </section>
           {/* Appointments and Appointments */}
           <section className="grid grid-cols-2 gap-4 mt-6">
             {/* Appointments */}

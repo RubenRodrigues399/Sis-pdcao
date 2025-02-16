@@ -12,11 +12,12 @@ const logo = "/assets/img/2.png";
 const Login = () => {
   const { login } = useAuth();
   const router = useRouter();
+  const { user } = useAuth()
 
   const [telefone, setTelefone] = useState("");
   const [senha, setSenha] = useState("");
   const [error, setError] = useState("");
-  const [userType, setUserType] = useState("paciente");
+  const [userType, setUserType] = useState("paciente", "admin", "clinico");
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLogin = async (event) => {
@@ -78,18 +79,19 @@ const Login = () => {
 
           <div className="mt-6">
             <form onSubmit={handleLogin} className="space-y-6">
-              <h2 className="text-center text-2xl font-bold tracking-tight text-gray-900">
+            <h2 className="text-center text-2xl font-bold tracking-tight text-gray-900">Login</h2>
+              {/* <h2 className="text-center text-2xl font-bold tracking-tight text-gray-900">
                 Login{" "}
                 {userType === "paciente"
                   ? "Paciente"
                   : userType === "clinico"
                     ? "Pessoal Clínico"
                     : "Pessoal Administrativo"}
-              </h2>
+              </h2> */}
               {/* Login + Dropdown */}
-              <div className="flex items-center justify-between">
+              {/* <div className="flex items-center justify-between"> */}
                 {/* Dropdown de seleção de usuário */}
-                <div className="relative ml-80">
+                {/* <div className="relative ml-80">
                   <button
                     onClick={() => setMenuOpen(!menuOpen)}
                     className="bg-white text-black px-4 py-1 rounded-md shadow-md hover:bg-gray-100"
@@ -132,7 +134,7 @@ const Login = () => {
                     </div>
                   )}
                 </div>
-              </div>
+              </div> */}
 
               <div>
                 <label className="block text-sm font-medium text-black">

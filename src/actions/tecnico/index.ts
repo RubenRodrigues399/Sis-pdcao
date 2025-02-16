@@ -7,10 +7,13 @@ export async function criarPessoalTecnico(prevState: any, formData: FormData) {
   const senha = formData.get("password") as string
   const data_nascimento = formData.get("dataNasc") as string
   const numOrdem = formData.get("numOrder") as string
-  const endereco = formData.get("endereco") as string
   const telefone01 = formData.get("telefone") as string
-  const email = formData.get("email") as string
+  const correioElect = formData.get("email") as string
   const genero = formData.get("genero") as string
+  const provincia = formData.get("provincia") as string;
+  const municipio = formData.get("municipio") as string;
+  const bairro = formData.get("bairro") as string;
+  const dataFormatada = new Date(dataNascimento).toISOString().split('T')[0]
   //TODO: Precisa actualizar os campos no formulário que estão faltando para criação
 
   /* 
@@ -31,13 +34,13 @@ export async function criarPessoalTecnico(prevState: any, formData: FormData) {
         senha,
         telefone01,
         telefone02: "",
-        data_nascimento,
+        data_nascimento:dataFormatada,
         codPostal: "",
-        correioElect: "",
+        correioElect,
         genero,
-        provincia: "Luanda",
-        municipio: "Luanda",
-        bairro: "Rocha"
+        provincia,
+        municipio,
+        bairro
       },
       tipo_profissional: "tecEnfermeiro",
       numOrdem
