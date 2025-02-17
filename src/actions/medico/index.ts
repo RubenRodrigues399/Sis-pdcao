@@ -18,7 +18,7 @@ export async function criarMedico(prevState: any, formData: FormData) {
 
   try {
     const cookie = await cookies()
-        const token = cookie.get("sispdcao").value
+        const token = cookie.get("sispdcao")
         if (!token?.value) {
           throw new Error("SEM TOKEN")
         }
@@ -45,17 +45,17 @@ export async function criarMedico(prevState: any, formData: FormData) {
         },
       })
 
-      console.log("[DATA]", data)
-      if (data) {
-        // revalidatePath("/Paciente")
-        //redirect("Paciente")
-        return data
-      }
-    } catch (error: any) {
-      console.error("[ERRO]", error)
-      if (error.response && error.response.status === 401) {
-        throw new Error("Não autorizado");
-      }
-      throw new Error("Ocorreu um erro ao criar o paciente.")
+    console.log("[DATA]", data)
+    if (data) {
+      // revalidatePath("/Paciente")
+      //redirect("Paciente")
+      return data
     }
+  } catch (error: any) {
+    console.error("[ERRO]", error)
+    if (error.response && error.response.status === 401) {
+      throw new Error("Não autorizado");
+    }
+    throw new Error("Ocorreu um erro ao criar o paciente.")
   }
+}
