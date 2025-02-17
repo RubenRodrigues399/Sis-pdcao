@@ -1,10 +1,12 @@
+import { API_KEY } from '@/utils/api-key';
 import axios from 'axios';
 import { cookies } from 'next/headers';
 
 export const api = axios.create({
   baseURL: " https://sis-production-4c8f.up.railway.app",
   headers: {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    "APIKEY": `"${API_KEY}"`
   }
 });
 
