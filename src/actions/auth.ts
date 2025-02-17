@@ -2,6 +2,9 @@
 
 import { api } from "@/lib/axios";
 import { cookies } from "next/headers";
+import { API_CONFIG } from "@/config/apiConfig"; 
+
+
  
 interface Credenciais {
   telefone: string;
@@ -33,23 +36,31 @@ interface LoginResponse {
 // Login
 export const loginUser = async (credenciais: Credenciais): Promise<LoginResponse> => {
   console.log("credenciais", credenciais);
-  const cookie = await cookies()
+  const cookie = await cookies(); // Obtendo cookies para salvar o token e dados do usuário
   
   try {
-   
+    // Log da API Key para verificar se está correta
+    console.log("API Key:", API_CONFIG.API_KEY);
+    
+    // Enviando a requisição com a API Key no header
     const { data } = await api.post<LoginResponse>("/sis/auth/login", {
       senha: credenciais.senha,
       telefone01: credenciais.telefone
+    }, {
+      headers: {
+        "APIKEY": `"${API_CONFIG.API_KEY}"`,  
+        "Content-Type": "application/json"
+      }
     });
+    
     console.log("response", { data });
 
-    // Guardar token e usuário nos cookies
+    // Guardar o token e dados do usuário nos cookies
     cookie.set('sispdcao', JSON.stringify(data));
-   
-
+    
     return data; 
   } catch (error) {
-    console.log(error);
+    console.error("Erro ao fazer login:", error);
     throw (error as any).response?.data?.message || "Erro ao fazer login";
   }
 };
