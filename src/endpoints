@@ -189,6 +189,22 @@ url principal: https://sis-production-4c8f.up.railway.app
                               todas rotas que têm: portal
                               Não precisas mandar token
 
+------------------------------------------------------------------ PEGAR OS MÉDICOS POR ESPECIALIDADE ---------------------------------------------------------
+
+                            
+- endpoint: /sis/portal/medicos/${Id da especialidade}
+- método: GET
+
+------------------------------------------------------------------ ALTERAR SENHA ---------------------------------------------------------
+
+. endpoint: sis/usuario/actualizaSenha
+. body: {
+            "usuarioId": ${UUID DO USUARIO},
+            "senhaActual": ${SENHA ACTUAL},
+            "novaSenha": ${NOVA SENHA}
+}
+. método: PUT
+
 ---------------------------------------------------------------------ROLES---------------------------------------------------------------------------------
                           === TIPO DE ROLES QUE PODEM USAR AO CRIAR USUARIO:
                               RECEPCIONISTA("recepcao"),
@@ -203,4 +219,10 @@ url principal: https://sis-production-4c8f.up.railway.app
                               === TIPO DE ROLE QUE PODEM USAR AO CRIAR OS EXAMES
                               LABORATORIO("laboratorio"),
                               IMAGIOLOGIA("imagem");
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+chave da api:
+"APIKEY": "48454de50ba188ebad94f291e743c02af4d853c9"
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
