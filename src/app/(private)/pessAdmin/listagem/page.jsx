@@ -1,7 +1,7 @@
 "use client";
 import Modal from "@/components/ModalOpen";
 import React, { useEffect, useState } from "react";
-import Linha from "../../../../components/linhaPortal/LinhaPortalMedicos";
+import Linha from "../../../../components/LinhaTabelaPessAdmin";
 
 const URL_API =
   "https://sis-production-4c8f.up.railway.app/sis/portal/pessoalClinico/medico";
@@ -129,58 +129,7 @@ const PessoalAdmin = () => {
         </main>
       </div>
       <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
-        <h2 className="text-lg font-semibold mb-4 text-center">
-          Cadastro de Pessoal Administrativo
-        </h2>
-        <form className="grid grid-cols-2 gap-4 mt-5">
-          <input
-            type="text"
-            className="border placeholder-black p-2 rounded col-span-2"
-            placeholder="Nome"
-          />
-          <select className="border rounded p-2">
-            <option>Função</option>
-            <option>Director</option>
-            <option>Secretário</option>
-            <option>Admin</option>
-          </select>
-          <select className="border rounded p-2">
-            <option>Gênero</option>
-            <option>Masculino</option>
-            <option>Femenino</option>
-          </select>
-          <input
-            type="email"
-            className="border placeholder-black rounded p-2"
-            placeholder="Email"
-          />
-          <input
-            type="text"
-            className="border placeholder-black rounded p-2"
-            placeholder="Telefone"
-          />
-          <input type="date" className="border rounded p-2" />
-          <input
-            type="text"
-            className="border placeholder-black p-2 rounded"
-            placeholder="Enderço"
-          />
-          <input
-            type="password"
-            className="border placeholder-black rounded p-2"
-            placeholder="Senha"
-          />
-          <input
-            type="password"
-            className="border placeholder-black rounded p-2"
-            placeholder="Confirmar senha"
-          />
-        </form>
-        <div className="flex space-x-4 justify-center mt-6">
-          <button className="bg-green-500 text-white px-6 py-2 rounded">
-            Registrar
-          </button>
-        </div>
+        <AddAdminForm />
       </Modal>
 
     </>
