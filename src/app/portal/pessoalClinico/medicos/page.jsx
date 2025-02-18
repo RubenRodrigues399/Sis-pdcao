@@ -4,6 +4,8 @@ import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import Linha from "../../../../components/linhaPortal/LinhaPortalMedicos";
 //import {fetchEspecialidades} from '@/actions/especialidade/index';
+import { fetchMedicos } from "@/actions/medico";
+import { pegarTodasEspecialidades } from "@/actions/especialidade";
 
 const URL_API =
   "https://sis-production-4c8f.up.railway.app/sis/portal/pessoalClinico/medico";
@@ -13,7 +15,7 @@ const portalMedicos = () => {
 
   useEffect(() => {
     const getEspecialidades = async () => {
-      const especialidadesMap = await fetchEspecialidades();
+      const especialidadesMap = await pegarTodasEspecialidades();
       setEspecialidades(especialidadesMap);
     };
   
@@ -23,17 +25,10 @@ const portalMedicos = () => {
   // Fetch especialidades from API
   useEffect(() => {
     const fetchPortalMedicos = async () => {
-      try {
-        const response = await fetch(URL_API);
-        if (!response.ok) {
-          console.error(
-            "Erro na resposta da API:",
-            response.status,
-            response.statusText
-          );
-          return;
-        }
-        const data = await response.json();
+      
+        const data = await fetchMedicos();
+        
+        //const data = await response.json();
   
         // Verificar se 'dados' é um array antes de salvar
         if (Array.isArray(data.dados)) {
@@ -52,10 +47,7 @@ const portalMedicos = () => {
           console.error("Os 'dados' da resposta não são um array:", data.dados);
           setMedicos([]); // Evitar quebra no frontend
         }
-      } catch (error) {
-        console.error("Erro ao buscar médicos:", error);
-        setMedicos([]); // Evitar quebra no frontend
-      }
+     
     };
   
     fetchPortalMedicos();
