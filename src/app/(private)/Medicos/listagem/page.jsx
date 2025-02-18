@@ -3,7 +3,8 @@ import Modal from "@/components/ModalOpen";
 import React, { useEffect, useState } from "react";
 import Linha from "../../../../components/linhaPortal/LinhaPortalMedicos";
 import { AddMedicoForm } from "../add-medico-form";
-//import {fetchEspecialidades} from '@/actions/especialidade/index';
+import { pegarTodasEspecialidades } from "@/actions/especialidade";
+import { fetchMedicos } from "@/actions/medico";
 
 const URL_API =
   "https://sis-production-4c8f.up.railway.app/sis/portal/pessoalClinico/medico";
@@ -13,29 +14,22 @@ const PessoalClinico = () => {
   const [medicos, setMedicos] = useState([]);
   const [especialidades, setEspecialidades] = useState([]);
 
-  useEffect(() => {
-    const getEspecialidades = async () => {
-      const especialidadesMap = await fetchEspecialidades();
-      setEspecialidades(especialidadesMap);
-    };
-
-    getEspecialidades();
-  }, []);
+    useEffect(() => {
+      const getEspecialidades = async () => {
+        const especialidadesMap = await pegarTodasEspecialidades();
+        setEspecialidades(especialidadesMap);
+      };
+  
+      getEspecialidades();
+    }, []);
 
   // Fetch especialidades from API
   useEffect(() => {
     const fetchPortalMedicos = async () => {
-      try {
-        const response = await fetch(URL_API);
-        if (!response.ok) {
-          console.error(
-            "Erro na resposta da API:",
-            response.status,
-            response.statusText
-          );
-          return;
-        }
-        const data = await response.json();
+    
+        const data = await fetchMedicos();
+        
+        //const data = await response.json();
 
         // Verificar se 'dados' é um array antes de salvar
         if (Array.isArray(data.dados)) {
@@ -54,10 +48,7 @@ const PessoalClinico = () => {
           console.error("Os 'dados' da resposta não são um array:", data.dados);
           setMedicos([]); // Evitar quebra no frontend
         }
-      } catch (error) {
-        console.error("Erro ao buscar médicos:", error);
-        setMedicos([]); // Evitar quebra no frontend
-      }
+     
     };
 
     fetchPortalMedicos();
