@@ -56,3 +56,33 @@ export async function criarPessoalTecnico(prevState: any, formData: FormData) {
     throw error
   }
 }
+
+export const fetchEnfermeiros = async () => {
+  try {
+    const response = await api.get("/sis/portal/pessoalClinico/tecEnfermeiro");
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar enfermeiros:", error);
+    return { dados: [] };
+  }
+};
+
+export const fetchTecImagiologia = async () => {
+  try {
+    const response = await api.get("/sis/portal/pessoalClinico/tecImagiologia");
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar tecnicos de imagiologia:", error);
+    return { dados: [] };
+  }
+};
+
+export const fetchTecLaboratorio = async () => {
+  try {
+    const response = await api.get("/sis/portal/pessoalClinico/tecLaboratorio");
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar tecnicos de laboratorio:", error);
+    return { dados: [] };
+  }
+};
