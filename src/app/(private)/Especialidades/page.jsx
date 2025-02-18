@@ -7,8 +7,6 @@ import LinhaTabelaEspecialidade from "../../../components/LinhaTabelaEspecialida
 import { pegarTodasEspecialidades } from "@/actions/especialidade";
 import { AddEspecialidadeForm } from "./add-especialidade-form";
 
-const URL_API =
-  "https://sis-production-4c8f.up.railway.app/sis/portal/especialidade/all";
 const Especialidades = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [especialidades, setEspecialidades] = useState([]);
