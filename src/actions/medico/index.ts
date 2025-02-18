@@ -7,7 +7,7 @@ export async function criarMedico(prevState: any, formData: FormData) {
   const senha = formData.get("password") as string;
   const data_nascimento = formData.get("data_nascimento") as string;
   const numOrdem = formData.get("numOrdem") as string;
-  const especialidade_id = formData.get("especialidade") as string;
+  const especialidade_id = formData.get("especialidade_id") as string;
   const telefone01 = formData.get("telefone01") as string;
   const correioElect = formData.get("email") as string;
   const genero = formData.get("genero") as string;
@@ -18,10 +18,19 @@ export async function criarMedico(prevState: any, formData: FormData) {
 
   try {
     const cookie = await cookies()
-        const token = cookie.get("sispdcao")
-        if (!token?.value) {
-          throw new Error("SEM TOKEN")
-        }
+    const authToken = cookie.get("sispdcao")
+    if (!authToken?.value) {
+      throw new Error("SEM TOKEN")
+    }
+
+    // Decodifica o valor do cookie
+    const decodedToken = decodeURIComponent(authToken.value);
+    // Transforma o valor decodificado em JSON
+    const tokenObject = JSON.parse(decodedToken);
+    // Extrai o token do objeto JSON
+    const token = tokenObject.token;
+
+        
     const { data } = await api.post(
       "/sis/admin/medico/create",
       {
@@ -36,8 +45,8 @@ export async function criarMedico(prevState: any, formData: FormData) {
           municipio,
           bairro,
         },
-        especialidade_id,
-        numOrdem,
+        especialidade_id: especialidade_id,
+        numOrdem: numOrdem,
       },
       {
         headers: {
@@ -59,3 +68,13 @@ export async function criarMedico(prevState: any, formData: FormData) {
     throw new Error("Ocorreu um erro ao criar o paciente.")
   }
 }
+
+export const fetchMedicos = async () => {
+  try {
+    const response = await api.get("/sis/portal/pessoalClinico/medico");
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar médicos:", error);
+    return { dados: [] };
+  }
+};
