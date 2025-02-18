@@ -2,13 +2,12 @@
 import { criarMedico } from "@/actions/medico";
 import { useActionState, useEffect, useState } from "react";
 import { SubmitButton } from "./submit-button";
+import { pegarTodasEspecialidades } from "@/actions/especialidade";
 
 const initialState = {
   message: "",
 };
 
-const URL_ESPECIALIDADES =
-  "https://sis-production-4c8f.up.railway.app/sis/portal/especialidade/all";
 export function AddMedicoForm() {
   const [state, action, isPending] = useActionState(criarMedico, initialState);
   const [especialidades, setEspecialidades] = useState([]);
@@ -31,17 +30,10 @@ export function AddMedicoForm() {
   // Fetch especialidades from API
   useEffect(() => {
     const fetchEspecialidades = async () => {
-      try {
-        const response = await fetch(URL_ESPECIALIDADES);
-        if (!response.ok) {
-          console.error(
-            "Erro na resposta da API:",
-            response.status,
-            response.statusText
-          );
-          return;
-        }
-        const data = await response.json();
+    
+        const data = await pegarTodasEspecialidades();
+       
+       //const data = await response.json();
 
         // Verificar se 'dados' é um array antes de salvar
         if (Array.isArray(data.dados)) {
@@ -50,10 +42,7 @@ export function AddMedicoForm() {
           console.error("Os 'dados' da resposta não são um array:", data.dados);
           setEspecialidades([]); // Evitar quebra no frontend
         }
-      } catch (error) {
-        console.error("Erro ao buscar especialidades:", error);
-        setEspecialidades([]); // Evitar quebra no frontend
-      }
+      
     };
 
     fetchEspecialidades();
