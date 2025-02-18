@@ -16,17 +16,27 @@ export async function criarEspecialidade() {
   }
 }
 
-export async function pegarTodasEspecialidades() {
+// export async function pegarTodasEspecialidades() {
+//   try {
+//     const { data } = await api.get("/sis/portal/especialidade/all")
+//     if (data) {
+//       return data
+//     }
+//   } catch (error) {
+//     console.error("[ERRO]", error)
+//     throw error
+//   }
+// }
+
+export const pegarTodasEspecialidades = async () => {
   try {
-    const { data } = await api.get("/sis/portal/especialidade/all")
-    if (data) {
-      return data
-    }
+    const response = await api.get("/sis/portal/especialidade/all");
+    return response.data;
   } catch (error) {
-    console.error("[ERRO]", error)
-    throw error
+    console.error("Erro ao buscar médicos:", error);
+    return { dados: [] };
   }
-}
+};
 
 // export const fetchEspecialidades = async () => {
 //   try {
