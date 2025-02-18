@@ -3,103 +3,18 @@ import React, { useState, useEffect } from "react";
 import Footer from "@/components/Footer";
 import NavBar from "@/components/NavBar";
 import LinhaTabelaAgenda from "@/components/LinhaTabelaAgenda";
-import Modal from "@/components/ModalOpen";
-import LinhaTabelaEspecialidade from "../../../components/LinhaTabelaEspecialidades";
-import Linha from "../../../components/linhaPortal/LinhaPortalMedicos";
-import { criarAgendaDeConsulta } from "../../../actions/consulta";
 import { pegarTodasAgendasDeConsulta } from "../../../actions/consulta";
 
-const URL_ESPECIALIDADES =
-  "https://sis-production-4c8f.up.railway.app/sis/portal/especialidade/all";
-const URL_MEDICOS =
-  "https://sis-production-4c8f.up.railway.app/sis/portal/pessoalClinico/medico";
-const URL_AGENDAS =
-  "https://sis-production-4c8f.up.railway.app/sis/portal/agenda/consulta/all";
-
 const portalAgenda = () => {
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [medicos, setMedicos] = useState([]);
-  const [especialidades, setEspecialidades] = useState([]);
   const [agendas, setAgendas] = useState([]);
-  const [formData, setFormData] = useState({ nome: "", preco: "" });
-  const [modalType, setModalType] = useState(null);
-
-  // Fetch especialidades from API
-  useEffect(() => {
-    const fetchEspecialidades = async () => {
-      try {
-        const response = await fetch(URL_ESPECIALIDADES);
-        if (!response.ok) {
-          console.error(
-            "Erro na resposta da API:",
-            response.status,
-            response.statusText
-          );
-          return;
-        }
-        const data = await response.json();
-
-        // Verificar se 'dados' é um array antes de salvar
-        if (Array.isArray(data.dados)) {
-          setEspecialidades(data.dados);
-        } else {
-          console.error("Os 'dados' da resposta não são um array:", data.dados);
-          setEspecialidades([]); // Evitar quebra no frontend
-        }
-      } catch (error) {
-        console.error("Erro ao buscar especialidades:", error);
-        setEspecialidades([]); // Evitar quebra no frontend
-      }
-    };
-
-    fetchEspecialidades();
-  }, []);
-
-  // Fetch medicos from API
-  useEffect(() => {
-    const fetchMedicos = async () => {
-      try {
-        const response = await fetch(URL_MEDICOS);
-        if (!response.ok) {
-          console.error(
-            "Erro na resposta da API:",
-            response.status,
-            response.statusText
-          );
-          return;
-        }
-        const data = await response.json();
-
-        // Verificar se 'dados' é um array antes de salvar
-        if (Array.isArray(data.dados)) {
-          setMedicos(data.dados);
-        } else {
-          console.error("Os 'dados' da resposta não são um array:", data.dados);
-          setMedicos([]); // Evitar quebra no frontend
-        }
-      } catch (error) {
-        console.error("Erro ao buscar medicos:", error);
-        setMedicos([]); // Evitar quebra no frontend
-      }
-    };
-
-    fetchMedicos();
-  }, []);
 
   // Fetch especialidades from API
   useEffect(() => {
     const fetchAgendas = async () => {
-      try {
-        const response = await fetch(URL_AGENDAS);
-        if (!response.ok) {
-          console.error(
-            "Erro na resposta da API:",
-            response.status,
-            response.statusText
-          );
-          return;
-        }
-        const data = await response.json();
+     
+        const data = await pegarTodasAgendasDeConsulta();
+        
+        //const data = await response.json();
 
         // Verificar se 'dados' é um array antes de salvar
         if (Array.isArray(data.dados)) {
@@ -108,10 +23,6 @@ const portalAgenda = () => {
           console.error("Os 'dados' da resposta não são um array:", data.dados);
           setAgendas([]); // Evitar quebra no frontend
         }
-      } catch (error) {
-        console.error("Erro ao buscar especialidades:", error);
-        setAgendas([]); // Evitar quebra no frontend
-      }
     };
 
     fetchAgendas();
