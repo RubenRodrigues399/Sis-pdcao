@@ -8,36 +8,21 @@ import LinhaTabelaEspecialidade from "../../../components/LinhaTabelaEspecialida
 import Linha from "../../../components/linhaPortal/LinhaPortalMedicos";
 import { criarAgendaDeConsulta } from "../../../actions/consulta";
 import { pegarTodasAgendasDeConsulta } from "../../../actions/consulta";
-
-const URL_ESPECIALIDADES =
-  "https://sis-production-4c8f.up.railway.app/sis/portal/especialidade/all";
-const URL_MEDICOS =
-  "https://sis-production-4c8f.up.railway.app/sis/portal/pessoalClinico/medico";
-const URL_AGENDAS =
-  "https://sis-production-4c8f.up.railway.app/sis/portal/agenda/consulta/all";
+import { fetchMedicos } from "../../../actions/medico";
+import { pegarTodasEspecialidades } from "../../../actions/especialidade";
 
 const Agenda = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [medicos, setMedicos] = useState([]);
   const [especialidades, setEspecialidades] = useState([]);
   const [agendas, setAgendas] = useState([]);
-  const [formData, setFormData] = useState({ nome: "", preco: "" });
-  const [modalType, setModalType] = useState(null);
 
   // Fetch especialidades from API
   useEffect(() => {
     const fetchEspecialidades = async () => {
-      try {
-        const response = await fetch(URL_ESPECIALIDADES);
-        if (!response.ok) {
-          console.error(
-            "Erro na resposta da API:",
-            response.status,
-            response.statusText
-          );
-          return;
-        }
-        const data = await response.json();
+        const data = await pegarTodasEspecialidades();
+        
+        //const data = await response.json();
 
         // Verificar se 'dados' é um array antes de salvar
         if (Array.isArray(data.dados)) {
@@ -46,10 +31,7 @@ const Agenda = () => {
           console.error("Os 'dados' da resposta não são um array:", data.dados);
           setEspecialidades([]); // Evitar quebra no frontend
         }
-      } catch (error) {
-        console.error("Erro ao buscar especialidades:", error);
-        setEspecialidades([]); // Evitar quebra no frontend
-      }
+      
     };
 
     fetchEspecialidades();
@@ -57,18 +39,10 @@ const Agenda = () => {
 
   // Fetch medicos from API
   useEffect(() => {
-    const fetchMedicos = async () => {
-      try {
-        const response = await fetch(URL_MEDICOS);
-        if (!response.ok) {
-          console.error(
-            "Erro na resposta da API:",
-            response.status,
-            response.statusText
-          );
-          return;
-        }
-        const data = await response.json();
+    const fetchMedico = async () => {
+        const data = await fetchMedicos();
+       
+        //const data = await response.json();
 
         // Verificar se 'dados' é um array antes de salvar
         if (Array.isArray(data.dados)) {
@@ -77,29 +51,17 @@ const Agenda = () => {
           console.error("Os 'dados' da resposta não são um array:", data.dados);
           setMedicos([]); // Evitar quebra no frontend
         }
-      } catch (error) {
-        console.error("Erro ao buscar medicos:", error);
-        setMedicos([]); // Evitar quebra no frontend
-      }
     };
 
-    fetchMedicos();
+    fetchMedico();
   }, []);
 
   // Fetch especialidades from API
   useEffect(() => {
     const fetchAgendas = async () => {
-      try {
-        const response = await fetch(URL_AGENDAS);
-        if (!response.ok) {
-          console.error(
-            "Erro na resposta da API:",
-            response.status,
-            response.statusText
-          );
-          return;
-        }
-        const data = await response.json();
+        const data = await pegarTodasAgendasDeConsulta();
+       
+        //const data = await response.json();
 
         // Verificar se 'dados' é um array antes de salvar
         if (Array.isArray(data.dados)) {
@@ -108,10 +70,7 @@ const Agenda = () => {
           console.error("Os 'dados' da resposta não são um array:", data.dados);
           setAgendas([]); // Evitar quebra no frontend
         }
-      } catch (error) {
-        console.error("Erro ao buscar especialidades:", error);
-        setAgendas([]); // Evitar quebra no frontend
-      }
+     
     };
 
     fetchAgendas();
@@ -204,7 +163,7 @@ const Agenda = () => {
             required
             className="border border-gray-300 rounded px-4 py-2"
           >
-            <option value="">Doutor</option>
+            <option value="">Médico</option>
             {medicos.map((med) => (
               <option key={med.id} value={med.id}>
                 {med.nome}
