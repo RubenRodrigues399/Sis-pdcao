@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import LinhaTabelaEspecialidade from "../../../components/LinhaTabelaEspecialidades";
+import { pegarTodasEspecialidades } from "@/actions/especialidade";
 
 const URL_API =
   "https://sis-production-4c8f.up.railway.app/sis/portal/especialidade/all";
@@ -12,17 +13,10 @@ const portalEspecialidades = () => {
   // Fetch especialidades from API
   useEffect(() => {
     const fetchEspecialidades = async () => {
-      try {
-        const response = await fetch(URL_API);
-        if (!response.ok) {
-          console.error(
-            "Erro na resposta da API:",
-            response.status,
-            response.statusText
-          );
-          return;
-        }
-        const data = await response.json();
+      
+        const data = await pegarTodasEspecialidades();
+        
+        //const data = await response.json();
 
         // Verificar se 'dados' é um array antes de salvar
         if (Array.isArray(data.dados)) {
@@ -31,10 +25,6 @@ const portalEspecialidades = () => {
           console.error("Os 'dados' da resposta não são um array:", data.dados);
           setEspecialidades([]); // Evitar quebra no frontend
         }
-      } catch (error) {
-        console.error("Erro ao buscar especialidades:", error);
-        setEspecialidades([]); // Evitar quebra no frontend
-      }
     };
 
     fetchEspecialidades();
