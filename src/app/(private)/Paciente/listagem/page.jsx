@@ -4,36 +4,18 @@ import React, { useEffect, useState } from "react";
 import Linha from "../../../../components/linhaPortal/LinhaPortalMedicos";
 import { AddPacienteForm } from "../add-paciente-form";
 
-const URL_API =
-  "https://sis-production-4c8f.up.railway.app/sis/portal/pessoalClinico/medico";
+import { fetchMedicos } from "@/actions/medico";
+
 const Paciente = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [medicos, setMedicos] = useState([]);
   const [especialidades, setEspecialidades] = useState([]);
 
-  useEffect(() => {
-    const getEspecialidades = async () => {
-      const especialidadesMap = await fetchEspecialidades();
-      setEspecialidades(especialidadesMap);
-    };
-
-    getEspecialidades();
-  }, []);
-
   // Fetch especialidades from API
   useEffect(() => {
     const fetchPortalMedicos = async () => {
-      try {
-        const response = await fetch(URL_API);
-        if (!response.ok) {
-          console.error(
-            "Erro na resposta da API:",
-            response.status,
-            response.statusText
-          );
-          return;
-        }
-        const data = await response.json();
+      
+        const data = await fetchMedicos();
 
         // Verificar se 'dados' é um array antes de salvar
         if (Array.isArray(data.dados)) {
@@ -52,10 +34,6 @@ const Paciente = () => {
           console.error("Os 'dados' da resposta não são um array:", data.dados);
           setMedicos([]); // Evitar quebra no frontend
         }
-      } catch (error) {
-        console.error("Erro ao buscar médicos:", error);
-        setMedicos([]); // Evitar quebra no frontend
-      }
     };
 
     fetchPortalMedicos();
