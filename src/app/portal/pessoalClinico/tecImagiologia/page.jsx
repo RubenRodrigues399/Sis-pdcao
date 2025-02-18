@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import Linha from "../../../../components/linhaPortal/LinhaPortalEnfermeiros";
+import { fetchTecImagiologia } from "@/actions/tecnico";
 
 const URL_API =
   "https://sis-production-4c8f.up.railway.app/sis/portal/pessoalClinico/tecImagiologia";
@@ -10,29 +11,20 @@ const portalTecImagiologia = () => {
   const [tecImagiologia, setTecImagiologia] = useState([]);
   const [especialidades, setEspecialidades] = useState([]);
 
-  useEffect(() => {
-    const getEspecialidades = async () => {
-      const especialidadesMap = await fetchEspecialidades();
-      setEspecialidades(especialidadesMap);
-    };
+  // useEffect(() => {
+  //   const getEspecialidades = async () => {
+  //     const especialidadesMap = await fetchEspecialidades();
+  //     setEspecialidades(especialidadesMap);
+  //   };
   
-    getEspecialidades();
-  }, []);
+  //   getEspecialidades();
+  // }, []);
 
   // Fetch especialidades from API
   useEffect(() => {
     const fetchPortalTecImagiologia = async () => {
-      try {
-        const response = await fetch(URL_API);
-        if (!response.ok) {
-          console.error(
-            "Erro na resposta da API:",
-            response.status,
-            response.statusText
-          );
-          return;
-        }
-        const data = await response.json();
+        const data = await fetchTecImagiologia();
+        //const data = await response.json();
   
         // Verificar se 'dados' é um array antes de salvar
         if (Array.isArray(data.dados)) {
@@ -42,7 +34,6 @@ const portalTecImagiologia = () => {
             nome: tecImagiologia.usuario?.nome || "Sem nome",
             genero: tecImagiologia.usuario?.genero || "Não informado",
             telefone01: tecImagiologia.usuario?.telefone01 || "Sem telefone",
-            especialidade: especialidades[tecImagiologia.especialidade_id] || "Desconhecida",
             numOrdem: tecImagiologia.numOrdem || "Sem número de ordem",
           }));
   
@@ -51,10 +42,6 @@ const portalTecImagiologia = () => {
           console.error("Os 'dados' da resposta não são um array:", data.dados);
           setTecImagiologia([]); // Evitar quebra no frontend
         }
-      } catch (error) {
-        console.error("Erro ao buscar médicos:", error);
-        setTecImagiologia([]); // Evitar quebra no frontend
-      }
     };
   
     fetchPortalTecImagiologia();
@@ -77,7 +64,6 @@ const portalTecImagiologia = () => {
                     <th className="p-2 border">Nome</th>
                     <th className="p-2 border">Gênero</th>
                     <th className="p-2 border">Telefone</th>
-                    <th className="p-2 border">Especialidade</th>
                     <th className="p-2 border">Número de ordem</th>
                   </tr>
                 </thead>
@@ -90,7 +76,6 @@ const portalTecImagiologia = () => {
                         nome={tecImagiologia.nome}
                         genero={tecImagiologia.genero}
                         telefone01={tecImagiologia.telefone01}
-                        especialidade={tecImagiologia.especialidade}
                         numOrdem={tecImagiologia.numOrdem}
                       />
                     ))
