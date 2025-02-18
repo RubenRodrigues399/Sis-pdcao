@@ -26,6 +26,16 @@ const Login = () => {
       setError("Preencha todos os campos");
       return;
     }
+    const telefoneRegex = /^[9][0-9]{8}$/;
+    if (!telefone.match(telefoneRegex)) {
+      setError("Telefone inválido. Deve começar com 9 e ter 9 dígitos.");
+      return;
+    }
+
+    if (!senha) {
+      setError("Preencha todos os campos");
+      return;
+    }
 
     try {
       const res = await loginUser({ telefone, senha });
@@ -72,70 +82,10 @@ const Login = () => {
             className="mx-auto h-10 w-auto mb-4"
           />
 
-          {/* Formulário */}
-          {/* <h2 className="text-center text-2xl font-bold tracking-tight text-gray-900">
-            Entre na sua conta
-          </h2> */}
-
           <div className="mt-6">
             <form onSubmit={handleLogin} className="space-y-6">
             <h2 className="text-center text-2xl font-bold tracking-tight text-gray-900">Login</h2>
-              {/* <h2 className="text-center text-2xl font-bold tracking-tight text-gray-900">
-                Login{" "}
-                {userType === "paciente"
-                  ? "Paciente"
-                  : userType === "clinico"
-                    ? "Pessoal Clínico"
-                    : "Pessoal Administrativo"}
-              </h2> */}
-              {/* Login + Dropdown */}
-              {/* <div className="flex items-center justify-between"> */}
-                {/* Dropdown de seleção de usuário */}
-                {/* <div className="relative ml-80">
-                  <button
-                    onClick={() => setMenuOpen(!menuOpen)}
-                    className="bg-white text-black px-4 py-1 rounded-md shadow-md hover:bg-gray-100"
-                  >
-                    ▼
-                  </button>
-
-                  {menuOpen && (
-                    <div className="absolute top-10 right-0 w-48 bg-white shadow-md rounded-md z-10">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation(); // Previne eventos não intencionais
-                          setUserType("paciente");
-                          setMenuOpen(false);
-                        }}
-                        className="block w-full px-4 py-2 text-left hover:bg-gray-200"
-                      >
-                        Paciente
-                      </button>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setUserType("clinico");
-                          setMenuOpen(false);
-                        }}
-                        className="block w-full px-4 py-2 text-left hover:bg-gray-200"
-                      >
-                        Pessoal Clínico
-                      </button>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setUserType("admin");
-                          setMenuOpen(false);
-                        }}
-                        className="block w-full px-4 py-2 text-left hover:bg-gray-200"
-                      >
-                        Pessoal Administrativo
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </div> */}
-
+             
               <div>
                 <label className="block text-sm font-medium text-black">
                   Telefone
