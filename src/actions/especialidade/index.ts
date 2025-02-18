@@ -47,7 +47,7 @@ export const pegarTodasEspecialidades = async () => {
     const response = await api.get("/sis/portal/especialidade/all");
     return response.data;
   } catch (error) {
-    console.error("Erro ao buscar médicos:", error);
+    console.error("Erro ao buscar especialidades:", error);
     return { dados: [] };
   }
 };
