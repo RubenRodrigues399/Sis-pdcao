@@ -17,14 +17,21 @@ export async function criarPaciente(prevState: any, formData: FormData) {
   const bairro = formData.get("bairro") as string;
   const seguradoraId = formData.get("seguradora_id") as string;
   const dataFormatada = new Date(dataNascimento).toISOString().split('T')[0];
-  // console.log("[form_data]", formData)
-  // console.log("[data_formatada]", dataFormatada)
+
   try {
     const cookie = await cookies()
-    const token = cookie.get("sispdcao")
-    if (!token?.value) {
+    const authToken = cookie.get("sispdcao")
+    if (!authToken?.value) {
       throw new Error("SEM TOKEN")
     }
+
+    // Decodifica o valor do cookie
+    const decodedToken = decodeURIComponent(authToken.value);
+    // Transforma o valor decodificado em JSON
+    const tokenObject = JSON.parse(decodedToken);
+    // Extrai o token do objeto JSON
+    const token = tokenObject.token;
+
     const { data } = await api.post("/sis/admin/paciente/create", {
       usuario:
       {
@@ -44,7 +51,7 @@ export async function criarPaciente(prevState: any, formData: FormData) {
     },
       {
         headers: {
-          Authorization: `Bearer ${token.value}`
+          Authorization: `Bearer ${token}`
         },
       })
     console.log("[DATA]", data)
