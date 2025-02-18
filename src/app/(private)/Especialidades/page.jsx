@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import Modal from "@/components/ModalOpen";
 import LinhaTabelaEspecialidade from "../../../components/LinhaTabelaEspecialidades";
 import { pegarTodasEspecialidades } from "@/actions/especialidade";
+import { AddEspecialidadeForm } from "./add-especialidade-form";
 
 const URL_API =
   "https://sis-production-4c8f.up.railway.app/sis/portal/especialidade/all";
@@ -41,32 +42,32 @@ const Especialidades = () => {
   };
 
   // Add new especialidade
-  const handleAddEspecialidade = async () => {
-    try {
-      const response = await fetch(
-        "https://sis-production-4c8f.up.railway.app/sis/admin/especialidade/create",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            especialidade: formData.nome,
-            preco: parseInt(formData.preco),
-          }),
-        }
-      );
+  // const handleAddEspecialidade = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       "https://sis-production-4c8f.up.railway.app/sis/admin/especialidade/create",
+  //       {
+  //         method: "POST",
+  //         headers: { "Content-Type": "application/json" },
+  //         body: JSON.stringify({
+  //           especialidade: formData.nome,
+  //           preco: parseInt(formData.preco),
+  //         }),
+  //       }
+  //     );
 
-      if (response.ok) {
-        const newEspecialidade = await response.json();
-        setEspecialidades((prev) => [...prev, newEspecialidade]);
-        setModalOpen(false); // Close modal
-        setFormData({ nome: "", preco: "" }); // Reset form
-      } else {
-        console.error("Erro ao adicionar especialidade");
-      }
-    } catch (error) {
-      console.error("Erro na requisição:", error);
-    }
-  };
+  //     if (response.ok) {
+  //       const newEspecialidade = await response.json();
+  //       setEspecialidades((prev) => [...prev, newEspecialidade]);
+  //       setModalOpen(false); // Close modal
+  //       setFormData({ nome: "", preco: "" }); // Reset form
+  //     } else {
+  //       console.error("Erro ao adicionar especialidade");
+  //     }
+  //   } catch (error) {
+  //     console.error("Erro na requisição:", error);
+  //   }
+  // };
 
   // const handleEditEspecialidade = async (id, updatedData) => {
   //   try {
@@ -162,35 +163,7 @@ const Especialidades = () => {
         </main>
       </div>
       <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
-        <h2 className="text-lg font-semibold mb-4 text-center">
-          Cadastro de Especialidades
-        </h2>
-        <form className="grid grid-cols-2 gap-4 mt-5">
-          <input
-            type="text"
-            className="border placeholder-black p-2 rounded"
-            placeholder="Nome"
-            name="nome"
-            value={formData.nome}
-            onChange={handleInputChange}
-          />
-          <input
-            type="number"
-            className="border placeholder-black rounded p-2"
-            placeholder="Preço"
-            name="preco"
-            value={formData.preco}
-            onChange={handleInputChange}
-          />
-        </form>
-        <div className="flex space-x-4 justify-center mt-6">
-          <button
-            className="bg-green-500 text-white px-6 py-2 rounded"
-            onClick={handleAddEspecialidade}
-          >
-            Registrar
-          </button>
-        </div>
+        <AddEspecialidadeForm />
       </Modal>
     </>
   );
