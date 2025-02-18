@@ -31,7 +31,6 @@ export default function LinhaPortalEnfermeiros({
         <td className="px-3 py-3 max-w-[200px] break-words">{nome}</td>
         <td className="px-3 py-3">{genero}</td>
         <td className="px-3 py-3">{telefone01}</td>
-        <td className="px-3 py-3">{especialidade}</td>
         <td className="px-3 py-3">{numOrdem}</td>
         <td className="px-4 py-3 flex items-center justify-end gap-2">
           <button
