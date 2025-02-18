@@ -1,12 +1,38 @@
 'use server'
 import { api } from "@/lib/axios";
+import { cookies } from "next/headers";
 
-export async function criarEspecialidade() {
+export async function criarEspecialidade(prevState: any, formData: FormData) {
+
+  const nome = formData.get("nome") as string;
+  const preco = formData.get("preco") as string;
+
   try {
+    const cookie = await cookies()
+        const authToken = cookie.get("sispdcao")
+        if (!authToken?.value) {
+          throw new Error("SEM TOKEN")
+        }
+    
+        // Decodifica o valor do cookie
+        const decodedToken = decodeURIComponent(authToken.value);
+        // Transforma o valor decodificado em JSON
+        const tokenObject = JSON.parse(decodedToken);
+        // Extrai o token do objeto JSON
+        const token = tokenObject.token;
+
+
     const { data } = await api.post("/sis/admin/especialidade/create", {
-      "especialidade": "Ortopedia",
-      "preco": 150
+      nome,
+      preco,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
     })
+
+    
     if (data) {
       return data
     }
@@ -15,18 +41,6 @@ export async function criarEspecialidade() {
     throw error
   }
 }
-
-// export async function pegarTodasEspecialidades() {
-//   try {
-//     const { data } = await api.get("/sis/portal/especialidade/all")
-//     if (data) {
-//       return data
-//     }
-//   } catch (error) {
-//     console.error("[ERRO]", error)
-//     throw error
-//   }
-// }
 
 export const pegarTodasEspecialidades = async () => {
   try {
@@ -37,26 +51,3 @@ export const pegarTodasEspecialidades = async () => {
     return { dados: [] };
   }
 };
-
-// export const fetchEspecialidades = async () => {
-//   try {
-//     const response = await fetch(
-//       "https://sis-production-4c8f.up.railway.app/sis/portal/especialidade/all"
-//     );
-//     if (!response.ok) {
-//       throw new Error("Erro ao buscar especialidades");
-//     }
-//     const data = await response.json();
-
-//     // Criar um objeto { id: nome } para mapear especialidades
-//     const especialidadesMap = {};
-//     data.dados.forEach((especialidade) => {
-//       especialidadesMap[especialidade.id] = especialidade.nome;
-//     });
-
-//     return especialidadesMap;
-//   } catch (error) {
-//     console.error("Erro ao carregar especialidades:", error);
-//     return {};
-//   }
-// };
