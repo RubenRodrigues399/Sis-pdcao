@@ -8,7 +8,7 @@ import LinhaTabelaEspecialidade from "../../../components/LinhaTabelaEspecialida
 import Linha from "../../../components/linhaPortal/LinhaPortalMedicos";
 import { criarAgendaDeConsulta } from "../../../actions/consulta";
 import { pegarTodasAgendasDeConsulta } from "../../../actions/consulta";
-import { fetchMedicos } from "../../../actions/medico";
+import { fetchMedicosPorEspecialidade } from "../../../actions/medico"; // Atualizado
 import { pegarTodasEspecialidades } from "../../../actions/especialidade";
 
 const Agenda = () => {
@@ -17,64 +17,43 @@ const Agenda = () => {
   const [especialidades, setEspecialidades] = useState([]);
   const [agendas, setAgendas] = useState([]);
 
-  // Fetch especialidades from API
   useEffect(() => {
     const fetchEspecialidades = async () => {
-        const data = await pegarTodasEspecialidades();
-        
-        //const data = await response.json();
-
-        // Verificar se 'dados' é um array antes de salvar
-        if (Array.isArray(data.dados)) {
-          setEspecialidades(data.dados);
-        } else {
-          console.error("Os 'dados' da resposta não são um array:", data.dados);
-          setEspecialidades([]); // Evitar quebra no frontend
-        }
-      
+      const data = await pegarTodasEspecialidades();
+      if (Array.isArray(data.dados)) {
+        setEspecialidades(data.dados);
+      } else {
+        console.error("Os 'dados' da resposta não são um array:", data.dados);
+        setEspecialidades([]); // Evitar quebra no frontend
+      }
     };
 
     fetchEspecialidades();
   }, []);
 
-  // Fetch medicos from API
-  useEffect(() => {
-    const fetchMedico = async () => {
-        const data = await fetchMedicos();
-       
-        //const data = await response.json();
-
-        // Verificar se 'dados' é um array antes de salvar
-        if (Array.isArray(data.dados)) {
-          setMedicos(data.dados);
-        } else {
-          console.error("Os 'dados' da resposta não são um array:", data.dados);
-          setMedicos([]); // Evitar quebra no frontend
-        }
-    };
-
-    fetchMedico();
-  }, []);
-
-  // Fetch especialidades from API
   useEffect(() => {
     const fetchAgendas = async () => {
-        const data = await pegarTodasAgendasDeConsulta();
-       
-        //const data = await response.json();
-
-        // Verificar se 'dados' é um array antes de salvar
-        if (Array.isArray(data.dados)) {
-          setAgendas(data.dados);
-        } else {
-          console.error("Os 'dados' da resposta não são um array:", data.dados);
-          setAgendas([]); // Evitar quebra no frontend
-        }
-     
+      const data = await pegarTodasAgendasDeConsulta();
+      if (Array.isArray(data.dados)) {
+        setAgendas(data.dados);
+      } else {
+        console.error("Os 'dados' da resposta não são um array:", data.dados);
+        setAgendas([]); // Evitar quebra no frontend
+      }
     };
 
     fetchAgendas();
   }, []);
+
+  const handleEspecialidadeChange = async (event) => {
+    const especialidadeId = event.target.value;
+    if (especialidadeId) {
+      const medicosData = await fetchMedicosPorEspecialidade(especialidadeId);
+      setMedicos(medicosData); // Atualiza o estado com os médicos filtrados
+    } else {
+      setMedicos([]);
+    }
+  };
 
   return (
     <>
@@ -149,6 +128,7 @@ const Agenda = () => {
             name="especialidade_id"
             required
             className="border border-gray-300 rounded px-4 py-2"
+            onChange={handleEspecialidadeChange} // Chama a função ao mudar a especialidade
           >
             <option value="">Especialidade</option>
             {especialidades.map((esp) => (
@@ -165,8 +145,8 @@ const Agenda = () => {
           >
             <option value="">Médico</option>
             {medicos.map((med) => (
-              <option key={med.id} value={med.id}>
-                {med.nome}
+              <option key={med.usuario.usuario_id} value={med.usuario.usuario_id}>
+                {med.usuario.nome}
               </option>
             ))}
           </select>
