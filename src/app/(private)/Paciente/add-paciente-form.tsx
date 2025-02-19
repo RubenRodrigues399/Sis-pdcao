@@ -35,11 +35,6 @@ export function AddPacienteForm() {
           placeholder="Senha"
           className="border placeholder-black p-2 rounded"
         />
-        {/* <input
-            type="password"
-            placeholder="Confirm Password"
-            className="border p-2 rounded"
-          /> */}
         <div className="flex mt-6 justify-center">
           <SubmitButton status={isPending} />
         </div>
