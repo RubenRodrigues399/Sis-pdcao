@@ -12,7 +12,7 @@ export function SubmitButton({ status }: Props) {
       className={`bg-[#21aeb8] text-white px-4 py-2 rounded ${status ? "opacity-50 cursor-not-allowed" : ""
         }`}
     >
-      {status ? "Adicionando..." : "Adicionar Pessoal Clínico"}
+      {status ? "Adicionando..." : "Adicionar Médico"}
     </button>
   );
 }
