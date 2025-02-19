@@ -4,76 +4,68 @@ import { useActionState } from "react";
 import { SubmitButton } from "./submit-button";
 
 const initialState = {
+  success: false,
   message: "",
 };
 
 export function AddPCForm() {
   const [state, action, isPending] = useActionState(criarPessoalTecnico, initialState);
-  //TODO:  //TODO: Precisa actualizar os campos no formulário que estão faltando para criação
 
-  /* 
-     CAMPOS POR ADICIONAR:
-     - telefone 02 (opcional)
-     - codePOstal
-     - correioEle
-     - provincia
-     - municipio
-     - bairro
-     - tipo_profissional(* TODO: Verificar se há dependência com dados doutra tabela)
-   
-   NOTA: não esqueça de adicionar os id e name de cada campo para ser obtida lá na server action
-   exemplo: const varNome = formData.get("nome_no_form") as string (ou outro tipo como number)
-     */
   return (
     <>
       <span className="text-lg pl-56 font-semibold">Adicionar pessoal clínico</span>
       <form action={action} className="grid grid-cols-2 gap-4 mt-5">
         <div className="flex flex-col col-span-2">
-          <input id="nome" name="nome" type="text" className="border rounded p-2" placeholder="Nome" />
+          <input name="nome" type="text" className="border rounded p-2" placeholder="Nome" required />
         </div>
         <div className="flex flex-col">
-          <select id="especialidade" name="especialidade" className="border rounded p-2">
-            <option>Especialidade</option>
-            <option>Doctor</option>
-            <option>Nurse</option>
-            <option>Admin</option>
+          <select name="genero" className="border rounded p-2" required>
+            <option value="">Genero</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
           </select>
         </div>
         <div className="flex flex-col">
-          <select id="genero" name="genero" className="border rounded p-2">
-            <option>Genero</option>
-            <option>Masculino</option>
-            <option>Femenino</option>
+          <input name="email" type="email" className="border rounded p-2" placeholder="Email" required />
+        </div>
+        <div className="flex flex-col">
+          <input type="text" name="telefone" className="border rounded p-2" placeholder="Telefone" required />
+        </div>
+        <div className="flex flex-col">
+          <select name="tipo_profissional" className="border rounded p-2" required>
+            <option value="">Tipo de Profissional</option>
+            <option value="Técnico enfermeiro">Técnico enfermeiro</option>
+            <option value="Técnico de Imagiologa">Técnico de Imagiologa</option>
+            <option value="Técnico de Laboratório">Técnico de Laboratório</option>
           </select>
         </div>
         <div className="flex flex-col">
-          <input name="email" id="email" type="email" className="border rounded p-2" placeholder="Email" />
+          <input type="text" name="numOrder" className="border rounded p-2" placeholder="Número de ordem" required />
         </div>
         <div className="flex flex-col">
-          <input type="text" id="telefone" name="telefone" className="border rounded p-2" placeholder="Telefone" />
+          <input type="date" name="data_nascimento" className="border rounded p-2" required />
         </div>
         <div className="flex flex-col">
-          <input type="text" id="numOrder" name="numOrder" className="border rounded p-2" placeholder="Número de ordem" />
+          <input type="text" name="provincia" className="border rounded p-2" placeholder="Provincia" required />
         </div>
         <div className="flex flex-col">
-          <input type="date" id="dataNasc" name="dataNasc" className="border rounded p-2" />
+          <input type="text" name="municipio" className="border rounded p-2" placeholder="Municipio" required />
         </div>
         <div className="flex flex-col">
-          <input type="text" id="provincia" name="provincia" className="border rounded p-2" placeholder="Provincia" />
+          <input type="text" name="bairro" className="border rounded p-2" placeholder="Bairro" required />
         </div>
         <div className="flex flex-col">
-          <input type="text" id="municipio" name="municipio" className="border rounded p-2" placeholder="Municipio" />
-        </div>
-        <div className="flex flex-col">
-          <input type="text" id="bairro" name="bairro" className="border rounded p-2" placeholder="Bairro " />
-        </div>
-        <div className="flex flex-col">
-          <input type="password" id="password" name="password" className="border rounded p-2" placeholder="Senha" />
+          <input type="password" name="senha" className="border rounded p-2" placeholder="Senha" required />
         </div>
         <div className="flex mt-6 justify-center">
           <SubmitButton status={isPending} />
         </div>
       </form>
+      {state.message && (
+        <p className={`text-center mt-4 ${state.success ? "text-green-500" : "text-red-500"}`}>
+          {state.message}
+        </p>
+      )}
     </>
   );
-};
+}
