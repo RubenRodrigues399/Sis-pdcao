@@ -8,15 +8,24 @@ export async function criarAgendaDeConsulta(prevState: any, formData: FormData) 
   const especialidade = formData.get("especialidade_id") as string;
   const medico = formData.get("medico_id") as string;
 
+  // Verificação adicional no frontend
+  if (!medico) {
+    throw new Error("Médico não selecionado");
+  }
+
   try {
     const cookie = await cookies();
-    const token = cookie.get("sispdcao");
-
-    if (!token?.value) {
+    const authToken = cookie.get("sispdcao");
+    if (!authToken?.value) {
       throw new Error("SEM TOKEN");
     }
+    
+    const decodedToken = decodeURIComponent(authToken.value);
+    const tokenObject = JSON.parse(decodedToken);
+    const token = tokenObject.token;
+    
+    console.log("TOKEN RECUPERADO:", token);
 
-    console.log("TOKEN RECUPERADO:", token?.value);
     // Debug: Verificando dados antes do envio
     console.log("Enviando dados:", { numPacientes, dataAgenda, especialidade, medico });
 
@@ -25,11 +34,9 @@ export async function criarAgendaDeConsulta(prevState: any, formData: FormData) 
       medico_id: medico,
       paciente_max: numPacientes,
       datas: [formData.get("dataAgenda")].filter(Boolean), // Remove valores nulos
-    },
-      {
-        headers: { Authorization: `Bearer ${token.value}` },
-      }
-    );
+    }, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
 
     console.log("[SUCESSO]", data);
     return data;
@@ -55,5 +62,4 @@ export async function pegarTodasAgendasDeConsulta() {
     console.error("[ERRO]", error)
     throw error
   }
-
 }
