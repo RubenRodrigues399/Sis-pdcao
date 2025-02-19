@@ -78,3 +78,16 @@ export const fetchMedicos = async () => {
     return { dados: [] };
   }
 };
+
+// Adicionar esta função para buscar médicos por especialidade
+export async function fetchMedicosPorEspecialidade(especialidadeId: string) {
+  try {
+    const { data } = await api.get(`/sis/portal/medicos/${especialidadeId}`);
+    if (data) {
+      return data.dados; // Retorna a lista de médicos
+    }
+  } catch (error) {
+    console.error("Erro ao buscar médicos por especialidade:", error);
+    throw error;
+  }
+} 
