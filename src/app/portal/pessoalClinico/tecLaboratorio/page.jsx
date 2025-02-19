@@ -49,7 +49,7 @@ const portalTecLaboratorio = () => {
           <div className="flex items-center justify-center">
             <section className="bg-white shadow-md w-10/12 p-6 rounded-lg mt-6">
               <div className="flex justify-center items-center">
-                <h2 className="text-lg font-semibold">Técnicos de imagiologia do Hospital</h2>
+                <h2 className="text-lg font-semibold">Técnicos de Laboratório do Hospital</h2>
               </div>
               <table className="w-full mt-4 border-collapse">
                 <thead>
