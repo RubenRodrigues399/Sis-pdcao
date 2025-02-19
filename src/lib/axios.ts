@@ -21,8 +21,13 @@ api.interceptors.request.use(async (config) => {
     const tokenObject = JSON.parse(decodedToken);
     // Extrai o token do objeto JSON
     const token = tokenObject.token;
+
+    // Adicione um log para verificar se o token está sendo adicionado
+    //console.log("Adicionando token ao cabeçalho:", token);
     
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
+}, error => {
+  return Promise.reject(error);
 });
