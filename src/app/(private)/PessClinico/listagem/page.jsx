@@ -80,39 +80,74 @@ const PessoalClinico = () => {
                 Adicionar
               </button>
             </div>
-            <table className="w-full mt-4 border-collapse">
-              <thead>
-                <tr className="bg-gray-100 text-left">
-                  <th className="p-2 border">ID</th>
-                  <th className="p-2 border">Nome</th>
-                  <th className="p-2 border">Gênero</th>
-                  <th className="p-2 border">Telefone</th>
-                  <th className="p-2 border">Especialidade</th>
-                  <th className="p-2 border">Número de ordem</th>
-                </tr>
-              </thead>
-              <tbody>
-                {medicos.length > 0 ? (
-                  medicos.map((medico) => (
-                    <Linha
-                      key={medico.id}
-                      id={medico.id}
-                      nome={medico.nome}
-                      genero={medico.genero}
-                      telefone01={medico.telefone01}
-                      especialidade={medico.especialidade}
-                      numOrdem={medico.numOrdem}
-                    />
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan="4" className="text-center p-4">
-                      Nenhuma médico encontrado.
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
+            <div className="mx-auto mb-10 flex flex-cols max-w-2xl gap-x-8 gap-y-8 border-t border-gray-200 pt-10 sm:mt-16 lg:max-w-screen-md lg:grid-cols-3">
+
+                <div className="relative w-80 border-2 border-[#21aeb8] rounded-xl items-center gap-x-4 flex flex-col justify-center text-center">
+                  <h3 className="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600">
+                    <a
+                      href="/portal/pessoalClinico/tecEnfermeiros"
+                      className="relative z-10 rounded-full px-3 py-1.5 font-medium text-black hover:text-blue-300"
+                    >
+                      <span className="absolute inset-0" /> Enfermeiros
+                    </a>
+                  </h3>
+                  <p className="mt-5 line-clamp-3 text-sm/6 text-black">
+                    Verifica os enfermeiros do hospital.
+                  </p>
+                  <div className="mt-5">
+                    <a
+                      href="/portal/pessoalClinico/tecEnfermeiros"
+                      className="flex items-center justify-center rounded-md mb-6 bg-blue-300 px-4 py-2 text-sm font-semibold text-black hover:text-blue-500 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                    >
+                      Visualizar
+                    </a>
+                  </div>
+                </div>
+
+                <div className="relative w-80 border-2 border-[#21aeb8] rounded-xl items-center gap-x-4 flex flex-col justify-center text-center">
+                  <h3 className="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-black">
+                    <a
+                      href="/portal/pessoalClinico/tecImagiologia"
+                      className="relative z-10 rounded-full px-3 py-1.5 font-medium text-black hover:text-blue-300"
+                    >
+                      <span className="absolute inset-0" /> Técnicos de imagiologia
+                    </a>
+                  </h3>
+                  <p className="mt-5 line-clamp-3 text-sm/6 text-black">
+                    Verifica os técnicos de imagiologia do hospital.
+                  </p>
+                  <div className="mt-5">
+                    <a
+                      href="/portal/pessoalClinico/tecImagiologia"
+                      className="flex items-center justify-center rounded-md mb-6 bg-blue-300 px-4 py-2 text-sm font-semibold text-black hover:text-blue-500 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                    >
+                      Visualizar
+                    </a>
+                  </div>
+                </div>
+
+                <div className="relative w-80 border-2 border-[#21aeb8] rounded-xl items-center gap-x-4 flex flex-col justify-center text-center">
+                  <h3 className="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-black">
+                    <a
+                      href="/portal/pessoalClinico/tecLaboratorio"
+                      className="relative z-10 rounded-full px-3 py-1.5 font-medium text-black hover:text-blue-300"
+                    >
+                      <span className="absolute inset-0" /> Técnicos de laboratório
+                    </a>
+                  </h3>
+                  <p className="mt-5 line-clamp-3 text-sm/6 text-black">
+                    Verifica os técnicos de laboratórios do hospital.
+                  </p>
+                  <div className="mt-5">
+                    <a
+                      href="/portal/pessoalClinico/tecLaboratorio"
+                      className="flex items-center justify-center rounded-md mb-6 bg-blue-300 px-4 py-2 text-sm font-semibold text-black hover:text-blue-500 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                    >
+                      Visualizar
+                    </a>
+                  </div>
+                </div>
+              </div>
 
           </section>
         </main>
