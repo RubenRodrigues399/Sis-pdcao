@@ -39,8 +39,8 @@ const navigation = [
     current: false,
     allowedRoles: ["ADMIN", "DIRECAO", "USER"],
     submenu: [
-      { name: "Exames Marcados", href: "/exames/marcados", allowedRoles: ["ADMIN", "DIRECAO", "USER"] },
-      { name: "Exames Abertos", href: "/exames/abertos", allowedRoles: ["ADMIN", "DIRECAO", "USER"] },
+      { name: "Exames Marcados", href: "/Exames/marcados", allowedRoles: ["ADMIN", "DIRECAO", "USER"] },
+      { name: "Exames Abertos", href: "/Exames/abertos", allowedRoles: ["ADMIN", "DIRECAO", "USER"] },
     ],
   },
 ];
