@@ -103,3 +103,13 @@ export async function criarAdmin(prevState: any, formData: FormData) {
     return { success: false, message: "Erro ao cadastrar admin." };
   }
 }
+
+export const pegarAdmins = async () => {
+  try {
+    const response = await api.get("/sis/portal/pessoalClinico/medico");
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar admins:", error);
+    return { dados: [] };
+  }
+};
