@@ -3,12 +3,9 @@ import React, { useState, useEffect } from "react";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import Linha from "../../../../components/linhaPortal/LinhaPortalMedicos";
-//import {fetchEspecialidades} from '@/actions/especialidade/index';
 import { fetchMedicos } from "@/actions/medico";
 import { pegarTodasEspecialidades } from "@/actions/especialidade";
 
-const URL_API =
-  "https://sis-production-4c8f.up.railway.app/sis/portal/pessoalClinico/medico";
 const portalMedicos = () => {
   const [medicos, setMedicos] = useState([]);
   const [especialidades, setEspecialidades] = useState([]);
@@ -16,40 +13,33 @@ const portalMedicos = () => {
   useEffect(() => {
     const getEspecialidades = async () => {
       const especialidadesMap = await pegarTodasEspecialidades();
-      setEspecialidades(especialidadesMap);
+      const especialidadesObj = especialidadesMap.dados.reduce((obj, item) => {
+        obj[item.id] = item.nome;
+        return obj;
+      }, {});
+      setEspecialidades(especialidadesObj);
     };
-  
     getEspecialidades();
   }, []);
 
-  // Fetch especialidades from API
   useEffect(() => {
     const fetchPortalMedicos = async () => {
-      
-        const data = await fetchMedicos();
-        
-        //const data = await response.json();
-  
-        // Verificar se 'dados' é um array antes de salvar
-        if (Array.isArray(data.dados)) {
-          // Ajustar a estrutura para extrair os dados do objeto 'usuario'
-          const medicosFormatados = data.dados.map((medico) => ({
-            id: medico.usuario?.id || null,
-            nome: medico.usuario?.nome || "Sem nome",
-            genero: medico.usuario?.genero || "Não informado",
-            telefone01: medico.usuario?.telefone01 || "Sem telefone",
-            especialidade: especialidades[medico.especialidade_id] || "Desconhecida",
-            numOrdem: medico.numOrdem || "Sem número de ordem",
-          }));
-  
-          setMedicos(medicosFormatados);
-        } else {
-          console.error("Os 'dados' da resposta não são um array:", data.dados);
-          setMedicos([]); // Evitar quebra no frontend
-        }
-     
+      const data = await fetchMedicos();
+      if (Array.isArray(data.dados)) {
+        const medicosFormatados = data.dados.map((medico) => ({
+          id: medico.medico_id || null,
+          nome: medico.usuario?.nome || "Sem nome",
+          genero: medico.usuario?.genero || "Não informado",
+          telefone01: medico.usuario?.telefone01 || "Sem telefone",
+          especialidade: especialidades[medico.especialidades[0].id] || "Desconhecida",
+          numOrdem: medico.num_ordem || "Sem número de ordem",
+        }));
+        setMedicos(medicosFormatados);
+      } else {
+        console.error("Os 'dados' da resposta não são um array:", data.dados);
+        setMedicos([]);
+      }
     };
-  
     fetchPortalMedicos();
   }, [especialidades]);
 
@@ -89,9 +79,7 @@ const portalMedicos = () => {
                     ))
                   ) : (
                     <tr>
-                      <td colSpan="4" className="text-center p-4">
-                        Nenhuma médico encontrado.
-                      </td>
+                      <td colSpan="6" className="text-center p-4">Nenhum médico encontrado.</td>
                     </tr>
                   )}
                 </tbody>
