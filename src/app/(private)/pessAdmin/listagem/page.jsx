@@ -2,6 +2,7 @@
 import Modal from "@/components/ModalOpen";
 import React, { useEffect, useState } from "react";
 import Linha from "../../../../components/LinhaTabelaPessAdmin";
+import { AddAdminForm } from "../add-admin-form";
 
 const URL_API =
   "https://sis-production-4c8f.up.railway.app/sis/portal/pessoalClinico/medico";
