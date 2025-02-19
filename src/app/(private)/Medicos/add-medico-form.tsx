@@ -50,7 +50,7 @@ export function AddMedicoForm() {
 
   return (
     <>
-      <span className="text-lg pl-56 font-semibold">Adicionar pessoal clínico</span>
+      <span className="text-lg pl-56 font-semibold">Adicionar Médico</span>
       <form action={action} className="grid grid-cols-2 gap-4 mt-5">
         <div className="flex flex-col col-span-2">
           <input id="nome" name="nome" type="text" className="border rounded p-2" placeholder="Nome" />
