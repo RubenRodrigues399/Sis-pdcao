@@ -3,8 +3,6 @@ import { getUserAuth } from "@/actions/auth";
 import { useEffect, useState } from "react";
 
 
-
-
   export function useUserRole(){
     const [userData, setUserData] = useState<{ usuario: any; } | null>(null);
 
