@@ -1,3 +1,17 @@
+Só tá a fazer:
+Login 
+Criar Paciente 
+Criar Medico 
+Criar SuperAdmin(Direcção) 
+Criar Admin(recepção) 
+Criar Especialidade 
+Pegar Medicos 
+Pegar Especialidades
+Pegar TecnicosClinicos 
+Criar Agenda de consulta 
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 url principal: https://sis-production-4c8f.up.railway.app
 
  sis-production-4c8f.up.railway.app
@@ -225,4 +239,5 @@ chave da api:
 "APIKEY": "48454de50ba188ebad94f291e743c02af4d853c9"
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
