@@ -20,7 +20,6 @@ export function AddPCForm() {
         </div>
         <div className="flex flex-col">
           <select name="genero" className="border rounded p-2" required>
-            <option value="">Genero</option>
             <option value="Masculino">Masculino</option>
             <option value="Femenino">Femenino</option>
           </select>
